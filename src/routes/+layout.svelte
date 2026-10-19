@@ -1,6 +1,5 @@
 <script>
   import "../app.css";
-  import Navigation from "$lib/components/Navigation.svelte";
 </script>
 
 <svelte:head>
@@ -16,5 +15,4 @@
   <meta name="twitter:image:type" content="image/jpeg" />
 </svelte:head>
 
-<Navigation />
 <slot />
