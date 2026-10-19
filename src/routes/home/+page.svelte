@@ -1,11 +1,13 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
-// CAD Crosshair & Telemetry State
+// CAD Crosshair & Schematic State
 let mouseX = $state(0);
 let mouseY = $state(0);
 let tick = $state(0);
-let clockSpeed = $state(1); // 0 = paused, 1 = 10MHz, 2 = 40MHz, 4 = 80MHz
+
+// Delivery Pipeline State
+let activeStage = $state(0);
 
 // Interactive Board / Target Selector
 let selectedTarget = $state<'luckfox' | 'esp32' | 'linux'>('luckfox');
@@ -23,20 +25,6 @@ code: 'SOC_RV1106_G3',
       { addr: '0xFF32_0040', reg: 'SPI0_CTRLR0', val: '0x001F_01C7', desc: 'DMA MASTER 50MHz' },
       { addr: '0xFF65_0100', reg: 'NPU_PWR_STAT', val: '0x0000_0001', desc: 'INT8 CORE ONLINE' },
       { addr: '0xFF10_0008', reg: 'PWM1_PERIOD_HPR', val: '0x0000_03E8', desc: '100KHz CARRIER' }
-      ],
-      pins: [
-      { pin: '01', name: 'VCC_3V3', type: 'PWR', active: true },
-      { pin: '02', name: 'GND', type: 'GND', active: false },
-      { pin: '03', name: 'I2C3_SDA', type: 'IO', active: true },
-      { pin: '04', name: 'I2C3_SCL', type: 'IO', active: true },
-      { pin: '05', name: 'UART2_TX', type: 'DBG', active: true },
-      { pin: '06', name: 'UART2_RX', type: 'DBG', active: true },
-      { pin: '07', name: 'SPI0_CLK', type: 'BUS', active: true },
-      { pin: '08', name: 'SPI0_MOSI', type: 'BUS', active: true },
-      { pin: '09', name: 'SPI0_CS0', type: 'BUS', active: false },
-      { pin: '10', name: 'PWM0_M0', type: 'PWM', active: true },
-      { pin: '11', name: 'ADC_IN0', type: 'ANA', active: true },
-      { pin: '12', name: 'RMII_CLK', type: 'ETH', active: true }
       ]
          },
 esp32: {
@@ -51,20 +39,6 @@ code: 'MCU_ESP32_S3',
       { addr: '0x6002_5000', reg: 'SPI2_CMD_REG', val: '0x0004_0000', desc: 'OCTAL DMA TX' },
       { addr: '0x6001_3000', reg: 'TWAI_MODE_REG', val: '0x0000_0000', desc: 'CAN BUS 1MBIT/S' },
       { addr: '0x6000_8000', reg: 'RTC_CNTL_OPTIONS0', val: '0x1C00_2000', desc: 'DEEP SLEEP WAKE' }
-      ],
-      pins: [
-      { pin: '01', name: 'VDD_3P3', type: 'PWR', active: true },
-      { pin: '02', name: 'IO0_BOOT', type: 'SYS', active: false },
-      { pin: '03', name: 'TWAI_TX', type: 'CAN', active: true },
-      { pin: '04', name: 'TWAI_RX', type: 'CAN', active: true },
-      { pin: '05', name: 'I2S_BCLK', type: 'AUD', active: true },
-      { pin: '06', name: 'I2S_DOUT', type: 'AUD', active: true },
-      { pin: '07', name: 'USB_D-', type: 'USB', active: true },
-      { pin: '08', name: 'USB_D+', type: 'USB', active: true },
-      { pin: '09', name: 'QPSI_CS', type: 'MEM', active: true },
-      { pin: '10', name: 'RMT_CH0', type: 'SIG', active: true },
-      { pin: '11', name: 'TOUCH_1', type: 'CAP', active: false },
-      { pin: '12', name: 'GND_PAD', type: 'GND', active: false }
       ]
        },
 linux: {
@@ -79,60 +53,60 @@ code: 'SYS_LINUX_ELF',
       { addr: 'SYS_0x0119', reg: 'epoll_pwait2', val: 'NANO_TIMEOUT', desc: 'SOCKET MULTIPLEX' },
       { addr: 'BPF_0x0024', reg: 'XDP_DRV_MODE', val: 'XDP_DROP/PASS', desc: 'NIC WIRE-SPEED' },
       { addr: 'MEM_0x0009', reg: 'mmap_hugepage', val: 'MAP_LOCKED', desc: 'ZERO PAGE FAULTS' }
-      ],
-      pins: [
-      { pin: 'FD0', name: 'STDIN_RAW', type: 'FD', active: false },
-      { pin: 'FD1', name: 'STDOUT_LOG', type: 'FD', active: true },
-      { pin: 'FD3', name: 'URING_RING', type: 'KRN', active: true },
-      { pin: 'FD4', name: 'AF_XDP_SK', type: 'NET', active: true },
-      { pin: 'FD5', name: 'NETLINK_RT', type: 'KRN', active: true },
-      { pin: 'FD6', name: 'TIMERFD_0', type: 'CLK', active: true },
-      { pin: 'FD7', name: 'SIGNALFD', type: 'IPC', active: false },
-      { pin: 'FD8', name: 'MEMFD_SHM', type: 'DMA', active: true },
-      { pin: 'FD9', name: 'DRM_KMS', type: 'GPU', active: true },
-      { pin: 'FDA', name: 'GPIO_CDEV', type: 'HW', active: true },
-      { pin: 'FDB', name: 'SPIDEV0.0', type: 'HW', active: true },
-      { pin: 'FDC', name: 'I2C_DEV_1', type: 'HW', active: true }
       ]
        }
 };
 
-// Logic Analyzer Channels
-const channels = [
-{ name: 'CH0 // SPI_CLK', freq: 1, duty: 0.5 },
-{ name: 'CH1 // SPI_MOSI', freq: 0.35, duty: 0.6 },
-{ name: 'CH2 // SPI_MISO', freq: 0.6, duty: 0.3 },
-{ name: 'CH3 // UART_TX', freq: 0.25, duty: 0.75 },
-{ name: 'CH4 // NPU_IRQ', freq: 0.12, duty: 0.15 }
+// Engagement Models (business data)
+const engagement = [
+{ name: 'Fixed-Scope Project', tag: '48H QUOTE', desc: 'Fixed price, milestone-based payments, full IP and source transfer on delivery.' },
+{ name: 'Monthly Retainer', tag: 'FLEX HOURS', desc: 'Reserved engineering hours for iteration, field support and urgent board fixes.' },
+{ name: 'Audit / Rescue', tag: '2-5 DAYS', desc: 'Design review, DFM pass or code audit of an existing PCB, firmware or repository.' }
 ];
 
-// Build SVG square wave path dynamically
-function getWavePath(chIndex: number, currentTick: number, freq: number, duty: number): string {
-    const steps = 36;
-    const stepWidth = 24;
-    let d = `M 0 28`;
-    let prevY = 28;
-
-    for (let i = 0; i <= steps; i++) {
-        const phase = ((i + Math.floor(currentTick * freq)) * (chIndex + 3)) % 10;
-        const high = (phase / 10) < duty;
-        const y = high ? 6 : 28;
-        const x = i * stepWidth;
-        if (i > 0 && y !== prevY) {
-            d += ` L ${x} ${prevY} L ${x} ${y}`;
-        } else {
-            d += ` L ${x} ${y}`;
-        }
-        prevY = y;
-    }
-    return d;
+// Delivery Pipeline Stages (business data)
+const pipeline = [
+{
+code: '01',
+      title: 'Discovery & Quote',
+      duration: '48H',
+      summary: 'Send specs, a block diagram or an existing repository. We scope the work, flag the risks and come back with a fixed price.',
+      deliverables: ['Architecture & risk review', 'BOM / unit-cost estimate', 'Fixed-scope quote']
+},
+{
+code: '02',
+      title: 'Schematic & Layout',
+      duration: '5-10 DAYS',
+      summary: 'Schematic capture, stack-up and impedance planning, then KiCad layout with a DFM pass before anything is released to the fab.',
+      deliverables: ['KiCad schematic + PCB source', 'Gerbers, drill & pick-and-place', 'Controlled-impedance stack-up']
+},
+{
+code: '03',
+      title: 'Firmware & Bring-Up',
+      duration: '1-3 WEEKS',
+      summary: 'Power rails and interfaces validated on the bench, then deterministic firmware, bootloaders and CI-built binaries on target.',
+      deliverables: ['Bring-up & validation report', 'Firmware source + bootloader', 'Versioned release binaries']
+},
+{
+code: '04',
+      title: 'Production & Support',
+      duration: 'ONGOING',
+      summary: 'Assembly oversight, first-article inspection and a support window for revisions, cost-downs and field issues.',
+      deliverables: ['Assembly & test documentation', 'Revision-controlled releases', 'Post-launch support window']
 }
+];
+
+// Business Metrics (business data)
+const metrics = [
+{ value: '48H', label: 'Quote Turnaround', note: 'FIXED SCOPE // NO HOURLY DRIFT' },
+{ value: '10 DAYS', label: 'Typical Prototype', note: 'SPEC -> ASSEMBLED BOARD' },
+{ value: '< 24H', label: 'Engineer Response', note: 'DIRECT LINE // NO SALES DESK' },
+{ value: '100%', label: 'IP & Source Ownership', note: 'GERBERS // BOM // REPO' }
+];
 
 onMount(() => {
         const waveInterval = setInterval(() => {
-                if (clockSpeed > 0) {
-                tick += clockSpeed;
-                }
+                tick += 1;
                 }, 90);
 
         return () => {
@@ -189,7 +163,7 @@ X:{mouseX.toString().padStart(4, '0')} Y:{mouseY.toString().padStart(4, '0')} //
 
 <div class="flex items-center gap-6">
 <a href="#inspector" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5">01.SILICON</a>
-<a href="#analyzer" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5">02.SIGNALS</a>
+<a href="#delivery" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5">02.DELIVERY</a>
 <a href="#capabilities" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5">03.DISCIPLINES</a>
 <a href="#terminal" class="bg-[#86A881] text-[#000000] px-3 py-0.5 hover:bg-[#FFFFFF]">INIT_TX</a>
 </div>
@@ -199,7 +173,7 @@ X:{mouseX.toString().padStart(4, '0')} Y:{mouseY.toString().padStart(4, '0')} //
 <main class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pt-8 pb-24 space-y-24 md:space-y-36">
 
 <!-- HERO SECTION: Asymmetric Swiss Layout + Animated PCB Schematic -->
-<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
 <!-- Left Column: Manifesto & Direct Callouts -->
 <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
 <div class="space-y-6">
@@ -230,21 +204,21 @@ class="bg-[#86A881] text-[#000000] px-8 py-4 text-xs uppercase tracking-widest h
 </div>
 
 <!-- Right Column: Animated SVG PCB Routing Blueprint -->
-<div class="lg:col-span-5 bg-[#353535] p-6 flex flex-col justify-between relative overflow-hidden">
-<div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-[#86A881] mb-4">
+<div class="lg:col-span-5 bg-[#353535] p-6 flex flex-col gap-3 relative overflow-hidden">
+<div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-[#86A881]">
 <span>CAD_VIEW // KONO-CARRIER-V4.KICAD_PCB</span>
 </div>
 
 <!-- Animated Vector PCB Schematic -->
-<div class="bg-[#000000] p-4 my-auto">
-<svg viewBox="0 0 400 320" class="w-full h-auto">
+<div class="bg-[#000000]">
+<svg viewBox="0 20 400 300" class="w-full h-auto block">
 <!-- Background Grid Dots -->
 <defs>
 <pattern id="pcb-grid" width="20" height="20" patternUnits="userSpaceOnUse">
 <rect x="0" y="0" width="2" height="2" fill="#413B35" />
 </pattern>
 </defs>
-<rect width="400" height="320" fill="url(#pcb-grid)" />
+<rect y="20" width="400" height="300" fill="url(#pcb-grid)" />
 
 <!-- Copper Traces (Static Base) -->
 <g stroke="#413B35" stroke-width="2.5" fill="none">
@@ -328,9 +302,9 @@ class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer {selectedTarge
 </div>
 
 <!-- Active Target Datasheet Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 {#key selectedTarget}
 {@const target = targets[selectedTarget]}
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 <!-- Target Specs & Live Register Dump -->
 <div class="lg:col-span-7 bg-[#353535] p-6 md:p-8 space-y-6">
 <div class="flex flex-wrap justify-between items-center gap-2 bg-[#000000] p-4">
@@ -371,99 +345,106 @@ MMIO REGISTER &amp; SYSCALL MONITOR
 </div>
 {/each}
 </div>
-</div>
-</div>
 
-<!-- Pinout / Bus Multiplexer Matrix -->
-<div class="lg:col-span-5 bg-[#413B35] p-6 md:p-8 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-center mb-6">
-<span class="text-xs text-[#86A881] uppercase tracking-widest">PINOUT / IO MATRIX</span>
-<span class="text-[10px] bg-[#000000] text-[#FFFFFF] px-2 py-1">3.3V CMOS LOGIC</span>
-</div>
-
-<div class="grid grid-cols-2 gap-3">
-{#each target.pins as p, idx}
-{@const pulsing = p.active && ((tick + idx) % 3 === 0)}
-<div class="bg-[#000000] p-3 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-2.5 h-2.5 inline-block {pulsing ? 'bg-[#86A881]' : p.active ? 'bg-[#86A881]/40' : 'bg-[#353535]'}"></span>
-<span class="text-xs text-[#FFFFFF]">{p.name}</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-[10px] text-[#86A881] bg-[#353535] px-1.5 py-0.5">{p.type}</span>
-<span class="text-[10px] text-[#FFFFFF]/40">{p.pin}</span>
-</div>
-</div>
-{/each}
-</div>
-</div>
-
-<div class="mt-6 bg-[#000000] p-3 text-[11px] text-[#86A881] flex justify-between">
+<div class="flex justify-between gap-4 text-[10px] text-[#86A881] uppercase tracking-widest">
 <span>OS_ENV: {target.os}</span>
 <span>[LOCKED]</span>
 </div>
 </div>
 </div>
 {/key}
+
+<!-- Engagement / Business Panel -->
+<div class="lg:col-span-5 bg-[#413B35] p-6 md:p-8 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-6">
+<span class="text-xs text-[#86A881] uppercase tracking-widest">ENGAGEMENT MODELS</span>
+<span class="text-[10px] bg-[#000000] text-[#FFFFFF] px-2 py-1">NDA BY DEFAULT</span>
+</div>
+
+<div class="space-y-3">
+{#each engagement as eng}
+<div class="bg-[#000000] p-4 space-y-1.5">
+<div class="flex justify-between items-center gap-3">
+<span class="text-xs text-[#FFFFFF] uppercase">{eng.name}</span>
+<span class="text-[10px] text-[#000000] bg-[#86A881] px-1.5 py-0.5">{eng.tag}</span>
+</div>
+<p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">{eng.desc}</p>
+</div>
+{/each}
+</div>
+</div>
+
+<div class="mt-6 bg-[#000000] p-3 text-[11px] text-[#86A881] flex justify-between gap-3">
+<span>RESPONSE_TIME: &lt; 24H</span>
+<span>[REMOTE // WORLDWIDE]</span>
+</div>
+</div>
+</div>
 </section>
 
-<!-- SECTION 02: LIVE 5-CHANNEL LOGIC ANALYZER -->
-<section id="analyzer" class="bg-[#353535] p-6 md:p-10 space-y-6">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<!-- SECTION 02: DELIVERY PIPELINE & BUSINESS METRICS -->
+<section id="delivery" class="bg-[#353535] p-6 md:p-10 space-y-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
 <div>
-<div class="text-xs text-[#86A881] uppercase tracking-widest">02 // REAL-TIME TELEMETRY</div>
-<h2 class="text-xl md:text-2xl uppercase mt-1">HARDWARE LOGIC ANALYZER // BUS CAPTURE</h2>
+<div class="text-xs text-[#86A881] uppercase tracking-widest">02 // DELIVERY PIPELINE</div>
+<h2 class="text-xl md:text-2xl uppercase mt-1">FROM SPEC TO PRODUCTION // 4 STAGES</h2>
 </div>
-
-<div class="flex flex-wrap items-center gap-2 text-xs">
-<span class="text-[#FFFFFF]/60 mr-2">SAMPLE_RATE:</span>
-<button
-onclick={() => (clockSpeed = 0)}
-class="px-3 py-1.5 uppercase cursor-pointer {clockSpeed === 0 ? 'bg-[#86A881] text-[#000000]' : 'bg-[#000000] text-[#FFFFFF]'}"
->
-HALT
-</button>
-<button
-onclick={() => (clockSpeed = 1)}
-class="px-3 py-1.5 uppercase cursor-pointer {clockSpeed === 1 ? 'bg-[#86A881] text-[#000000]' : 'bg-[#000000] text-[#FFFFFF]'}"
->
-10MHz
-</button>
-<button
-onclick={() => (clockSpeed = 2)}
-class="px-3 py-1.5 uppercase cursor-pointer {clockSpeed === 2 ? 'bg-[#86A881] text-[#000000]' : 'bg-[#000000] text-[#FFFFFF]'}"
->
-40MHz
-</button>
-<button
-onclick={() => (clockSpeed = 4)}
-class="px-3 py-1.5 uppercase cursor-pointer {clockSpeed === 4 ? 'bg-[#86A881] text-[#000000]' : 'bg-[#000000] text-[#FFFFFF]'}"
->
-80MHz
-</button>
+<div class="text-[11px] uppercase tracking-widest text-[#FFFFFF]/60 md:text-right">
+FIXED-SCOPE QUOTES // MILESTONE BILLING // IP ON DELIVERY
 </div>
 </div>
 
-<div class="bg-[#000000] p-4 md:p-6 space-y-4">
-{#each channels as ch, idx}
-<div class="grid grid-cols-1 md:grid-cols-12 gap-2 items-center">
-<div class="md:col-span-3 flex items-center justify-between pr-4">
-<span class="text-xs text-[#86A881]">{ch.name}</span>
-<span class="text-[10px] bg-[#413B35] text-[#FFFFFF] px-1.5 py-0.5">
-{((tick + idx) % 2 === 0) ? 'HIGH 3V3' : 'LOW 0V0'}
-</span>
+<!-- Stage Selector -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+{#each pipeline as stage, i}
+<button
+onclick={() => (activeStage = i)}
+class="text-left p-4 cursor-pointer {activeStage === i ? 'bg-[#86A881] text-[#000000]' : 'bg-[#413B35] text-[#FFFFFF] hover:bg-[#000000]'}"
+>
+<div class="text-[10px] uppercase tracking-widest {activeStage === i ? 'text-[#000000]/70' : 'text-[#86A881]'}">
+STAGE {stage.code} // {stage.duration}
 </div>
-<div class="md:col-span-9 bg-[#353535]/25 p-1 overflow-hidden">
-<svg viewBox="0 0 860 34" class="w-full h-7 overflow-visible">
-<path
-d={getWavePath(idx, tick, ch.freq, ch.duty)}
-fill="none"
-stroke="#86A881"
-stroke-width="2"
-/>
-</svg>
+<div class="text-sm uppercase mt-1">{stage.title}</div>
+</button>
+{/each}
 </div>
+
+<!-- Active Stage Detail -->
+{#key activeStage}
+{@const stage = pipeline[activeStage]}
+<div class="bg-[#000000] p-6 grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-5 space-y-3">
+<div>
+<div class="text-[10px] text-[#86A881] uppercase tracking-widest">ACTIVE_STAGE // {stage.code}</div>
+<h3 class="text-lg uppercase mt-1">{stage.title}</h3>
+</div>
+<p class="text-xs text-[#FFFFFF]/75 leading-relaxed">{stage.summary}</p>
+<div class="bg-[#353535] p-3 text-[11px] text-[#86A881] flex justify-between gap-3">
+<span>ETA: {stage.duration}</span>
+<span>[MILESTONE {stage.code}/04]</span>
+</div>
+</div>
+
+<div class="md:col-span-7 space-y-2">
+<div class="text-[10px] text-[#86A881] uppercase tracking-widest mb-1">DELIVERABLES</div>
+{#each stage.deliverables as d, j}
+<div class="flex items-center justify-between gap-4 bg-[#353535] px-4 py-3 text-xs">
+<span class="text-[#FFFFFF]">{d}</span>
+<span class="text-[10px] text-[#86A881]">OUT_{String(j + 1).padStart(2, '0')}</span>
+</div>
+{/each}
+</div>
+</div>
+{/key}
+
+<!-- Business Metrics Band -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+{#each metrics as m}
+<div class="bg-[#413B35] p-4 space-y-1">
+<div class="text-2xl md:text-3xl text-[#86A881]">{m.value}</div>
+<div class="text-[11px] uppercase tracking-widest text-[#FFFFFF]">{m.label}</div>
+<div class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/45">{m.note}</div>
 </div>
 {/each}
 </div>
