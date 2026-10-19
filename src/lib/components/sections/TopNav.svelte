@@ -3,9 +3,8 @@
   <div
     class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-widest"
   >
-    <div class="flex items-center gap-4">
-      <img src="/logo-transparent-bg.png" alt="KONO" class="h-6 w-auto" />
-      <span class="bg-[#86A881] text-[#000000] px-2 py-0.5 font-bold">KONO_LABS</span>
+    <div class="flex items-center gap-2 justify-center">
+      <img src="/long-logo-green-bg.png" alt="KONO" class="h-6 w-auto" />
     </div>
 
     <div class="flex items-center gap-6">

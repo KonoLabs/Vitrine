@@ -2,16 +2,7 @@
 <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
   <!-- Left Column: Manifesto & Direct Callouts -->
   <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
-    <div class="space-y-6">
-      <img src="/long-logo-transparent-bg.png" alt="KONO" class="h-10 md:h-14 w-auto" />
-      <div
-        class="inline-flex items-center gap-3 bg-[#353535] px-3 py-1.5 text-xs text-[#86A881] uppercase tracking-widest"
-      >
-        <span>[SCHEMATIC REV 4.2]</span>
-        <span class="text-[#FFFFFF]">//</span>
-        <span class="text-[#FFFFFF]">SILICON TO SHIP</span>
-      </div>
-
+    <div class="space-y-6 mt-16">
       <h1 class="text-4xl sm:text-5xl xl:text-6xl leading-[1.08] uppercase tracking-tight">
         CUSTOM <span class="bg-[#86A881] text-[#000000] px-2">PCB</span> HARDWARE, EMBEDDED
         <span class="text-[#86A881]">FIRMWARE</span> & FULL-STACK SOFTWARE.
