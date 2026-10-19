@@ -18,9 +18,9 @@
     <div class="space-y-3">
       <a
         href="mailto:yann@facile.studio"
-        class="block w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#353535] p-4 text-xs uppercase tracking-widest text-center"
+        class="block w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#353535] p-4 text-md tracking-widest text-center no-underline"
       >
-        &gt; MAILTO: YANN@FACILE.STUDIO
+        &gt; yann@facile.studio
       </a>
     </div>
   </div>
