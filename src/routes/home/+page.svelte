@@ -4,7 +4,6 @@ import { onMount } from 'svelte';
 // CAD Crosshair & Telemetry State
 let mouseX = $state(0);
 let mouseY = $state(0);
-let scrollY = $state(0);
 let tick = $state(0);
 let clockSpeed = $state(1); // 0 = paused, 1 = 10MHz, 2 = 40MHz, 4 = 80MHz
 
@@ -107,37 +106,6 @@ const channels = [
 { name: 'CH4 // NPU_IRQ', freq: 0.12, duty: 0.15 }
 ];
 
-// Live Kernel / Serial Log Stream
-let logs = $state([
-        '[    0.000000] Booting KONO_OS 6.12.0-rc4-minimal on ARM64/RISC-V...',
-        '[    0.001402] pcie_bus 0000:00: root bus resource [mem 0x40000000-0x7fffffff]',
-        '[    0.004819] spi-nor spi0.0: w25q128 (16384 Kbytes) @ 104MHz DMA enabled',
-        '[    0.012940] luckfox-npu ff650000.npu: RKNPU initialized (1.0 TOPS INT8)',
-        '[    0.019300] esp32-link ttyS2: 2000000 baud frame sync locked [CRC32 OK]',
-        '[    0.024110] kono_daemon[104]: zero-copy ringbuffer mapped at 0xffff80001000'
-]);
-
-const incomingLogs = [
-    'pcb_drc[201]: 6-layer impedance check 50.0 Ohm +/- 0.8% PASS',
-    'esp32_s3[312]: TWAI CAN-bus frame 0x1A4 rx -> latency 14us',
-    'rv1106_isp[188]: MIPI-CSI2 raw10 frame captured in 2.1ms',
-    'kono_net[104]: AF_XDP packet processed in 310 nanoseconds',
-    'gerber_gen[409]: step & pick-and-place centroid exported',
-    'pwr_mgmt[099]: buck converter rail 3V3_SYS ripple < 4mVpp',
-    'watchdog[001]: deterministic tick verified // 0 missed deadlines'
-];
-
-function triggerCommand(cmd: string) {
-    const ts = ((tick * 0.04) + 1.042).toFixed(6).padStart(12, ' ');
-    if (cmd === 'drc') {
-        logs = [...logs.slice(-7), `[${ts}] > EXEC: kicad-cli pcb drc --severity-error // 0 ERRORS, 0 UNROUTED NETS`];
-    } else if (cmd === 'flash') {
-        logs = [...logs.slice(-7), `[${ts}] > EXEC: esptool.py write_flash 0x0 firmware.bin // VERIFIED 312KB @ 921600 BAUD`];
-    } else if (cmd === 'bench') {
-        logs = [...logs.slice(-7), `[${ts}] > EXEC: ./kono_bench --threads=4 // P99 LATENCY: 1.8us | ALLOCS: 0`];
-    }
-}
-
 // Build SVG square wave path dynamically
 function getWavePath(chIndex: number, currentTick: number, freq: number, duty: number): string {
     const steps = 36;
@@ -167,15 +135,8 @@ onMount(() => {
                 }
                 }, 90);
 
-        const logInterval = setInterval(() => {
-                const randomMsg = incomingLogs[Math.floor(Math.random() * incomingLogs.length)];
-                const ts = ((tick * 0.04) + 1.042).toFixed(6).padStart(12, ' ');
-                logs = [...logs.slice(-7), `[${ts}] ${randomMsg}`];
-                }, 2600);
-
         return () => {
         clearInterval(waveInterval);
-        clearInterval(logInterval);
         };
         });
 </script>
@@ -184,9 +145,6 @@ onMount(() => {
 onmousemove={(e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-}}
-onscroll={() => {
-    scrollY = window.scrollY;
 }}
 />
 
@@ -198,7 +156,7 @@ onscroll={() => {
 
 <!-- Dual-Scale Blueprint Grid Background -->
 <div class="fixed inset-0 pointer-events-none opacity-20 bg-[linear-gradient(to_right,#353535_1px,transparent_1px),linear-gradient(to_bottom,#353535_1px,transparent_1px)] bg-[size:16px_16px]"></div>
-<div class="fixed inset-0 pointer-events-none opacity-25 bg-[linear-gradient(to_right,#86A881_1px,transparent_1px),linear-gradient(to_bottom,#86A881_1px,transparent_1px)] bg-[size:96px_96px]"></div>
+<div class="fixed inset-0 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#86A881_1px,transparent_1px),linear-gradient(to_bottom,#86A881_1px,transparent_1px)] bg-[size:96px_96px]"></div>
 
 <!-- Interactive CAD Crosshair Overlay -->
 <div class="fixed inset-0 pointer-events-none z-40 hidden lg:block">
@@ -227,15 +185,9 @@ X:{mouseX.toString().padStart(4, '0')} Y:{mouseY.toString().padStart(4, '0')} //
 <div class="flex items-center gap-4">
 <img src="/logo-transparent-bg.png" alt="KONO" class="h-6 w-auto" />
 <span class="bg-[#86A881] text-[#000000] px-2 py-0.5 font-bold">KONO_LABS</span>
-<span class="text-[#86A881] flex items-center gap-2">
-<span class="inline-block w-2 h-2 bg-[#86A881] animate-ping"></span>
-SYS_ONLINE
-</span>
-<span class="hidden sm:inline text-[#FFFFFF]/50">CLK_TICK: 0x{tick.toString(16).toUpperCase().padStart(6, '0')}</span>
 </div>
 
 <div class="flex items-center gap-6">
-<span class="hidden md:inline text-[#FFFFFF]/60">SCROLL_OFFSET: {Math.floor(scrollY)}PX</span>
 <a href="#inspector" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5">01.SILICON</a>
 <a href="#analyzer" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5">02.SIGNALS</a>
 <a href="#capabilities" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5">03.DISCIPLINES</a>
@@ -267,26 +219,6 @@ Kono is a hardware and systems engineering foundry. We route multi-layer circuit
 </p>
 </div>
 
-<!-- Key Metrics Matrix (Zero borders, solid blocks) -->
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
-<div class="bg-[#353535] p-4">
-<div class="text-[10px] text-[#86A881] uppercase">FOOTPRINT</div>
-<div class="text-lg md:text-xl text-[#FFFFFF] mt-1">&lt; 2MB ELF</div>
-</div>
-<div class="bg-[#353535] p-4">
-<div class="text-[10px] text-[#86A881] uppercase">PCB FAB</div>
-<div class="text-lg md:text-xl text-[#FFFFFF] mt-1">2–10 LAYERS</div>
-</div>
-<div class="bg-[#353535] p-4">
-<div class="text-[10px] text-[#86A881] uppercase">TARGETS</div>
-<div class="text-lg md:text-xl text-[#FFFFFF] mt-1">ARM / RISC-V</div>
-</div>
-<div class="bg-[#413B35] p-4">
-<div class="text-[10px] text-[#86A881] uppercase">NODE_MODULES</div>
-<div class="text-lg md:text-xl text-[#86A881] mt-1">0 BYTES</div>
-</div>
-</div>
-
 <div class="flex flex-wrap gap-4">
 <a
 href="#terminal"
@@ -294,12 +226,6 @@ class="bg-[#86A881] text-[#000000] px-8 py-4 text-xs uppercase tracking-widest h
 >
 &gt; TRANSMIT_GERBERS_OR_SPECS
 </a>
-<button
-onclick={() => triggerCommand('bench')}
-class="bg-[#353535] text-[#FFFFFF] px-6 py-4 text-xs uppercase tracking-widest hover:bg-[#413B35] cursor-pointer"
->
-[RUN_SYS_DIAGNOSTIC]
-</button>
 </div>
 </div>
 
@@ -307,7 +233,6 @@ class="bg-[#353535] text-[#FFFFFF] px-6 py-4 text-xs uppercase tracking-widest h
 <div class="lg:col-span-5 bg-[#353535] p-6 flex flex-col justify-between relative overflow-hidden">
 <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-[#86A881] mb-4">
 <span>CAD_VIEW // KONO-CARRIER-V4.KICAD_PCB</span>
-<span class="bg-[#000000] text-[#86A881] px-2 py-0.5">NETS: 142/142 ROUTED</span>
 </div>
 
 <!-- Animated Vector PCB Schematic -->
@@ -349,9 +274,8 @@ class="bg-[#353535] text-[#FFFFFF] px-6 py-4 text-xs uppercase tracking-widest h
 <rect x="165" y="75" width="70" height="70" fill="#000000" />
 <!-- Pin 1 Indicator -->
 <rect x="170" y="80" width="6" height="6" fill="#86A881" class="animate-ping" />
-<text x="172" y="108" fill="#86A881" font-size="9" font-family="monospace">RV1106</text>
-<text x="172" y="122" fill="#FFFFFF" font-size="8" font-family="monospace">ESP32-S3</text>
-<text x="172" y="135" fill="#86A881" font-size="7" font-family="monospace">KONO_CORE</text>
+<text x="172" y="115" fill="#86A881" font-size="9" font-family="monospace">RV1106</text>
+<text x="172" y="130" fill="#FFFFFF" font-size="7" font-family="monospace">KONO_CORE</text>
 
 <!-- Secondary IC (SPI NAND / Transceiver) -->
 <rect x="165" y="165" width="70" height="30" fill="#413B35" />
@@ -370,21 +294,6 @@ class="bg-[#353535] text-[#FFFFFF] px-6 py-4 text-xs uppercase tracking-widest h
 {/if}
 {/each}
 </svg>
-</div>
-
-<div class="grid grid-cols-3 gap-2 pt-4 text-[10px] uppercase">
-<div class="bg-[#413B35] p-2">
-<span class="text-[#86A881] block">IMPEDANCE</span>
-<span>50Ω / 90Ω DIFF</span>
-</div>
-<div class="bg-[#413B35] p-2">
-<span class="text-[#86A881] block">MIN TRACE</span>
-<span>0.09MM / 3.5MIL</span>
-</div>
-<div class="bg-[#413B35] p-2">
-<span class="text-[#86A881] block">FINISH</span>
-<span>ENIG GOLD</span>
-</div>
 </div>
 </div>
 </section>
@@ -635,51 +544,10 @@ Unix philosophy applied to production software. Self-contained static binaries, 
 </div>
 </section>
 
-<!-- SECTION 04: LIVE DMESG SERIAL CONSOLE & CONTACT -->
-<section id="terminal" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-<!-- Interactive Kernel Serial Output -->
-<div class="lg:col-span-7 bg-[#413B35] p-6 md:p-8 flex flex-col justify-between space-y-6">
-<div class="flex flex-wrap items-center justify-between gap-2">
-<span class="text-xs text-[#86A881] uppercase tracking-widest">
-/DEV/TTYS0 // 115200 8N1 LIVE STREAM
-</span>
-<div class="flex gap-2">
-<button
-onclick={() => triggerCommand('drc')}
-class="bg-[#000000] text-[#86A881] hover:bg-[#86A881] hover:text-[#000000] px-2.5 py-1 text-[10px] uppercase cursor-pointer"
->
-RUN_DRC
-</button>
-<button
-onclick={() => triggerCommand('flash')}
-class="bg-[#000000] text-[#86A881] hover:bg-[#86A881] hover:text-[#000000] px-2.5 py-1 text-[10px] uppercase cursor-pointer"
->
-FLASH_ROM
-</button>
-<button
-onclick={() => triggerCommand('bench')}
-class="bg-[#000000] text-[#86A881] hover:bg-[#86A881] hover:text-[#000000] px-2.5 py-1 text-[10px] uppercase cursor-pointer"
->
-BENCH_IO
-</button>
-</div>
-</div>
-
-<div class="bg-[#000000] p-5 font-mono text-xs space-y-2 min-h-[240px] flex flex-col justify-end">
-{#each logs as line, i}
-<div class="{i === logs.length - 1 ? 'text-[#86A881]' : 'text-[#FFFFFF]/70'} break-all">
-{line}
-</div>
-{/each}
-<div class="text-[#86A881] flex items-center gap-2 pt-1">
-<span>root@kono:~#</span>
-<span class="w-2.5 h-4 bg-[#86A881] inline-block animate-pulse"></span>
-</div>
-</div>
-</div>
-
+<!-- SECTION 04: INITIALIZE PROJECT & CONTACT -->
+<section id="terminal">
 <!-- Initiation / Contact Block -->
-<div class="lg:col-span-5 bg-[#86A881] text-[#000000] p-8 md:p-10 flex flex-col justify-between space-y-8">
+<div class="bg-[#86A881] text-[#000000] p-8 md:p-10 flex flex-col justify-between space-y-8">
 <div class="space-y-4">
 <div class="inline-block bg-[#000000] text-[#86A881] px-3 py-1 text-xs uppercase tracking-widest">
 04 // INITIALIZE PROJECT
@@ -699,16 +567,6 @@ class="block w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#353535] p-4 text-xs u
 >
 &gt; MAILTO: CONTACT@KONO.SH
 </a>
-<div class="grid grid-cols-2 gap-3 text-[11px] uppercase">
-<div class="bg-[#413B35] text-[#FFFFFF] p-3">
-<span class="text-[#86A881] block text-[9px]">FRANCE // EU</span>
-<span>LYON / REMOTE</span>
-</div>
-<div class="bg-[#353535] text-[#FFFFFF] p-3">
-<span class="text-[#86A881] block text-[9px]">TURNAROUND</span>
-<span>PROTO IN DAYS</span>
-</div>
-</div>
 </div>
 </div>
 </section>
