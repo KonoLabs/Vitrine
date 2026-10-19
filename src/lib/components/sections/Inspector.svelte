@@ -8,6 +8,8 @@
     clock: string;
     mem: string;
     os: string;
+    io: string[];
+    shipments: string[];
   }
 
   const targets: Record<TargetKey, Target> = {
@@ -17,7 +19,20 @@
       arch: "ARM Cortex-A7 + RISC-V MCU + 1.0 TOPS NPU",
       clock: "1.2 GHz / 250 MHz",
       mem: "256MB DDR3L / SPI NAND",
-      os: "Custom Buildroot / BusyBox / Linux 5.10"
+      os: "Custom Buildroot / BusyBox / Linux 5.10",
+      io: [
+        "MIPI-CSI",
+        "RMII ETHERNET",
+        "USB 2.0 OTG",
+        "SDMMC",
+        "SPI",
+        "I2C",
+        "UART",
+        "PWM",
+        "ADC",
+        "JTAG"
+      ],
+      shipments: ["Edge vision / camera nodes", "PoE field gateways", "On-device audio + NLU"]
     },
     esp32: {
       code: "MCU_ESP32_S3",
@@ -25,7 +40,21 @@
       arch: "Dual Xtensa LX7 + ULP RISC-V Co-Processor",
       clock: "240 MHz",
       mem: "512KB SRAM / 8MB Octal PSRAM / 16MB Flash",
-      os: "ESP-IDF v5.x / FreeRTOS SMP"
+      os: "ESP-IDF v5.x / FreeRTOS SMP",
+      io: [
+        "USB-OTG",
+        "TWAI / CAN",
+        "LCD 8080 BUS",
+        "CAMERA DVP",
+        "SPI",
+        "I2C",
+        "UART",
+        "LEDC PWM",
+        "ADC",
+        "TOUCH",
+        "JTAG"
+      ],
+      shipments: ["Battery sensor nodes", "BLE mesh & beacons", "USB dongles & tools"]
     }
   };
 
@@ -91,7 +120,7 @@
     {#key selectedTarget}
       {@const target = targets[selectedTarget]}
       <!-- Target Specs -->
-      <div class="lg:col-span-7 bg-[#353535] p-6 md:p-8 space-y-6">
+      <div class="lg:col-span-7 bg-[#353535] p-6 md:p-8 flex flex-col gap-6">
         <div class="bg-[#000000] p-4">
           <span class="text-[10px] text-[#86A881] block">TARGET_ID // {target.code}</span>
           <h3 class="text-lg md:text-xl text-[#FFFFFF] uppercase">{target.name}</h3>
@@ -113,6 +142,40 @@
         </div>
 
         <div class="text-[10px] text-[#86A881] uppercase tracking-widest">OS_ENV: {target.os}</div>
+
+        <!-- Interface Matrix + Reference Shipments (fills the panel floor) -->
+        <div class="mt-auto bg-[#000000] p-4 space-y-3">
+          <div class="flex justify-between items-center gap-3">
+            <span class="text-[10px] text-[#86A881] uppercase tracking-widest"
+              >IO_MATRIX // EXPOSED_INTERFACES</span
+            >
+            <span class="text-[10px] text-[#FFFFFF]/45 uppercase tracking-widest"
+              >PINMUX // BOARD-DEPENDENT</span
+            >
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            {#each target.io as iface}
+              <span class="border border-[#404040] px-2 py-1 text-[10px] text-[#FFFFFF]/85"
+                >{iface}</span
+              >
+            {/each}
+          </div>
+
+          <div class="border-t border-[#353535] pt-3 space-y-2">
+            <span class="text-[10px] text-[#86A881] uppercase tracking-widest block"
+              >TYPICAL SHIPMENTS ON THIS TARGET</span
+            >
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              {#each target.shipments as ship, i}
+                <div class="bg-[#353535] px-3 py-2 text-[11px] text-[#FFFFFF]/75">
+                  <span class="text-[#86A881]">REF_{String(i + 1).padStart(2, "0")}</span>
+                  {ship}
+                </div>
+              {/each}
+            </div>
+          </div>
+        </div>
       </div>
     {/key}
 
