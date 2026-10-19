@@ -3,16 +3,16 @@
 </script>
 
 <svelte:head>
-  <link rel="icon" href="/favicon.jpg" type="image/jpeg" />
-  <link rel="shortcut icon" href="/favicon.jpg" type="image/jpeg" />
-  <link rel="apple-touch-icon" href="/favicon.jpg" />
+  <link rel="icon" href="/logo-transparent-bg.png" type="image/png" />
+  <link rel="shortcut icon" href="/logo-transparent-bg.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/logo-transparent-bg.png" type="image/png" />
 
-  <meta property="og:image" content="/favicon.jpg" />
-  <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:width" content="512" />
-  <meta property="og:image:height" content="512" />
-  <meta name="twitter:image" content="/favicon.jpg" />
-  <meta name="twitter:image:type" content="image/jpeg" />
+  <meta property="og:image" content="/logo-green-bg.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1000" />
+  <meta property="og:image:height" content="1000" />
+  <meta name="twitter:image" content="/logo-green-bg.png" />
+  <meta name="twitter:image:type" content="image/png" />
 </svelte:head>
 
 <slot />

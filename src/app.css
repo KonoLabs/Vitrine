@@ -1,3 +1,9 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@source "./**/*.{html,js,svelte,ts,md}";
+
 @font-face {
   font-family: 'Undefined';
   src: url('/undefined-medium.otf') format('opentype');
@@ -12,7 +18,10 @@
   --link: #413B35;
   --link-hover: #353535;
   --accent: #ffffff;
+  --surface: #74986E;
   --subtle: #ffffff;
+  --code-bg: #ffffff;
+  --code-fg: #413B35;
 }
 
 :root.dark {
@@ -22,46 +31,60 @@
   --link: #229147;
   --link-hover: #A8B365;
   --accent: #229147;
+  --surface: #1a1a1a;
   --subtle: #131313;
+  --code-bg: #131313;
+  --code-fg: #A8B365;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+@layer base {
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'Undefined', monospace;
-  background: var(--bg);
-  color: var(--fg);
-  line-height: 1.6;
-  padding: 1rem;
-  max-width: 800px;
-  margin: 0 auto;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  body {
+    font-family: 'Undefined', monospace;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  a { color: var(--link); text-decoration: underline; }
+  a:hover { color: var(--link-hover); }
+
+  h1, h2, h3, h4, h5, h6 { margin: 1rem 0 0.5rem 0; font-weight: normal; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  p { margin: 0.5rem 0; }
+  img { max-width: 100%; height: auto; }
+
+  nav { border-bottom: 2px solid var(--border); margin-bottom: 2rem; padding-bottom: 0.5rem; }
+  nav a { margin-right: 1rem; text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+
+  main, article, section { animation: fadeIn 0.4s ease-out; }
 }
-
-a { color: var(--link); text-decoration: underline; }
-a:hover { color: var(--link-hover); }
-
-h1, h2, h3, h4, h5, h6 { margin: 1rem 0 0.5rem 0; font-weight: normal; }BB
-h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; }
-h3 { font-size: 1.25rem; }
-
-p { margin: 0.5rem 0; }
-img { max-width: 100%; height: auto; }
-
-nav { border-bottom: 2px solid var(--border); margin-bottom: 2rem; padding-bottom: 0.5rem; }
-nav a { margin-right: 1rem; text-decoration: none; }
-nav a:hover { text-decoration: underline; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-main, article, section { animation: fadeIn 0.4s ease-out; }
+/* Centered reading measure for pages without their own full-width layout */
+.page-shell {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
 @media (max-width: 600px) {
-  body { padding: 0.5rem; }
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.25rem; }
   .avatar { width: 60px; height: 60px; }

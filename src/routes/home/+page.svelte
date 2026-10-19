@@ -225,6 +225,7 @@ X:{mouseX.toString().padStart(4, '0')} Y:{mouseY.toString().padStart(4, '0')} //
 <div class="sticky top-0 z-30 bg-[#000000] px-6 md:px-12 py-3">
 <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
 <div class="flex items-center gap-4">
+<img src="/logo-transparent-bg.png" alt="KONO" class="h-6 w-auto" />
 <span class="bg-[#86A881] text-[#000000] px-2 py-0.5 font-bold">KONO_LABS</span>
 <span class="text-[#86A881] flex items-center gap-2">
 <span class="inline-block w-2 h-2 bg-[#86A881] animate-ping"></span>
@@ -250,6 +251,7 @@ SYS_ONLINE
 <!-- Left Column: Manifesto & Direct Callouts -->
 <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
 <div class="space-y-6">
+<img src="/long-logo-transparent-bg.png" alt="KONO" class="h-10 md:h-14 w-auto" />
 <div class="inline-flex items-center gap-3 bg-[#353535] px-3 py-1.5 text-xs text-[#86A881] uppercase tracking-widest">
 <span>[SCHEMATIC REV 4.2]</span>
 <span class="text-[#FFFFFF]">//</span>
