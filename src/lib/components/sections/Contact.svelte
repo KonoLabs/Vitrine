@@ -9,8 +9,9 @@
         BUILD REAL HARDWARE &amp; FAST SOFTWARE.
       </h2>
       <p class="text-xs md:text-sm leading-relaxed text-[#000000]/80">
-        Direct access to the engineers writing your C/Rust/Go code and routing your PCB traces. Send
-        your specs, block diagrams, or repository links.
+        Direct access to the engineers routing your PCB traces and writing your C/Rust/Go/TypeScript
+        — firmware, backends and websites alike. Send your specs, block diagrams, or repository
+        links.
       </p>
     </div>
 

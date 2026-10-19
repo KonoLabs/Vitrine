@@ -26,19 +26,21 @@
       >
         <span>[SCHEMATIC REV 4.2]</span>
         <span class="text-[#FFFFFF]">//</span>
-        <span class="text-[#FFFFFF]">SILICON TO KERNEL</span>
+        <span class="text-[#FFFFFF]">SILICON TO SHIP</span>
       </div>
 
       <h1 class="text-4xl sm:text-5xl xl:text-6xl leading-[1.08] uppercase tracking-tight">
-        CUSTOM <span class="bg-[#86A881] text-[#000000] px-2">PCB</span> HARDWARE, BARE-METAL
-        <span class="text-[#86A881]">FIRMWARE</span> & LOW-LEVEL LINUX.
+        CUSTOM <span class="bg-[#86A881] text-[#000000] px-2">PCB</span> HARDWARE, EMBEDDED
+        <span class="text-[#86A881]">FIRMWARE</span> & FULL-STACK SOFTWARE.
       </h1>
 
       <p class="text-sm md:text-base text-[#FFFFFF]/80 max-w-2xl leading-relaxed">
-        Kono is a hardware and systems engineering foundry. We route multi-layer circuit boards,
-        write deterministic firmware for <span class="text-[#86A881]">ESP32</span> and
-        <span class="text-[#86A881]">Luckfox RV1106</span> SoCs, and ship static Linux binaries with
-        zero dependency bloat.
+        Kono is a hardware and software engineering foundry. We route multi-layer circuit boards,
+        write deterministic firmware for anything from 8-bit microcontrollers to
+        <span class="text-[#86A881]">ESP32</span> and
+        <span class="text-[#86A881]">Luckfox RV1106</span>-class SoCs — and build the software
+        around them just as often: backend services, APIs, static binaries and websites, zero
+        dependency bloat.
       </p>
     </div>
 
@@ -105,7 +107,7 @@
         <rect x="165" y="75" width="70" height="70" fill="#000000" />
         <!-- Pin 1 Indicator -->
         <rect x="170" y="80" width="6" height="6" fill="#86A881" class="animate-ping" />
-        <text x="172" y="115" fill="#86A881" font-size="9" font-family="monospace">RV1106</text>
+        <text x="172" y="115" fill="#86A881" font-size="9" font-family="monospace">MCU / SOC</text>
         <text x="172" y="130" fill="#FFFFFF" font-size="7" font-family="monospace">KONO_CORE</text>
 
         <!-- Secondary IC (SPI NAND / Transceiver) -->

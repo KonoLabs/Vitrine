@@ -49,7 +49,7 @@
     },
     linux: {
       code: "SYS_LINUX_ELF",
-      name: "BARE-METAL LINUX // DAEMONS & KERNEL",
+      name: "LINUX SYSTEMS // DAEMONS, SERVICES & KERNEL",
       arch: "x86_64 / AArch64 / RISC-V64 Static ELF",
       clock: "NO RUNTIME / ZERO GC / IO_URING",
       mem: "< 4MB RSS Footprint / Lock-Free Ringbuffers",
@@ -66,7 +66,7 @@
   const tabs: { key: TargetKey; label: string }[] = [
     { key: "luckfox", label: "[01] LUCKFOX RV1106" },
     { key: "esp32", label: "[02] ESP32-S3 / C6" },
-    { key: "linux", label: "[03] LINUX DAEMON / ELF" }
+    { key: "linux", label: "[03] LINUX SERVICE / ELF" }
   ];
 
   // Engagement Models (business data)
@@ -96,21 +96,28 @@
 <section id="inspector" class="space-y-8">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
     <div class="md:col-span-4">
-      <div class="text-xs text-[#86A881] uppercase tracking-widest mb-2">01 // HARDWARE TARGETS</div>
+      <div class="text-xs text-[#86A881] uppercase tracking-widest mb-2">
+        01 // EXAMPLE TARGET ARCHITECTURES
+      </div>
       <h2 class="text-2xl md:text-3xl uppercase">INTERACTIVE ARCHITECTURE INSPECTOR</h2>
     </div>
-    <div class="md:col-span-8 flex flex-wrap gap-3 md:justify-end">
-      {#each tabs as tab}
-        <button
-          onclick={() => (selectedTarget = tab.key)}
-          class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer {selectedTarget ===
-          tab.key
-            ? 'bg-[#86A881] text-[#000000]'
-            : 'bg-[#353535] text-[#FFFFFF] hover:bg-[#413B35]'}"
-        >
-          {tab.label}
-        </button>
-      {/each}
+    <div class="md:col-span-8 flex flex-col items-end gap-3">
+      <span class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/50 text-right">
+        Representative targets // we ship on any MCU, SoC, SBC or server
+      </span>
+      <div class="flex flex-wrap gap-3 md:justify-end">
+        {#each tabs as tab}
+          <button
+            onclick={() => (selectedTarget = tab.key)}
+            class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer {selectedTarget ===
+            tab.key
+              ? 'bg-[#86A881] text-[#000000]'
+              : 'bg-[#353535] text-[#FFFFFF] hover:bg-[#413B35]'}"
+          >
+            {tab.label}
+          </button>
+        {/each}
+      </div>
     </div>
   </div>
 

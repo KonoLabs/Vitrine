@@ -16,13 +16,13 @@
     },
     {
       code: "02 // EMB_FW",
-      stack: "ESP32 / LUCKFOX / RTOS",
+      stack: "MCU / SOC / RTOS",
       title: "EMBEDDED FIRMWARE",
       description:
-        "Deterministic, low-latency C/C++ and Rust firmware. We write custom drivers, DMA pipelines, and ultra-fast bootloaders for microcontrollers and embedded Linux SoCs.",
+        "Deterministic, low-latency C/C++ and Rust firmware, vendor-agnostic. We write custom drivers, DMA pipelines and ultra-fast bootloaders for any microcontroller or embedded Linux SoC.",
       bullets: [
-        "ESP32-S3 / C3 / C6 (ESP-IDF Bare-Metal)",
-        "Luckfox Pico RV1103 / RV1106 Buildroot",
+        "ARM Cortex-M / Xtensa / RISC-V Bring-Up",
+        "ESP32, STM32, Luckfox RV1103 / RV1106 & Peers",
         "SPI / I2C / CAN / Modbus / RS-485",
         "Edge NPU Inference & Camera ISP Tuning"
       ]
@@ -30,14 +30,27 @@
     {
       code: "03 // SYS_SW",
       stack: "LINUX / GO / RUST / C",
-      title: "LOW-LEVEL SOFTWARE",
+      title: "SOFTWARE & SERVICES",
       description:
-        "Unix philosophy applied to production software. Self-contained static binaries, kernel modules, custom network protocols, and high-frequency telemetry backends.",
+        "Unix philosophy applied to production software, not just the kernel. Self-contained binaries, backend services and APIs, kernel modules when needed, custom network protocols and high-frequency telemetry backends.",
       bullets: [
         "Single-Binary Daemons & Systemd Units",
-        "Raw TCP/UDP, MQTT, WebSockets",
+        "Backend APIs: TCP/UDP, MQTT, WebSockets, REST",
         "Alpine / Void Linux Appliances",
-        "Zero-Bloat Control Interfaces"
+        "Web Dashboards, Control Interfaces & Tooling"
+      ]
+    },
+    {
+      code: "04 // WEB_BE",
+      stack: "BACKEND / WEB / TS",
+      title: "BACKEND & WEBSITES",
+      description:
+        "The rest of the stack, to the same standard: production backend services, databases and APIs — plus marketing sites, dashboards and full web applications, designed and shipped in-house.",
+      bullets: [
+        "Backend Services & APIs in Go, Rust, TypeScript",
+        "Postgres / SQLite Databases & Data Modeling",
+        "SvelteKit / Tailwind Websites & Dashboards",
+        "CI/CD, Hosting & Observability"
       ]
     }
   ];
@@ -52,11 +65,12 @@
     </div>
     <div class="md:col-span-8 text-xs md:text-sm text-[#FFFFFF]/70 flex items-end">
       Every layer of the stack is built in-house: from custom schematic capture and multi-layer PCB
-      layout to board bring-up, microcontroller firmware, and bare-metal Linux daemons.
+      layout to board bring-up, firmware, daemons, backend services, and the websites and
+      dashboards that sit on top.
     </div>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
     {#each disciplines as discipline}
       <div class="bg-[#353535] p-8 flex flex-col justify-between group hover:bg-[#413B35]">
         <div>
