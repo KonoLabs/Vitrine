@@ -77,7 +77,7 @@
         onclick={() => (activeStage = i)}
         class="text-left p-4 cursor-pointer {activeStage === i
           ? 'bg-[#86A881] text-[#000000]'
-          : 'bg-[#413B35] text-[#FFFFFF] hover:bg-[#000000]'}"
+          : 'bg-[#404040] text-[#FFFFFF] hover:bg-[#000000]'}"
       >
         <div
           class="text-[10px] uppercase tracking-widest {activeStage === i
@@ -124,7 +124,7 @@
   <!-- Business Metrics Band -->
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
     {#each metrics as m}
-      <div class="bg-[#413B35] p-4 space-y-1">
+      <div class="bg-[#404040] p-4 space-y-1">
         <div class="text-2xl md:text-3xl text-[#86A881]">{m.value}</div>
         <div class="text-[11px] uppercase tracking-widest text-[#FFFFFF]">{m.label}</div>
         <div class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/45">{m.note}</div>

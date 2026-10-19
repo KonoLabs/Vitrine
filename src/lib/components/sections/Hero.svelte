@@ -68,13 +68,13 @@
         <!-- Background Grid Dots -->
         <defs>
           <pattern id="pcb-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="2" height="2" fill="#413B35" />
+            <rect x="0" y="0" width="2" height="2" fill="#404040" />
           </pattern>
         </defs>
         <rect y="20" width="400" height="300" fill="url(#pcb-grid)" />
 
         <!-- Copper Traces (Static Base) -->
-        <g stroke="#413B35" stroke-width="2.5" fill="none">
+        <g stroke="#404040" stroke-width="2.5" fill="none">
           <path d="M 30 50 L 90 50 L 120 80 L 155 80" />
           <path d="M 30 90 L 80 90 L 110 120 L 155 120" />
           <path d="M 30 130 L 70 130 L 100 160 L 155 160" />
@@ -111,7 +111,7 @@
         <text x="172" y="130" fill="#FFFFFF" font-size="7" font-family="monospace">KONO_CORE</text>
 
         <!-- Secondary IC (SPI NAND / Transceiver) -->
-        <rect x="165" y="165" width="70" height="30" fill="#413B35" />
+        <rect x="165" y="165" width="70" height="30" fill="#404040" />
         <text x="175" y="183" fill="#FFFFFF" font-size="8" font-family="monospace">W25Q128JV</text>
 
         <!-- Via Pads & Test Points -->

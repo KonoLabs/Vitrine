@@ -72,21 +72,23 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
     {#each disciplines as discipline}
-      <div class="bg-[#353535] p-8 flex flex-col justify-between group hover:bg-[#413B35]">
+      <div class="bg-[#353535] p-8 flex flex-col justify-between group hover:bg-[#404040]">
         <div>
-          <div class="flex justify-between items-center mb-8">
-            <span class="bg-[#86A881] text-[#000000] px-2.5 py-1 text-xs font-bold"
-              >{discipline.code}</span
-            >
-            <span class="text-xs text-[#86A881]">{discipline.stack}</span>
-          </div>
+          <span class="bg-[#86A881] text-[#000000] px-2.5 py-1 text-xs font-bold inline-block mb-8"
+            >{discipline.code}</span
+          >
           <h3 class="text-xl uppercase mb-4">{discipline.title}</h3>
           <p class="text-xs text-[#FFFFFF]/75 leading-relaxed mb-8">{discipline.description}</p>
         </div>
-        <div class="bg-[#000000] p-5 space-y-2 text-xs">
-          {#each discipline.bullets as bullet, i}
-            <div class={i === 0 ? "text-[#86A881]" : "text-[#FFFFFF]"}>+ {bullet}</div>
-          {/each}
+        <div>
+          <div class="bg-[#000000] p-5 space-y-2 text-xs">
+            {#each discipline.bullets as bullet, i}
+              <div class={i === 0 ? "text-[#86A881]" : "text-[#FFFFFF]"}>+ {bullet}</div>
+            {/each}
+          </div>
+          <div class="mt-4 text-[10px] uppercase tracking-widest text-[#86A881]">
+            {discipline.stack}
+          </div>
         </div>
       </div>
     {/each}

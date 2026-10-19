@@ -14,14 +14,14 @@
 :root {
   --bg: #86A881;
   --fg: #ffffff;
-  --border: #413B35;
-  --link: #413B35;
+  --border: #353535;
+  --link: #353535;
   --link-hover: #353535;
   --accent: #ffffff;
   --surface: #74986E;
   --subtle: #ffffff;
   --code-bg: #ffffff;
-  --code-fg: #413B35;
+  --code-fg: #353535;
 }
 
 :root.dark {
