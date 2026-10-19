@@ -1,20 +1,3 @@
-<script lang="ts">
-  import { onMount } from "svelte";
-
-  // Blink cursor for the animated PCB schematic
-  let tick = $state(0);
-
-  onMount(() => {
-    const waveInterval = setInterval(() => {
-      tick += 1;
-    }, 90);
-
-    return () => {
-      clearInterval(waveInterval);
-    };
-  });
-</script>
-
 <!-- HERO SECTION: Asymmetric Swiss Layout + Animated PCB Schematic -->
 <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
   <!-- Left Column: Manifesto & Direct Callouts -->
@@ -105,8 +88,8 @@
         <!-- BGA / QFN Main SoC Package in Center -->
         <rect x="155" y="65" width="90" height="90" fill="#353535" />
         <rect x="165" y="75" width="70" height="70" fill="#000000" />
-        <!-- Pin 1 Indicator -->
-        <rect x="170" y="80" width="6" height="6" fill="#86A881" class="animate-ping" />
+        <!-- Pin 1 Indicator (static, as in real EDA tooling) -->
+        <rect x="170" y="80" width="6" height="6" fill="#86A881" />
         <text x="172" y="115" fill="#86A881" font-size="9" font-family="monospace">MCU / SOC</text>
         <text x="172" y="130" fill="#FFFFFF" font-size="7" font-family="monospace">KONO_CORE</text>
 
@@ -115,20 +98,9 @@
         <text x="175" y="183" fill="#FFFFFF" font-size="8" font-family="monospace">W25Q128JV</text>
 
         <!-- Via Pads & Test Points -->
-        {#each [[30, 50], [30, 90], [30, 130], [370, 50], [370, 150], [370, 210], [40, 280], [360, 290], [290, 270]] as [cx, cy], idx}
+        {#each [[30, 50], [30, 90], [30, 130], [370, 50], [370, 150], [370, 210], [40, 280], [360, 290], [290, 270]] as [cx, cy]}
           <rect x={cx - 5} y={cy - 5} width="10" height="10" fill="#86A881" />
           <rect x={cx - 2} y={cy - 2} width="4" height="4" fill="#000000" />
-          {#if idx % 2 === tick % 2}
-            <rect
-              x={cx - 7}
-              y={cy - 7}
-              width="14"
-              height="14"
-              fill="none"
-              stroke="#86A881"
-              stroke-width="1"
-            />
-          {/if}
         {/each}
       </svg>
     </div>
@@ -143,5 +115,11 @@
   }
   .pcb-pulse {
     animation: dashFlow 3.2s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pcb-pulse {
+      animation: none;
+    }
   }
 </style>
