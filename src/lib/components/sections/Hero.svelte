@@ -37,17 +37,14 @@
     </div>
   </div>
 
-  <!-- Right Column: Animated SVG PCB Routing Blueprint -->
-  <div class="lg:col-span-5 bg-[#353535] p-6 flex flex-col gap-3 relative overflow-hidden">
-    <div
-      class="flex justify-between items-center text-[10px] uppercase tracking-widest text-[#86A881]"
-    >
+  <!-- Animated SVG PCB Routing Blueprint -->
+  <div class="lg:col-span-5 flex flex-col gap-3">
+    <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-[#86A881]">
       <span>CAD_VIEW // KONO-CARRIER-V4.KICAD_PCB</span>
     </div>
 
     <!-- Animated Vector PCB Schematic -->
-    <div class="bg-[#000000]">
-      <svg viewBox="0 20 400 300" class="w-full h-auto block">
+    <svg viewBox="0 20 400 300" class="w-full h-auto block">
         <!-- Background Grid Dots -->
         <defs>
           <pattern id="pcb-grid" width="20" height="20" patternUnits="userSpaceOnUse">
