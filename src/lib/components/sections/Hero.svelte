@@ -45,25 +45,17 @@
 
     <!-- Animated Vector PCB Schematic -->
     <svg viewBox="0 20 400 300" class="w-full h-auto block">
-      <!-- Background Grid Dots -->
-      <defs>
-        <pattern id="pcb-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="2" height="2" fill="#404040" />
-        </pattern>
-      </defs>
-      <rect y="20" width="400" height="300" fill="url(#pcb-grid)" />
-
       <!-- Copper Traces (Static Base) -->
       <g stroke="#404040" stroke-width="2.5" fill="none">
         <path d="M 30 50 L 90 50 L 120 80 L 155 80" />
         <path d="M 30 90 L 80 90 L 110 120 L 155 120" />
         <path d="M 30 130 L 70 130 L 100 160 L 155 160" />
         <path d="M 245 80 L 290 80 L 320 50 L 370 50" />
-        <path d="M 245 120 L 300 120 L 330 150 L 370 150" />
-        <path d="M 245 160 L 285 160 L 315 210 L 370 210" />
-        <path d="M 180 195 L 180 250 L 110 280 L 40 280" />
-        <path d="M 200 195 L 200 265 L 270 290 L 360 290" />
-        <path d="M 220 195 L 220 240 L 260 240 L 290 270" />
+        <path d="M 245 120 L 300 120 L 240 120 L 370 120" />
+        <path d="M 245 160 L 285 160 L 215 160 L 310 210 L 370 210" />
+        <path d="M 180 195 L 180 230 L 240 280 L 290 270" />
+        <path d="M 200 195 L 200 230 L 290 230 L 360 290" />
+        <path d="M 220 195 L 220 230 L 260 230 L 240 260" />
       </g>
 
       <!-- Animated High-Speed Signal Pulses on Traces -->
@@ -74,12 +66,18 @@
         stroke-dasharray="14 120"
         class="pcb-pulse"
       >
-        <path d="M 30 50 L 90 50 L 120 80 L 155 80" />
-        <path d="M 30 90 L 80 90 L 110 120 L 155 120" />
-        <path d="M 245 80 L 290 80 L 320 50 L 370 50" />
-        <path d="M 245 120 L 300 120 L 330 150 L 370 150" />
-        <path d="M 180 195 L 180 250 L 110 280 L 40 280" />
-        <path d="M 200 195 L 200 265 L 270 290 L 360 290" />
+        <path d="M 30 50 L 90 50 L 120 80 L 135 80" />
+        <path d="M 30 90 L 80 90 L 110 120 L 125 120" />
+        <path d="M 30 130 L 70 130 L 100 160 L 115 160" />
+        <path d="M 155 80 L 180 80 L 210 50 L 265 50" />
+        <path d="M 155 120 L 180 120 L 240 120 L 265 120" />
+        <path d="M 155 160 L 210 160 L 240 160 L 265 160" />
+        <path d="M 265 80 L 290 80 L 320 50 L 365 50" />
+        <path d="M 265 120 L 290 120 L 330 150 L 365 150" />
+        <path d="M 265 160 L 285 160 L 310 210 L 365 210" />
+        <path d="M 110 280 L 180 280 L 180 230 L 175 195" />
+        <path d="M 40 280 L 180 280 L 220 280 L 250 255" />
+        <path d="M 220 280 L 290 280 L 330 265" />
       </g>
 
       <!-- BGA / QFN Main SoC Package in Center -->
