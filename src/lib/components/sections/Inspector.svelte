@@ -116,7 +116,7 @@
             class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer no-underline {selectedExample ===
             tab.key
               ? 'bg-[#86A881] text-[#000000]'
-              : 'bg-[#1E1E1E] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
+              : 'bg-[#1F1F1F] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
           >
             {tab.label}
           </button>
@@ -128,7 +128,7 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
     {#key selectedExample}
       {@const example = examples[selectedExample]}
-      <div class="lg:col-span-7 bg-[#1E1E1E] p-6 md:p-8 flex flex-col gap-6">
+      <div class="lg:col-span-7 bg-[#1F1F1F] p-6 md:p-8 flex flex-col gap-6">
         <div>
           <h3
             class="text-xl md:text-2xl text-[#FFFFFF] uppercase tracking-wide"
@@ -199,7 +199,7 @@
     {/key}
 
     <div
-      class="lg:col-span-5 bg-[#1E1E1E] p-6 md:p-8 flex flex-col justify-between"
+      class="lg:col-span-5 bg-[#1F1F1F] p-6 md:p-8 flex flex-col justify-between"
     >
       <div>
         <div

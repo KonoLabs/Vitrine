@@ -42,7 +42,7 @@
     {#each projects as project}
       <a
         href={project.href}
-        class="flex flex-col justify-between p-8 bg-[#1E1E1E] text-[#FFFFFF] no-underline transition-colors hover:bg-[#252525]"
+        class="flex flex-col justify-between p-8 bg-[#1F1F1F] text-[#FFFFFF] no-underline transition-colors hover:bg-[#252525]"
       >
         <div>
           <span

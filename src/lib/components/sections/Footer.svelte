@@ -1,5 +1,5 @@
 <footer
-  class="bg-[#1E1E1E] p-6 grid grid-cols-1 md:grid-cols-12 gap-4 text-xs uppercase tracking-widest"
+  class="bg-[#1F1F1F] p-6 grid grid-cols-1 md:grid-cols-12 gap-4 text-xs uppercase tracking-widest"
 >
   <div class="md:col-span-4 text-[#86A881]">
     KONO · HARDWARE &amp; SOFTWARE ENGINEERING

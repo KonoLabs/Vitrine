@@ -96,7 +96,7 @@
         class="text-left p-5 cursor-pointer no-underline transition-colors {activeStage ===
         i
           ? 'bg-[#86A881] text-[#000000]'
-          : 'bg-[#1E1E1E] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
+          : 'bg-[#1F1F1F] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
       >
         <div
           class="text-[10px] uppercase tracking-widest {activeStage === i
@@ -112,7 +112,7 @@
 
   {#key activeStage}
     {@const stage = pipeline[activeStage]}
-    <div class="bg-[#1E1E1E] p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+    <div class="bg-[#1F1F1F] p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
       <div class="md:col-span-5 space-y-4">
         <div>
           <h3 class="text-lg md:text-xl uppercase">{stage.title}</h3>
@@ -145,7 +145,7 @@
 
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     {#each metrics as m}
-      <div class="bg-[#1E1E1E] p-6 space-y-2">
+      <div class="bg-[#1F1F1F] p-6 space-y-2">
         <div class="text-2xl md:text-3xl text-[#86A881]">{m.value}</div>
         <div class="text-[11px] uppercase tracking-widest text-[#FFFFFF]">
           {m.label}

@@ -47,7 +47,7 @@
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
     <div
-      class="lg:col-span-5 bg-[#1E1E1E] p-6 md:p-8 space-y-5 flex flex-col justify-between"
+      class="lg:col-span-5 bg-[#1F1F1F] p-6 md:p-8 space-y-5 flex flex-col justify-between"
     >
       <div class="space-y-5">
         <p class="text-sm text-[#FFFFFF]/80 leading-relaxed">
@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class="lg:col-span-7 bg-[#1E1E1E] p-6 md:p-8 space-y-6">
+    <div class="lg:col-span-7 bg-[#1F1F1F] p-6 md:p-8 space-y-6">
       <div class="flex justify-between items-center gap-3">
         <span class="text-xs text-[#86A881] uppercase tracking-widest"
           >QUICK START</span

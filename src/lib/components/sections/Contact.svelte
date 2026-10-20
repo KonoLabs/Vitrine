@@ -21,7 +21,7 @@
     <div class="space-y-3">
       <a
         href="mailto:yann@facile.studio"
-        class="block w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1E1E1E] p-4 text-md tracking-widest text-center no-underline transition-colors"
+        class="block w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1F1F1F] p-4 text-md tracking-widest text-center no-underline transition-colors"
       >
         &gt; yann@facile.studio
       </a>

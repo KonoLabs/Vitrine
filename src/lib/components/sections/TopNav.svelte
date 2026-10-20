@@ -1,5 +1,5 @@
 <div
-  class="sticky top-0 z-30 bg-[#000000] border-b border-[#1E1E1E] px-6 md:px-12 py-3"
+  class="sticky top-0 z-30 bg-[#000000] border-b border-[#1F1F1F] px-6 md:px-12 py-3"
 >
   <div
     class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-widest"

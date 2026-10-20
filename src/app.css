@@ -14,26 +14,26 @@
 :root {
   --bg: #86a881;
   --fg: #ffffff;
-  --border: #1e1e1e;
-  --link: #1e1e1e;
-  --link-hover: #1e1e1e;
+  --border: #1f1f1f;
+  --link: #1f1f1f;
+  --link-hover: #1f1f1f;
   --accent: #ffffff;
-  --surface: #1e1e1e;
+  --surface: #1f1f1f;
   --subtle: #ffffff;
   --code-bg: #ffffff;
-  --code-fg: #1e1e1e;
+  --code-fg: #1f1f1f;
 }
 
 :root.dark {
   --bg: #000000;
   --fg: #ffffff;
-  --border: #1e1e1e;
+  --border: #1f1f1f;
   --link: #229147;
   --link-hover: #a8b365;
   --accent: #229147;
-  --surface: #1e1e1e;
-  --subtle: #1e1e1e;
-  --code-bg: #1e1e1e;
+  --surface: #1f1f1f;
+  --subtle: #1f1f1f;
+  --code-bg: #1f1f1f;
   --code-fg: #a8b365;
 }
 
