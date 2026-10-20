@@ -25,18 +25,18 @@
 
   const demos = [
     {
-      id: "pcb",
-      label: "PCB LAYOUT",
-      desc: "Native RS-274X Extended Gerber and Excellon drill visualizer.",
-      src: "/fusible/demo1.png",
-      alt: "Fusible Studio PCB layout",
-    },
-    {
       id: "3d",
       label: "3D VIEW",
       desc: "Interactive 3D board rendering with live component placement.",
-      src: "/fusible/demo2.png",
+      src: "/fusible/demo1.png",
       alt: "Fusible Studio 3D view",
+    },
+    {
+      id: "diagnostics",
+      label: "DIAGNOSTICS",
+      desc: "Real-time electrical rule violations, pin-mux validation, and warnings.",
+      src: "/fusible/demo2.png",
+      alt: "Fusible Studio Diagnostics",
     },
     {
       id: "schematic",
@@ -46,16 +46,18 @@
       alt: "Fusible Studio Schematic",
     },
     {
-      id: "diagnostics",
-      label: "DIAGNOSTICS",
-      desc: "Real-time electrical rule violations, pin-mux validation, and warnings.",
+      id: "pcb",
+      label: "PCB LAYOUT",
+      desc: "Native RS-274X Extended Gerber and Excellon drill visualizer.",
       src: "/fusible/demo4.png",
-      alt: "Fusible Studio Diagnostics",
+      alt: "Fusible Studio PCB layout",
     },
   ];
 
-  let selectedDemo = $state("pcb");
-  const activeDemo = $derived(demos.find((d) => d.id === selectedDemo) ?? demos[0]);
+  let selectedDemo = $state("3d");
+  const activeDemo = $derived(
+    demos.find((d) => d.id === selectedDemo) ?? demos[0],
+  );
 </script>
 
 <section id="fusible" class="space-y-8">
@@ -68,9 +70,7 @@
         FUSIBLE: THE ELECTRONIC LINTER
       </h2>
     </div>
-    <div
-      class="text-xs uppercase tracking-widest text-[#FFFFFF] md:text-right"
-    >
+    <div class="text-xs uppercase tracking-widest text-[#FFFFFF] md:text-right">
       WRITTEN IN RUST · FAIL-CLOSED BY DESIGN
     </div>
   </div>
@@ -167,7 +167,8 @@
           <button
             type="button"
             onclick={() => (selectedDemo = demo.id)}
-            class="px-3 py-1.5 text-xs uppercase tracking-widest transition-colors cursor-pointer {selectedDemo === demo.id
+            class="px-3 py-1.5 text-xs uppercase tracking-widest transition-colors cursor-pointer {selectedDemo ===
+            demo.id
               ? 'bg-[#86A881] text-[#000000]'
               : 'text-[#FFFFFF]/60 hover:text-[#FFFFFF] bg-[#000000]'}"
           >
