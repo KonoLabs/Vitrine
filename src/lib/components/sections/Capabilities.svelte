@@ -66,7 +66,7 @@
       </h2>
     </div>
     <div
-      class="md:col-span-8 text-xs md:text-sm text-[#FFFFFF]/70 flex items-end"
+      class="md:col-span-8 text-xs md:text-sm text-[#FFFFFF] flex items-end"
     >
       Everything is built under one roof: the circuit board, the code running on
       it, the servers behind it and the website on top - no hand-offs between
