@@ -1,37 +1,150 @@
-<div class="sticky top-0 z-30 bg-[#000000] px-6 md:px-12 py-3">
-  <div
-    class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-widest"
-  >
-    <div class="flex items-center gap-2 justify-center">
-      <img src="/long-logo-green-bg.png" alt="KONO" class="h-6 w-auto" />
-    </div>
+<script lang="ts">
+  import Icon from "@iconify/svelte";
 
-    <div class="flex items-center gap-6">
-      <a
-        href="#inspector"
-        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
-        >EXAMPLES</a
+  let scrollY = $state(0);
+  let isScrolled = $derived(scrollY > 20);
+  let mobileMenuOpen = $state(false);
+</script>
+
+<svelte:window
+  bind:scrollY
+  onkeydown={(e) => {
+    if (e.key === "Escape" && mobileMenuOpen) {
+      mobileMenuOpen = false;
+    }
+  }}
+/>
+
+<div class="h-14 md:h-16 w-full" aria-hidden="true"></div>
+
+<header
+  class="fixed top-0 left-0 right-0 z-40 flex justify-center pointer-events-none"
+>
+  <div
+    class="pointer-events-auto transition-all duration-300 ease-out {isScrolled
+      ? 'w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-[1440px] mt-3 md:mt-4 px-4 md:px-8 py-2.5 bg-[#141414]/95 backdrop-blur-md border border-[#2E2E2E] shadow-2xl'
+      : 'w-full max-w-full mt-0 px-6 md:px-12 py-3.5 bg-[#000000] border-b border-[#1F1F1F]'}"
+  >
+    <div
+      class="max-w-[1440px] mx-auto flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest"
+    >
+      <a href="/" class="flex items-center gap-2 justify-center no-underline">
+        <img src="/long-logo-green-bg.png" alt="KONO" class="h-6 w-auto" />
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6">
+        <a
+          href="#inspector"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          >EXAMPLES</a
+        >
+        <a
+          href="#delivery"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          >DELIVERY</a
+        >
+        <a
+          href="#capabilities"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          >SERVICES</a
+        >
+        <a
+          href="#fusible"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          >FUSIBLE</a
+        >
+        <a
+          href="#terminal"
+          class="no-underline bg-[#86A881] text-[#000000] px-3 py-0.5 hover:bg-[#FFFFFF] transition-colors"
+          >CONTACT</a
+        >
+      </nav>
+
+      <button
+        type="button"
+        onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
+        class="md:hidden flex items-center justify-center p-1.5 text-[#FFFFFF] hover:text-[#86A881] cursor-pointer"
+        aria-label="Toggle navigation menu"
+        aria-expanded={mobileMenuOpen}
       >
-      <a
-        href="#delivery"
-        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
-        >DELIVERY</a
-      >
-      <a
-        href="#capabilities"
-        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
-        >SERVICES</a
-      >
-      <a
-        href="#fusible"
-        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
-        >FUSIBLE</a
-      >
-      <a
-        href="#terminal"
-        class="no-underline bg-[#86A881] text-[#000000] px-3 py-0.5 hover:bg-[#FFFFFF]"
-        >CONTACT</a
-      >
+        <Icon icon="pixelarticons:menu" class="w-6 h-6" />
+      </button>
     </div>
   </div>
-</div>
+</header>
+
+{#if mobileMenuOpen}
+  <button
+    type="button"
+    class="fixed inset-0 bg-[#000000]/80 backdrop-blur-sm z-50 md:hidden border-none p-0 cursor-pointer"
+    onclick={() => (mobileMenuOpen = false)}
+    aria-label="Close navigation overlay"
+    tabindex="-1"
+  ></button>
+
+  <aside
+    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#141414] border-l border-[#2E2E2E] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
+    aria-label="Mobile navigation"
+  >
+    <div class="space-y-8">
+      <div
+        class="flex items-center justify-between pb-4 border-b border-[#2E2E2E]"
+      >
+        <img src="/long-logo-green-bg.png" alt="KONO" class="h-5 w-auto" />
+        <button
+          type="button"
+          onclick={() => (mobileMenuOpen = false)}
+          class="p-1 text-[#FFFFFF] hover:text-[#86A881] cursor-pointer"
+          aria-label="Close menu"
+        >
+          <Icon icon="pixelarticons:close" class="w-6 h-6" />
+        </button>
+      </div>
+
+      <nav
+        class="flex flex-col space-y-2 text-[12px] uppercase tracking-widest"
+      >
+        <a
+          href="#inspector"
+          onclick={() => (mobileMenuOpen = false)}
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          >EXAMPLES</a
+        >
+        <a
+          href="#delivery"
+          onclick={() => (mobileMenuOpen = false)}
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          >DELIVERY</a
+        >
+        <a
+          href="#capabilities"
+          onclick={() => (mobileMenuOpen = false)}
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          >SERVICES</a
+        >
+        <a
+          href="#fusible"
+          onclick={() => (mobileMenuOpen = false)}
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          >FUSIBLE</a
+        >
+        <a
+          href="#terminal"
+          onclick={() => (mobileMenuOpen = false)}
+          class="no-underline bg-[#86A881] text-[#000000] px-3 py-2.5 hover:bg-[#FFFFFF] transition-colors text-center mt-4"
+          >CONTACT</a
+        >
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-[#2E2E2E]">
+      <a
+        href="mailto:yann@facile.studio"
+        class="inline-flex items-center gap-2 text-[11px] text-[#FFFFFF]/70 hover:text-[#86A881] no-underline tracking-wider"
+      >
+        <Icon icon="pixelarticons:mail" class="w-4 h-4 shrink-0" />
+        <span>yann@facile.studio</span>
+      </a>
+    </div>
+  </aside>
+{/if}

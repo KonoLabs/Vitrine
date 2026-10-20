@@ -1,3 +1,7 @@
+<script lang="ts">
+  import Icon from "@iconify/svelte";
+</script>
+
 <section id="terminal">
   <div
     class="bg-[#86A881] text-[#000000] p-8 md:p-12 flex flex-col justify-between space-y-8"
@@ -19,9 +23,10 @@
     <div class="space-y-3">
       <a
         href="mailto:yann@facile.studio"
-        class="block w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1F1F1F] p-4 text-md tracking-widest text-center no-underline transition-colors"
+        class="inline-flex items-center justify-center gap-3 w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1F1F1F] p-4 text-md tracking-widest text-center no-underline transition-colors"
       >
-        yann@facile.studio
+        <Icon icon="pixelarticons:mail" class="w-5 h-5 shrink-0" />
+        <span>yann@facile.studio</span>
       </a>
     </div>
   </div>
