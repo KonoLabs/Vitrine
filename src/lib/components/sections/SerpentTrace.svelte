@@ -113,15 +113,10 @@
       const containerWidth = Math.min(width, 1440);
       const containerLeft = (width - containerWidth) / 2;
 
-      if (introActive && elapsed < 900) {
-        progress = Math.min(60, (elapsed / 900) * 60);
+      if (introActive && elapsed < 1600) {
+        progress = Math.min(60, (elapsed / 1600) * 60);
 
-        const spineCount = 44;
-        const headP = time * 0.0022;
-        const baseR = isMobile ? 32 : 52;
-        const centerX = width * 0.58;
-        const centerY = height * 0.46;
-
+        const spineCount = 64;
         const discs: { x: number; y: number; r: number }[] = [];
         let prevX = 0;
         let prevY = 0;
@@ -129,21 +124,23 @@
 
         for (let i = 0; i < spineCount; i++) {
           const s = i / (spineCount - 1);
-          const p = headP - s * 1.6;
-          const sx =
-            centerX +
-            Math.sin(p) * (width * 0.22) +
-            Math.cos(p * 2.1) * (width * 0.05);
-          const sy =
-            centerY +
-            Math.cos(p * 1.1) * (height * 0.18) +
-            Math.sin(p * 0.7) * (height * 0.05);
+          const baseY = -60 + s * (height + 120);
+          const pt = getSplinePoint(baseY);
+          const targetR = isMobile ? pt.r * 0.55 : pt.r;
+
+          const wave1 =
+            Math.sin(baseY * 0.003 - time * 0.0022) *
+            (isMobile ? width * 0.14 : width * 0.18);
+          const wave2 =
+            Math.cos(baseY * 0.006 + time * 0.0015) *
+            (isMobile ? width * 0.05 : width * 0.07);
+          const sway =
+            Math.sin(time * 0.0016 + s * 1.2) * (isMobile ? 14 : 28);
+
+          const sx = width * 0.52 + wave1 + wave2 + sway;
+          const sy = baseY + Math.sin(baseY * 0.004 + time * 0.002) * 16;
           const sr =
-            baseR *
-            (0.2 +
-              0.8 *
-                Math.pow(1 - s * 0.9, 0.6) *
-                Math.sin(0.4 + (1 - s) * 1.1));
+            targetR * (0.85 + 0.15 * Math.sin(baseY * 0.006 - time * 0.003));
 
           if (i > 0) {
             discs.push({
@@ -195,21 +192,16 @@
             u32[idx] = d > th ? 0xff000000 : 0xff81a886;
           }
         }
-      } else if (introActive && elapsed < 1400) {
-        const dockT = (elapsed - 900) / 500;
+      } else if (introActive && elapsed < 2500) {
+        const dockT = (elapsed - 1600) / 900;
         const ease =
           dockT < 0.5
             ? 4 * dockT * dockT * dockT
             : 1 - Math.pow(-2 * dockT + 2, 3) / 2;
 
-        progress = 60 + dockT * 35;
+        progress = 60 + dockT * 32;
 
-        const spineCount = 44;
-        const headP = time * 0.0022;
-        const baseR = isMobile ? 32 : 52;
-        const centerX = width * 0.58;
-        const centerY = height * 0.46;
-
+        const spineCount = 64;
         const discs: { x: number; y: number; r: number }[] = [];
         let prevX = 0;
         let prevY = 0;
@@ -217,28 +209,28 @@
 
         for (let i = 0; i < spineCount; i++) {
           const s = i / (spineCount - 1);
-          const p = headP - s * 1.6;
-          const sx =
-            centerX +
-            Math.sin(p) * (width * 0.22) +
-            Math.cos(p * 2.1) * (width * 0.05);
-          const sy =
-            centerY +
-            Math.cos(p * 1.1) * (height * 0.18) +
-            Math.sin(p * 0.7) * (height * 0.05);
-          const sr =
-            baseR *
-            (0.2 +
-              0.8 *
-                Math.pow(1 - s * 0.9, 0.6) *
-                Math.sin(0.4 + (1 - s) * 1.1));
-
-          const targetY = -80 + s * (height + 160);
-          const pt = getSplinePoint(targetY);
-          const wave =
-            Math.sin(targetY * 0.0028 - time * 0.0016) * (isMobile ? 12 : 26);
-          const targetX = containerLeft + containerWidth * pt.x + wave;
+          const baseY = -60 + s * (height + 120);
+          const pt = getSplinePoint(baseY);
           const targetR = isMobile ? pt.r * 0.55 : pt.r;
+
+          const wave1 =
+            Math.sin(baseY * 0.003 - time * 0.0022) *
+            (isMobile ? width * 0.14 : width * 0.18);
+          const wave2 =
+            Math.cos(baseY * 0.006 + time * 0.0015) *
+            (isMobile ? width * 0.05 : width * 0.07);
+          const sway =
+            Math.sin(time * 0.0016 + s * 1.2) * (isMobile ? 14 : 28);
+
+          const sx = width * 0.52 + wave1 + wave2 + sway;
+          const sy = baseY + Math.sin(baseY * 0.004 + time * 0.002) * 16;
+          const sr =
+            targetR * (0.85 + 0.15 * Math.sin(baseY * 0.006 - time * 0.003));
+
+          const ambientWave =
+            Math.sin(baseY * 0.0028 - time * 0.0016) * (isMobile ? 12 : 26);
+          const targetX = containerLeft + containerWidth * pt.x + ambientWave;
+          const targetY = baseY;
 
           const curX = sx + (targetX - sx) * ease;
           const curY = sy + (targetY - sy) * ease;
@@ -294,10 +286,10 @@
             u32[idx] = d > th ? 0xff000000 : 0xff81a886;
           }
         }
-      } else if (introActive && elapsed < 1900) {
-        const wipeT = (elapsed - 1400) / 500;
-        progress = Math.min(100, 95 + wipeT * 5);
-        uiOpacity = Math.max(0, 1 - wipeT * 1.8);
+      } else if (introActive && elapsed < 3300) {
+        const wipeT = (elapsed - 2500) / 800;
+        progress = Math.min(100, 92 + wipeT * 8);
+        uiOpacity = Math.max(0, 1 - wipeT * 1.6);
 
         const scanY = wipeT * (height + 160) - 80;
         const band = 80;
