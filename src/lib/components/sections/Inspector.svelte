@@ -218,8 +218,7 @@
             <div class="py-4 first:pt-0 last:pb-0 space-y-1.5">
               <div class="flex justify-between items-baseline gap-3">
                 <span class="text-sm text-[#FFFFFF] uppercase">{eng.name}</span>
-                <span
-                  class="text-xs text-[#86A881] uppercase tracking-wider font-bold"
+                <span class="text-xs text-[#86A881] uppercase tracking-wider"
                   >{eng.tag}</span
                 >
               </div>

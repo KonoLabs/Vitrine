@@ -105,7 +105,7 @@
         >
           {stage.duration}
         </div>
-        <div class="text-sm uppercase mt-1 font-bold">{stage.title}</div>
+        <div class="text-sm uppercase mt-1">{stage.title}</div>
       </button>
     {/each}
   </div>

@@ -11,22 +11,22 @@
     <div class="flex items-center gap-6">
       <a
         href="#inspector"
-        class="no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
         >EXAMPLES</a
       >
       <a
         href="#delivery"
-        class="no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
         >DELIVERY</a
       >
       <a
         href="#capabilities"
-        class="no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
         >SERVICES</a
       >
       <a
         href="#fusible"
-        class="no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+        class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
         >FUSIBLE</a
       >
       <a

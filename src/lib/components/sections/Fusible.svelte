@@ -96,10 +96,10 @@
         {#each pillars as pillar}
           <div class="space-y-1.5">
             <span
-              class="text-[10px] uppercase tracking-widest text-[#86A881] block font-bold"
+              class="text-[10px] uppercase tracking-widest text-[#86A881] block"
               >{pillar.code}</span
             >
-            <div class="text-xs uppercase text-[#FFFFFF] font-bold">
+            <div class="text-xs uppercase text-[#FFFFFF]">
               {pillar.title}
             </div>
             <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">

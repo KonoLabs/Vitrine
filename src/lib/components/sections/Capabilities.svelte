@@ -81,7 +81,7 @@
       >
         <div>
           <span
-            class="text-xs text-[#86A881] uppercase tracking-widest block mb-4 font-bold"
+            class="text-xs text-[#86A881] uppercase tracking-widest block mb-4"
             >{discipline.code}</span
           >
           <h3 class="text-xl uppercase mb-3 text-[#FFFFFF]">
