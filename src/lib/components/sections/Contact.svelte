@@ -23,10 +23,13 @@
     <div class="space-y-3">
       <a
         href="mailto:yann@facile.studio"
-        class="inline-flex items-center justify-center gap-3 w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1F1F1F] p-4 text-md tracking-widest text-center no-underline transition-colors"
+        class="inline-flex items-center justify-center gap-2.5 w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1F1F1F] p-4 text-sm sm:text-base tracking-widest text-center no-underline transition-colors leading-none"
       >
-        <Icon icon="pixelarticons:mail" class="w-5 h-5 shrink-0" />
-        <span>yann@facile.studio</span>
+        <Icon
+          icon="pixelarticons:mail"
+          class="w-5 h-5 shrink-0 translate-y-[1px]"
+        />
+        <span class="leading-none">yann@facile.studio</span>
       </a>
     </div>
   </div>

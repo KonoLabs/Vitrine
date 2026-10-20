@@ -144,10 +144,13 @@
     <div class="pt-6 border-t border-[#2E2E2E]">
       <a
         href="mailto:yann@facile.studio"
-        class="inline-flex items-center gap-2 text-[11px] text-[#FFFFFF]/70 hover:text-[#86A881] no-underline tracking-wider"
+        class="inline-flex items-center gap-2 text-[11px] text-[#FFFFFF]/70 hover:text-[#86A881] no-underline tracking-wider leading-none"
       >
-        <Icon icon="pixelarticons:mail" class="w-4 h-4 shrink-0" />
-        <span>yann@facile.studio</span>
+        <Icon
+          icon="pixelarticons:mail"
+          class="w-4 h-4 shrink-0 translate-y-[0.5px]"
+        />
+        <span class="leading-none">yann@facile.studio</span>
       </a>
     </div>
   </aside>

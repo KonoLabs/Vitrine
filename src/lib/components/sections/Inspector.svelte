@@ -115,13 +115,13 @@
         {#each tabs as tab}
           <button
             onclick={() => (selectedExample = tab.key)}
-            class="inline-flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-widest cursor-pointer no-underline {selectedExample ===
+            class="inline-flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-widest cursor-pointer no-underline leading-none {selectedExample ===
             tab.key
               ? 'bg-[#86A881] text-[#000000]'
               : 'bg-[#1F1F1F] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
           >
             <Icon icon={tab.icon} class="w-4 h-4 shrink-0" />
-            <span>{tab.label}</span>
+            <span class="leading-none">{tab.label}</span>
           </button>
         {/each}
       </div>
