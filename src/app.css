@@ -45,6 +45,11 @@
     font-weight: normal;
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
   html,
   body {
     scrollbar-width: none;
