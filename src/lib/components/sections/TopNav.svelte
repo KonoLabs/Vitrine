@@ -18,7 +18,7 @@
 <div class="h-14 md:h-16 w-full" aria-hidden="true"></div>
 
 <header
-  class="fixed top-0 left-0 right-0 z-40 flex justify-center pointer-events-none"
+  class="reveal-nav fixed top-0 left-0 right-0 z-40 flex justify-center pointer-events-none"
 >
   <div
     class="pointer-events-auto transition-all duration-300 ease-out {isScrolled
