@@ -1,5 +1,6 @@
 <script lang="ts">
   import Backdrop from "$lib/components/sections/Backdrop.svelte";
+  import SerpentTrace from "$lib/components/sections/SerpentTrace.svelte";
   import TopNav from "$lib/components/sections/TopNav.svelte";
   import Hero from "$lib/components/sections/Hero.svelte";
   import Inspector from "$lib/components/sections/Inspector.svelte";
@@ -18,6 +19,7 @@
   class="relative min-h-screen bg-[#000000] text-[#FFFFFF] font-['undefined',monospace] selection:bg-[#86A881] selection:text-[#000000] overflow-x-hidden antialiased"
 >
   <Backdrop />
+  <SerpentTrace />
 
   <TopNav />
 

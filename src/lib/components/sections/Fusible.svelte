@@ -22,6 +22,40 @@
     { prompt: "$", line: "fusible init --name sensor-node", note: "" },
     { prompt: "$", line: "fusible check" },
   ];
+
+  const demos = [
+    {
+      id: "pcb",
+      label: "PCB LAYOUT",
+      desc: "Native RS-274X Extended Gerber and Excellon drill visualizer.",
+      src: "/fusible/demo1.png",
+      alt: "Fusible Studio PCB layout",
+    },
+    {
+      id: "3d",
+      label: "3D VIEW",
+      desc: "Interactive 3D board rendering with live component placement.",
+      src: "/fusible/demo2.png",
+      alt: "Fusible Studio 3D view",
+    },
+    {
+      id: "schematic",
+      label: "SCHEMATIC",
+      desc: "Pure-Rust vector documentation and schematic inspection.",
+      src: "/fusible/demo3.png",
+      alt: "Fusible Studio Schematic",
+    },
+    {
+      id: "diagnostics",
+      label: "DIAGNOSTICS",
+      desc: "Real-time electrical rule violations, pin-mux validation, and warnings.",
+      src: "/fusible/demo4.png",
+      alt: "Fusible Studio Diagnostics",
+    },
+  ];
+
+  let selectedDemo = $state("pcb");
+  const activeDemo = $derived(demos.find((d) => d.id === selectedDemo) ?? demos[0]);
 </script>
 
 <section id="fusible" class="space-y-8">
@@ -112,6 +146,46 @@
           &gt; READ THE DOCS ON GITHUB
         </a>
       </div>
+    </div>
+  </div>
+
+  <div class="bg-[#1F1F1F] p-6 md:p-8 space-y-6">
+    <div
+      class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#2E2E2E] pb-4"
+    >
+      <div>
+        <div class="text-xs text-[#86A881] uppercase tracking-widest">
+          FUSIBLE STUDIO
+        </div>
+        <div class="text-xs text-[#FFFFFF]/70 mt-1">
+          {activeDemo.desc}
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        {#each demos as demo}
+          <button
+            type="button"
+            onclick={() => (selectedDemo = demo.id)}
+            class="px-3 py-1.5 text-xs uppercase tracking-widest transition-colors cursor-pointer {selectedDemo === demo.id
+              ? 'bg-[#86A881] text-[#000000]'
+              : 'text-[#FFFFFF]/60 hover:text-[#FFFFFF] bg-[#000000]'}"
+          >
+            {demo.label}
+          </button>
+        {/each}
+      </div>
+    </div>
+
+    <div
+      class="bg-[#000000] border border-[#2E2E2E] overflow-hidden flex items-center justify-center"
+    >
+      <img
+        src={activeDemo.src}
+        alt={activeDemo.alt}
+        class="w-full h-auto block object-contain max-h-[720px]"
+        loading="lazy"
+      />
     </div>
   </div>
 </section>
