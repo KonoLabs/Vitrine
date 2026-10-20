@@ -15,55 +15,59 @@
   }}
 />
 
-<div class="h-14 md:h-16 w-full" aria-hidden="true"></div>
+<div class="h-10 md:h-11 w-full" aria-hidden="true"></div>
 
 <header
   class="fixed top-0 left-0 right-0 z-40 flex justify-center pointer-events-none"
 >
   <div
     class="pointer-events-auto transition-all duration-300 ease-out {isScrolled
-      ? 'w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-[1440px] mt-3 md:mt-4 px-4 md:px-8 py-2.5 bg-[#141414]/95 backdrop-blur-md border border-[#2E2E2E] shadow-2xl'
-      : 'w-full max-w-full mt-0 px-6 md:px-12 py-3.5 bg-[#000000] border-b border-[#1F1F1F]'}"
+      ? 'w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-[1440px] mt-2 md:mt-3 px-4 md:px-6 py-1.5 bg-[#141414]/95 backdrop-blur-md shadow-2xl'
+      : 'w-full max-w-full mt-0 px-6 md:px-12 py-2 bg-[#000000]'}"
   >
     <div
-      class="max-w-[1440px] mx-auto flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest"
+      class="max-w-[1440px] mx-auto flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest leading-none"
     >
-      <a href="/" class="flex items-center gap-2 justify-center no-underline">
-        <img src="/long-logo-green-bg.png" alt="KONO" class="h-6 w-auto" />
+      <a href="/" class="flex items-center gap-2 no-underline">
+        <img
+          src="/long-logo-green-bg.png"
+          alt="KONO"
+          class="h-6 w-auto block"
+        />
       </a>
 
-      <nav class="hidden md:flex items-center gap-6">
+      <div class="hidden md:flex items-center gap-6">
         <a
           href="#inspector"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >EXAMPLES</a
         >
         <a
           href="#delivery"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >DELIVERY</a
         >
         <a
           href="#capabilities"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >SERVICES</a
         >
         <a
           href="#fusible"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >FUSIBLE</a
         >
         <a
           href="#terminal"
-          class="no-underline bg-[#86A881] text-[#000000] px-3 py-0.5 hover:bg-[#FFFFFF] transition-colors"
+          class="no-underline bg-[#86A881] text-[#000000] px-3 py-1 leading-none hover:bg-[#FFFFFF] transition-colors"
           >CONTACT</a
         >
-      </nav>
+      </div>
 
       <button
         type="button"
         onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-        class="md:hidden flex items-center justify-center p-1.5 text-[#FFFFFF] hover:text-[#86A881] cursor-pointer"
+        class="md:hidden flex items-center justify-center p-1 text-[#FFFFFF] hover:text-[#86A881] cursor-pointer"
         aria-label="Toggle navigation menu"
         aria-expanded={mobileMenuOpen}
       >
@@ -83,7 +87,7 @@
   ></button>
 
   <aside
-    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#141414] border-l border-[#2E2E2E] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
+    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#141414] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
     aria-label="Mobile navigation"
   >
     <div class="space-y-8">
@@ -101,7 +105,7 @@
         </button>
       </div>
 
-      <nav
+      <div
         class="flex flex-col space-y-2 text-[12px] uppercase tracking-widest"
       >
         <a
@@ -134,7 +138,7 @@
           class="no-underline bg-[#86A881] text-[#000000] px-3 py-2.5 hover:bg-[#FFFFFF] transition-colors text-center mt-4"
           >CONTACT</a
         >
-      </nav>
+      </div>
     </div>
 
     <div class="pt-6 border-t border-[#2E2E2E]">
