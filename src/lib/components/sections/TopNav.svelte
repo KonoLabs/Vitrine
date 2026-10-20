@@ -24,6 +24,11 @@
         >03.SERVICES</a
       >
       <a
+        href="#fusible"
+        class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+        >04.FUSIBLE</a
+      >
+      <a
         href="#terminal"
         class="bg-[#86A881] text-[#000000] px-3 py-0.5 hover:bg-[#FFFFFF]"
         >CONTACT</a

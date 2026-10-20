@@ -5,6 +5,7 @@
   import Inspector from "$lib/components/sections/Inspector.svelte";
   import Delivery from "$lib/components/sections/Delivery.svelte";
   import Capabilities from "$lib/components/sections/Capabilities.svelte";
+  import Fusible from "$lib/components/sections/Fusible.svelte";
   import Contact from "$lib/components/sections/Contact.svelte";
   import Footer from "$lib/components/sections/Footer.svelte";
 </script>
@@ -20,11 +21,14 @@
 
   <TopNav />
 
-  <main class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pt-8 pb-24 space-y-24 md:space-y-36">
+  <main
+    class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pt-8 pb-24 space-y-24 md:space-y-36"
+  >
     <Hero />
     <Inspector />
     <Delivery />
     <Capabilities />
+    <Fusible />
     <Contact />
     <Footer />
   </main>

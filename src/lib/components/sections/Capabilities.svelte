@@ -121,14 +121,5 @@
       >
       github.com/KonoLabs
     </a>
-    <span class="text-[#FFFFFF]/35">—</span>
-    <a
-      href="https://github.com/KonoLabs/Fusible"
-      class="text-[#86A881] no-underline hover:text-[#FFFFFF]">Fusible</a
-    >
-    <span
-      >is our open-source linter for hardware projects: it checks the board's
-      rules and refuses to generate firmware when something is wrong.</span
-    >
   </div>
 </section>

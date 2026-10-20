@@ -1,4 +1,4 @@
-<!-- SECTION 04: INITIALIZE PROJECT & CONTACT -->
+<!-- SECTION 05: INITIALIZE PROJECT & CONTACT -->
 <section id="terminal">
   <div
     class="bg-[#86A881] text-[#000000] p-8 md:p-10 flex flex-col justify-between space-y-8"
@@ -7,7 +7,7 @@
       <div
         class="inline-block bg-[#000000] text-[#86A881] px-3 py-1 text-xs uppercase tracking-widest"
       >
-        04 // INITIALIZE PROJECT
+        05 // INITIALIZE PROJECT
       </div>
       <h2 class="text-2xl md:text-4xl uppercase leading-tight">
         BUILD REAL HARDWARE &amp; FAST SOFTWARE.
