@@ -113,8 +113,8 @@
       const containerWidth = Math.min(width, 1440);
       const containerLeft = (width - containerWidth) / 2;
 
-      if (introActive && elapsed < 1600) {
-        progress = Math.min(60, (elapsed / 1600) * 60);
+      if (introActive && elapsed < 1400) {
+        progress = Math.min(50, (elapsed / 1400) * 50);
 
         const spineCount = 64;
         const discs: { x: number; y: number; r: number }[] = [];
@@ -192,14 +192,13 @@
             u32[idx] = d > th ? 0xff000000 : 0xff81a886;
           }
         }
-      } else if (introActive && elapsed < 2500) {
-        const dockT = (elapsed - 1600) / 900;
-        const ease =
-          dockT < 0.5
-            ? 4 * dockT * dockT * dockT
-            : 1 - Math.pow(-2 * dockT + 2, 3) / 2;
+      } else if (introActive && elapsed < 2900) {
+        const dockT = (elapsed - 1400) / 1500;
+        const p1 = Math.pow(dockT, 2);
+        const p2 = Math.pow(1 - dockT, 3.5);
+        const ease = p1 / (p1 + p2);
 
-        progress = 60 + dockT * 32;
+        progress = 50 + dockT * 42;
 
         const spineCount = 64;
         const discs: { x: number; y: number; r: number }[] = [];
@@ -286,8 +285,8 @@
             u32[idx] = d > th ? 0xff000000 : 0xff81a886;
           }
         }
-      } else if (introActive && elapsed < 3300) {
-        const wipeT = (elapsed - 2500) / 800;
+      } else if (introActive && elapsed < 3700) {
+        const wipeT = (elapsed - 2900) / 800;
         progress = Math.min(100, 92 + wipeT * 8);
         uiOpacity = Math.max(0, 1 - wipeT * 1.6);
 
