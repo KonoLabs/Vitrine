@@ -6,7 +6,8 @@
       >
         CUSTOM <span class="bg-[#86A881] text-[#000000] px-2">PCB</span>
         HARDWARE, EMBEDDED
-        <span class="text-[#86A881]">FIRMWARE</span> & FULL-STACK SOFTWARE.
+        <span class="text-[#86A881]">FIRMWARE</span><br />
+        <span class="whitespace-nowrap">& FULL-STACK</span> SOFTWARE.
       </h1>
 
       <p
