@@ -15,15 +15,15 @@
   }}
 />
 
-<div class="h-10 md:h-11 w-full" aria-hidden="true"></div>
+<div class="h-14 md:h-16 w-full" aria-hidden="true"></div>
 
 <header
   class="fixed top-0 left-0 right-0 z-40 flex justify-center pointer-events-none"
 >
   <div
     class="pointer-events-auto transition-all duration-300 ease-out {isScrolled
-      ? 'w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-[1440px] mt-2 md:mt-3 px-4 md:px-6 py-1.5 bg-[#141414]/95 backdrop-blur-md shadow-2xl'
-      : 'w-full max-w-full mt-0 px-6 md:px-12 py-2 bg-[#000000]'}"
+      ? 'w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] max-w-[1440px] mt-2 md:mt-3 px-4 md:px-6 py-3 bg-[#000000] shadow-2xl'
+      : 'w-full max-w-full mt-0 px-6 md:px-12 py-4 bg-[#000000]'}"
   >
     <div
       class="max-w-[1440px] mx-auto flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest leading-none"
@@ -87,7 +87,7 @@
   ></button>
 
   <aside
-    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#141414] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
+    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#000000] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
     aria-label="Mobile navigation"
   >
     <div class="space-y-8">

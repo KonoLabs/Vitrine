@@ -45,6 +45,16 @@
     font-weight: normal;
   }
 
+  html,
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   b,
   strong {
     font-weight: normal;
