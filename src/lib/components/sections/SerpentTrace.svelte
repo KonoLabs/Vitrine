@@ -1,25 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
+  let { introActive = $bindable(true) }: { introActive?: boolean } = $props();
+
   let canvas: HTMLCanvasElement;
-  let introActive = $state(true);
   let progress = $state(0);
   let uiOpacity = $state(1);
 
   let formattedProgress = $derived(
     Math.floor(progress).toString().padStart(3, "0")
-  );
-
-  let statusText = $derived(
-    progress < 25
-      ? "INIT HARDWARE RUNTIME"
-      : progress < 50
-        ? "CALIBRATING SILICON PIN-MUX"
-        : progress < 75
-          ? "AUTOROUTING TRACES"
-          : progress < 100
-            ? "VERIFYING FIRMWARE"
-            : "SYSTEM READY"
   );
 
   interface Waypoint {
@@ -70,12 +59,6 @@
     }
 
     return { x: last.x, r: last.r };
-  }
-
-  function skipIntro() {
-    if (introActive) {
-      introActive = false;
-    }
   }
 
   onMount(() => {
@@ -130,8 +113,8 @@
       const containerWidth = Math.min(width, 1440);
       const containerLeft = (width - containerWidth) / 2;
 
-      if (introActive && elapsed < 1100) {
-        progress = Math.min(55, (elapsed / 1100) * 55);
+      if (introActive && elapsed < 900) {
+        progress = Math.min(60, (elapsed / 900) * 60);
 
         const spineCount = 44;
         const headP = time * 0.0022;
@@ -212,14 +195,14 @@
             u32[idx] = d > th ? 0xff000000 : 0xff81a886;
           }
         }
-      } else if (introActive && elapsed < 1700) {
-        const dockT = (elapsed - 1100) / 600;
+      } else if (introActive && elapsed < 1400) {
+        const dockT = (elapsed - 900) / 500;
         const ease =
           dockT < 0.5
             ? 4 * dockT * dockT * dockT
             : 1 - Math.pow(-2 * dockT + 2, 3) / 2;
 
-        progress = 55 + dockT * 35;
+        progress = 60 + dockT * 35;
 
         const spineCount = 44;
         const headP = time * 0.0022;
@@ -311,10 +294,10 @@
             u32[idx] = d > th ? 0xff000000 : 0xff81a886;
           }
         }
-      } else if (introActive && elapsed < 2300) {
-        const wipeT = (elapsed - 1700) / 600;
-        progress = Math.min(100, 90 + wipeT * 10);
-        uiOpacity = Math.max(0, 1 - wipeT * 1.6);
+      } else if (introActive && elapsed < 1900) {
+        const wipeT = (elapsed - 1400) / 500;
+        progress = Math.min(100, 95 + wipeT * 5);
+        uiOpacity = Math.max(0, 1 - wipeT * 1.8);
 
         const scanY = wipeT * (height + 160) - 80;
         const band = 80;
@@ -445,19 +428,10 @@
   });
 </script>
 
-<svelte:window
-  onkeydown={(e) => {
-    if (e.key === "Escape") {
-      skipIntro();
-    }
-  }}
-  onclick={skipIntro}
-/>
-
 <canvas
   bind:this={canvas}
   class="fixed inset-0 block {introActive
-    ? 'z-50 pointer-events-auto cursor-pointer'
+    ? 'z-50 pointer-events-none'
     : 'z-0 pointer-events-none opacity-75'}"
   style="image-rendering: pixelated;"
 ></canvas>
@@ -475,43 +449,6 @@
         alt="KONO"
         class="h-6 md:h-7 w-auto block filter brightness-0"
       />
-      <span
-        class="text-[10px] tracking-widest text-[#000000]/70 uppercase hidden sm:inline"
-      >
-        HARDWARE & FIRMWARE
-      </span>
-    </div>
-
-    <div
-      class="fixed top-24 md:top-32 left-6 md:left-12 max-w-xs space-y-2 text-[#000000]"
-    >
-      <div class="text-[10px] tracking-widest text-[#000000]/70 uppercase">
-        SYSTEM BOOT SEQUENCE
-      </div>
-      <div class="space-y-1.5 text-xs tracking-wider font-mono">
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-1.5 h-1.5 bg-[#000000]"></span>
-          <span>01 ARCHITECTURE .. READY</span>
-        </div>
-        {#if progress >= 25}
-          <div class="flex items-center gap-2">
-            <span class="inline-block w-1.5 h-1.5 bg-[#000000]"></span>
-            <span>02 SILICON PINMUX . LOCKED</span>
-          </div>
-        {/if}
-        {#if progress >= 50}
-          <div class="flex items-center gap-2">
-            <span class="inline-block w-1.5 h-1.5 bg-[#000000]"></span>
-            <span>03 AUTOROUTE NET . PASS</span>
-          </div>
-        {/if}
-        {#if progress >= 75}
-          <div class="flex items-center gap-2">
-            <span class="inline-block w-1.5 h-1.5 bg-[#000000]"></span>
-            <span>04 FIRMWARE SYNC . VERIFIED</span>
-          </div>
-        {/if}
-      </div>
     </div>
 
     <div
@@ -520,10 +457,7 @@
       <div
         class="flex items-center justify-between text-xs tracking-widest uppercase font-mono"
       >
-        <span class="flex items-center gap-2">
-          <span class="inline-block w-2 h-2 bg-[#000000] animate-pulse"></span>
-          <span>{statusText}</span>
-        </span>
+        <span>LOADING</span>
         <span class="tabular-nums font-mono">[{formattedProgress}%]</span>
       </div>
 
@@ -537,10 +471,10 @@
       </div>
 
       <div
-        class="flex justify-between items-center text-[10px] tracking-widest text-[#000000]/60 uppercase pt-1"
+        class="flex justify-between items-center text-[10px] tracking-widest text-[#000000]/60 uppercase pt-1 font-mono"
       >
-        <span>KONO STUDIO // v0.2.0</span>
-        <span>[ESC] OR CLICK TO SKIP</span>
+        <span>KONO ENGINEERING</span>
+        <span>STUDIO</span>
       </div>
     </div>
   </div>

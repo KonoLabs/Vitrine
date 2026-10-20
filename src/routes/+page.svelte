@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import Backdrop from "$lib/components/sections/Backdrop.svelte";
   import SerpentTrace from "$lib/components/sections/SerpentTrace.svelte";
   import TopNav from "$lib/components/sections/TopNav.svelte";
@@ -11,33 +10,37 @@
   import Contact from "$lib/components/sections/Contact.svelte";
   import Footer from "$lib/components/sections/Footer.svelte";
 
-  onMount(() => {
-    const targets = document.querySelectorAll(".scroll-reveal");
-    if (!("IntersectionObserver" in window)) {
-      targets.forEach((el) => el.classList.add("revealed"));
-      return;
-    }
+  let introActive = $state(true);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: "0px 0px -50px 0px",
-        threshold: 0.08,
+  $effect(() => {
+    if (!introActive) {
+      const targets = document.querySelectorAll(".scroll-reveal");
+      if (!("IntersectionObserver" in window)) {
+        targets.forEach((el) => el.classList.add("revealed"));
+        return;
       }
-    );
 
-    targets.forEach((el) => observer.observe(el));
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: "0px 0px -50px 0px",
+          threshold: 0.08,
+        }
+      );
 
-    return () => {
-      observer.disconnect();
-    };
+      targets.forEach((el) => observer.observe(el));
+
+      return () => {
+        observer.disconnect();
+      };
+    }
   });
 </script>
 
@@ -49,31 +52,33 @@
   class="relative min-h-screen bg-[#000000] text-[#FFFFFF] font-['undefined',monospace] selection:bg-[#86A881] selection:text-[#000000] overflow-x-hidden antialiased"
 >
   <Backdrop />
-  <SerpentTrace />
+  <SerpentTrace bind:introActive />
 
-  <TopNav />
+  {#if !introActive}
+    <TopNav />
 
-  <main
-    class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pt-8 pb-24 space-y-24 md:space-y-36"
-  >
-    <Hero />
-    <div class="scroll-reveal">
-      <Inspector />
-    </div>
-    <div class="scroll-reveal">
-      <Delivery />
-    </div>
-    <div class="scroll-reveal">
-      <Capabilities />
-    </div>
-    <div class="scroll-reveal">
-      <Fusible />
-    </div>
-    <div class="scroll-reveal">
-      <Contact />
-    </div>
-    <div class="scroll-reveal">
-      <Footer />
-    </div>
-  </main>
+    <main
+      class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pt-8 pb-24 space-y-24 md:space-y-36"
+    >
+      <Hero />
+      <div class="scroll-reveal">
+        <Inspector />
+      </div>
+      <div class="scroll-reveal">
+        <Delivery />
+      </div>
+      <div class="scroll-reveal">
+        <Capabilities />
+      </div>
+      <div class="scroll-reveal">
+        <Fusible />
+      </div>
+      <div class="scroll-reveal">
+        <Contact />
+      </div>
+      <div class="scroll-reveal">
+        <Footer />
+      </div>
+    </main>
+  {/if}
 </div>
