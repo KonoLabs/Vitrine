@@ -1,8 +1,6 @@
 <script lang="ts">
-  // Delivery Pipeline Stages (business data)
   const pipeline = [
     {
-      code: "01",
       title: "Discovery & Quote",
       duration: "48H",
       summary:
@@ -14,7 +12,6 @@
       ],
     },
     {
-      code: "02",
       title: "Design & Layout",
       duration: "5-10 DAYS",
       summary:
@@ -26,7 +23,6 @@
       ],
     },
     {
-      code: "03",
       title: "Bench Testing & Firmware",
       duration: "1-3 WEEKS",
       summary:
@@ -38,7 +34,6 @@
       ],
     },
     {
-      code: "04",
       title: "Production & Support",
       duration: "ONGOING",
       summary:
@@ -51,12 +46,11 @@
     },
   ];
 
-  // Business Metrics (business data)
   const metrics = [
     {
       value: "48H",
       label: "Quote Turnaround",
-      note: "FIXED PRICE // NO SURPRISES",
+      note: "FIXED PRICE · NO SURPRISES",
     },
     {
       value: "10 DAYS",
@@ -71,94 +65,87 @@
     {
       value: "100%",
       label: "IP & Source Ownership",
-      note: "DESIGNS // FILES // SOURCE CODE",
+      note: "DESIGNS · FILES · SOURCE CODE",
     },
   ];
 
   let activeStage = $state(0);
 </script>
 
-<!-- SECTION 02: DELIVERY PIPELINE & BUSINESS METRICS -->
-<section id="delivery" class="bg-[#353535] p-6 md:p-10 space-y-6">
+<section id="delivery" class="space-y-8">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
     <div>
       <div class="text-xs text-[#86A881] uppercase tracking-widest">
-        02 // HOW IT GOES
+        HOW IT GOES
       </div>
       <h2 class="text-xl md:text-2xl uppercase mt-1">
-        FROM IDEA TO PRODUCTION // 4 STAGES
+        FROM IDEA TO PRODUCTION: 4 STAGES
       </h2>
     </div>
     <div
       class="text-[11px] uppercase tracking-widest text-[#FFFFFF]/60 md:text-right"
     >
-      FIXED-PRICE QUOTES // PAY BY MILESTONE // YOU OWN IT ALL
+      FIXED-PRICE QUOTES · PAY BY MILESTONE · YOU OWN IT ALL
     </div>
   </div>
 
-  <!-- Stage Selector -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     {#each pipeline as stage, i}
       <button
         onclick={() => (activeStage = i)}
-        class="text-left p-4 cursor-pointer {activeStage === i
+        class="text-left p-5 cursor-pointer no-underline transition-colors {activeStage ===
+        i
           ? 'bg-[#86A881] text-[#000000]'
-          : 'bg-[#404040] text-[#FFFFFF] hover:bg-[#000000]'}"
+          : 'bg-[#1E1E1E] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
       >
         <div
           class="text-[10px] uppercase tracking-widest {activeStage === i
             ? 'text-[#000000]/70'
             : 'text-[#86A881]'}"
         >
-          STAGE {stage.code} // {stage.duration}
+          {stage.duration}
         </div>
-        <div class="text-sm uppercase mt-1">{stage.title}</div>
+        <div class="text-sm uppercase mt-1 font-bold">{stage.title}</div>
       </button>
     {/each}
   </div>
 
-  <!-- Active Stage Detail -->
   {#key activeStage}
     {@const stage = pipeline[activeStage]}
-    <div class="bg-[#000000] p-6 grid grid-cols-1 md:grid-cols-12 gap-6">
-      <div class="md:col-span-5 space-y-3">
+    <div class="bg-[#1E1E1E] p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div class="md:col-span-5 space-y-4">
         <div>
-          <div class="text-[10px] text-[#86A881] uppercase tracking-widest">
-            STEP {stage.code}
-          </div>
-          <h3 class="text-lg uppercase mt-1">{stage.title}</h3>
+          <h3 class="text-lg md:text-xl uppercase">{stage.title}</h3>
         </div>
-        <p class="text-xs text-[#FFFFFF]/75 leading-relaxed">{stage.summary}</p>
-        <div
-          class="bg-[#353535] p-3 text-[11px] text-[#86A881] flex justify-between gap-3"
-        >
-          <span>ETA: {stage.duration}</span>
-          <span>[MILESTONE {stage.code}/04]</span>
+        <p class="text-xs md:text-sm text-[#FFFFFF]/75 leading-relaxed">
+          {stage.summary}
+        </p>
+        <div class="pt-4 border-t border-[#2E2E2E] text-xs text-[#86A881]">
+          ESTIMATED DURATION: {stage.duration}
         </div>
       </div>
 
-      <div class="md:col-span-7 space-y-2">
-        <div class="text-[10px] text-[#86A881] uppercase tracking-widest mb-1">
-          WHAT YOU GET
+      <div class="md:col-span-7 space-y-3">
+        <div class="text-xs text-[#86A881] uppercase tracking-widest mb-3">
+          WHAT YOU RECEIVE
         </div>
-        {#each stage.deliverables as d, j}
-          <div
-            class="flex items-center justify-between gap-4 bg-[#353535] px-4 py-3 text-xs"
-          >
-            <span class="text-[#FFFFFF]">{d}</span>
-            <span class="text-[10px] text-[#86A881]"
-              >OUT_{String(j + 1).padStart(2, "0")}</span
+        <div class="divide-y divide-[#2E2E2E]">
+          {#each stage.deliverables as d}
+            <div
+              class="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-4 text-xs text-[#FFFFFF]"
             >
-          </div>
-        {/each}
+              <span>{d}</span>
+              <span class="text-[#86A881] text-sm">✓</span>
+            </div>
+          {/each}
+        </div>
       </div>
     </div>
   {/key}
 
-  <!-- Business Metrics Band -->
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     {#each metrics as m}
-      <div class="bg-[#404040] p-4 space-y-1">
+      <div class="bg-[#1E1E1E] p-6 space-y-2">
         <div class="text-2xl md:text-3xl text-[#86A881]">{m.value}</div>
         <div class="text-[11px] uppercase tracking-widest text-[#FFFFFF]">
           {m.label}

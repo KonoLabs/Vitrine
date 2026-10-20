@@ -18,7 +18,7 @@
     },
     {
       name: "saravenpi.com",
-      tagline: "PORTFOLIO // THIS SITE",
+      tagline: "PORTFOLIO · THIS SITE",
       description:
         "This website: SvelteKit and Tailwind, mdsvex-powered blog, and a live hardware telemetry interface running entirely on the client.",
       stack: ["Svelte", "Tailwind", "mdsvex"],
@@ -29,39 +29,38 @@
 
 <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-12 space-y-8">
   <div>
-    <span class="text-xs uppercase tracking-widest" style="color: var(--link)">01 // SELECTED WORK</span>
+    <span class="text-xs uppercase tracking-widest text-[#86A881]"
+      >SELECTED WORK</span
+    >
     <h1 class="text-3xl md:text-4xl uppercase mt-2">PROJECTS</h1>
-    <p class="text-sm max-w-2xl mt-2" style="color: var(--fg)">
+    <p class="text-sm max-w-2xl mt-2 text-[#FFFFFF]/75">
       Open source tools and software I build and maintain.
     </p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {#each projects as project, i}
+    {#each projects as project}
       <a
         href={project.href}
-        class="flex flex-col justify-between p-8 transition-colors hover:opacity-90"
-        style="background: var(--surface); color: var(--fg)"
+        class="flex flex-col justify-between p-8 bg-[#1E1E1E] text-[#FFFFFF] no-underline transition-colors hover:bg-[#252525]"
       >
         <div>
-          <div class="flex justify-between items-center mb-6 text-xs">
-            <span
-              class="px-2.5 py-1 font-bold uppercase"
-              style="background: var(--link); color: var(--code-bg)"
-            >
-              {String(i + 1).padStart(2, "0")} // {project.name}
-            </span>
-          </div>
-          <span class="text-xs uppercase tracking-widest" style="color: var(--link)">
+          <span
+            class="text-xs uppercase tracking-widest text-[#86A881] block mb-2"
+          >
             {project.tagline}
           </span>
-          <h2 class="text-xl uppercase mt-2 mb-4">{project.name}</h2>
-          <p class="text-xs leading-relaxed">{project.description}</p>
+          <h2 class="text-xl uppercase mb-3">{project.name}</h2>
+          <p class="text-xs text-[#FFFFFF]/75 leading-relaxed">
+            {project.description}
+          </p>
         </div>
 
-        <div class="mt-8 p-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-widest" style="background: var(--code-bg)">
+        <div
+          class="mt-8 pt-4 border-t border-[#2E2E2E] flex flex-wrap gap-x-3 gap-y-1 text-[10px] uppercase tracking-widest text-[#86A881]"
+        >
           {#each project.stack as tech}
-            <span style="color: var(--code-fg)">{tech}</span>
+            <span>{tech}</span>
           {/each}
         </div>
       </a>

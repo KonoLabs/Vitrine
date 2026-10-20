@@ -1,9 +1,8 @@
 <script lang="ts">
-  // Core engineering disciplines (business data)
   const disciplines = [
     {
-      code: "01 // HARDWARE",
-      stack: "SCHEMATIC // PCB // ASSEMBLY",
+      code: "HARDWARE",
+      stack: "SCHEMATIC · PCB · ASSEMBLY",
       title: "CUSTOM PCB & HARDWARE",
       description:
         "The physical product: the schematic, the board layout and a first working sample on your desk. Power, sensors, connectors and enclosure fit are all handled, along with the files the factory needs to build it.",
@@ -15,8 +14,8 @@
       ],
     },
     {
-      code: "02 // FIRMWARE",
-      stack: "MCU // SOC // REAL-TIME",
+      code: "FIRMWARE",
+      stack: "MCU · SOC · REAL-TIME",
       title: "EMBEDDED FIRMWARE",
       description:
         "The code that lives on the chip itself. It has to start fast, never crash and keep running for years, so we write it for whichever processor fits your budget and your product.",
@@ -28,8 +27,8 @@
       ],
     },
     {
-      code: "03 // SOFTWARE",
-      stack: "LINUX // SERVICES // APIs",
+      code: "SOFTWARE",
+      stack: "LINUX · SERVICES · APIS",
       title: "SOFTWARE & SERVICES",
       description:
         "What runs next to the device: small self-contained programs that collect, store and pass on what your hardware reports. Built to run unattended, on a server or directly on the board.",
@@ -41,8 +40,8 @@
       ],
     },
     {
-      code: "04 // WEB & BACKEND",
-      stack: "WEB // APIS // DATABASES",
+      code: "WEB & BACKEND",
+      stack: "WEB · APIS · DATABASES",
       title: "BACKEND & WEBSITES",
       description:
         "The side people actually see: the website, the dashboard and the services behind them, designed and shipped by the same team as the hardware.",
@@ -56,12 +55,11 @@
   ];
 </script>
 
-<!-- SECTION 03: CORE ENGINEERING DISCIPLINES (SWISS GRID) -->
 <section id="capabilities" class="space-y-10">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
     <div class="md:col-span-4">
       <div class="text-xs text-[#86A881] uppercase tracking-widest">
-        03 // WHAT WE DO
+        WHAT WE DO
       </div>
       <h2 class="text-2xl md:text-3xl uppercase mt-2">
         END-TO-END ENGINEERING
@@ -71,7 +69,7 @@
       class="md:col-span-8 text-xs md:text-sm text-[#FFFFFF]/70 flex items-end"
     >
       Everything is built under one roof: the circuit board, the code running on
-      it, the servers behind it and the website on top — no hand-offs between
+      it, the servers behind it and the website on top - no hand-offs between
       five different contractors.
     </div>
   </div>
@@ -79,36 +77,39 @@
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
     {#each disciplines as discipline}
       <div
-        class="bg-[#353535] p-8 flex flex-col justify-between group hover:bg-[#404040]"
+        class="bg-[#1E1E1E] p-8 flex flex-col justify-between hover:bg-[#252525] transition-colors"
       >
         <div>
           <span
-            class="bg-[#86A881] text-[#000000] px-2.5 py-1 text-xs font-bold inline-block mb-8"
+            class="text-xs text-[#86A881] uppercase tracking-widest block mb-4 font-bold"
             >{discipline.code}</span
           >
-          <h3 class="text-xl uppercase mb-4">{discipline.title}</h3>
-          <p class="text-xs text-[#FFFFFF]/75 leading-relaxed mb-5">
+          <h3 class="text-xl uppercase mb-3 text-[#FFFFFF]">
+            {discipline.title}
+          </h3>
+          <p class="text-xs text-[#FFFFFF]/75 leading-relaxed mb-6">
             {discipline.description}
           </p>
-          <div class="space-y-1.5 text-xs text-[#86A881]">
+          <div class="space-y-2 text-xs text-[#86A881]">
             {#each discipline.bullets as bullet}
               <div>+ {bullet}</div>
             {/each}
           </div>
         </div>
-        <div class="mt-6 text-[10px] uppercase tracking-widest text-[#86A881]">
+        <div
+          class="mt-8 pt-4 border-t border-[#2E2E2E] text-[10px] uppercase tracking-widest text-[#FFFFFF]/50"
+        >
           {discipline.stack}
         </div>
       </div>
     {/each}
   </div>
 
-  <!-- Open Source Note -->
   <div
-    class="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-[#353535] pt-6 text-xs text-[#FFFFFF]/70"
+    class="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-[#1E1E1E] pt-6 text-xs text-[#FFFFFF]/70"
   >
     <span class="text-[10px] uppercase tracking-widest text-[#86A881]"
-      >OPEN SOURCE //</span
+      >OPEN SOURCE ·</span
     >
     <a
       href="https://github.com/KonoLabs"

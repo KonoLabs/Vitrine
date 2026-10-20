@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-  <title>KONO // HARDWARE, FIRMWARE & SOFTWARE ENGINEERING</title>
+  <title>KONO - HARDWARE, FIRMWARE & SOFTWARE ENGINEERING</title>
 </svelte:head>
 
 <div

@@ -2,7 +2,6 @@
   type ExampleKey = "camera" | "sensor";
 
   interface Example {
-    code: string;
     name: string;
     summary: string;
     parts: { label: string; text: string }[];
@@ -12,7 +11,6 @@
 
   const examples: Record<ExampleKey, Example> = {
     camera: {
-      code: "EXAMPLE_01",
       name: "A CAMERA THAT THINKS ON ITS OWN",
       summary:
         "A small board with a camera that recognises what it sees directly on the device. Nothing is sent to the cloud, so the footage never leaves the board and it keeps working even when the network drops.",
@@ -45,7 +43,6 @@
       ],
     },
     sensor: {
-      code: "EXAMPLE_02",
       name: "A SENSOR THAT RUNS FOR MONTHS",
       summary:
         "A pocket-sized board that measures temperature, movement or anything else and reports it over Wi-Fi or Bluetooth. It sleeps most of the time, so one battery lasts for months.",
@@ -73,11 +70,10 @@
   };
 
   const tabs: { key: ExampleKey; label: string }[] = [
-    { key: "camera", label: "[01] CAMERA NODE" },
-    { key: "sensor", label: "[02] BATTERY SENSOR" },
+    { key: "camera", label: "CAMERA NODE" },
+    { key: "sensor", label: "BATTERY SENSOR" },
   ];
 
-  // Engagement Models (business data)
   const engagement = [
     {
       name: "Fixed-Scope Project",
@@ -96,33 +92,31 @@
     },
   ];
 
-  // Interactive example selector
   let selectedExample = $state<ExampleKey>("camera");
 </script>
 
-<!-- SECTION 01: WHAT WE BUILD -->
 <section id="inspector" class="space-y-8">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
-    <div class="md:col-span-4">
+    <div class="md:col-span-5">
       <div class="text-xs text-[#86A881] uppercase tracking-widest mb-2">
-        01 // WHAT WE BUILD
+        WHAT WE BUILD
       </div>
       <h2 class="text-2xl md:text-3xl uppercase">TWO EXAMPLES OF OUR WORK</h2>
     </div>
-    <div class="md:col-span-8 flex flex-col items-end gap-3">
+    <div class="md:col-span-7 flex flex-col md:items-end gap-3">
       <span
-        class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/50 text-right"
+        class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/50 md:text-right"
       >
-        Representative examples // we build on any board, chip or server
+        Representative examples - we build on any board, chip or server
       </span>
-      <div class="flex flex-wrap gap-3 md:justify-end">
+      <div class="flex flex-wrap gap-3">
         {#each tabs as tab}
           <button
             onclick={() => (selectedExample = tab.key)}
-            class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer {selectedExample ===
+            class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer no-underline {selectedExample ===
             tab.key
               ? 'bg-[#86A881] text-[#000000]'
-              : 'bg-[#353535] text-[#FFFFFF] hover:bg-[#404040]'}"
+              : 'bg-[#1E1E1E] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
           >
             {tab.label}
           </button>
@@ -131,69 +125,71 @@
     </div>
   </div>
 
-  <!-- Active Example Panel -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
     {#key selectedExample}
       {@const example = examples[selectedExample]}
-      <!-- Example Detail -->
-      <div class="lg:col-span-7 bg-[#353535] p-6 md:p-8 flex flex-col gap-6">
-        <div class="bg-[#000000] p-4">
-          <span class="text-[10px] text-[#86A881] block">{example.code}</span>
-          <h3 class="text-lg md:text-xl text-[#FFFFFF] uppercase">
+      <div class="lg:col-span-7 bg-[#1E1E1E] p-6 md:p-8 flex flex-col gap-6">
+        <div>
+          <h3
+            class="text-xl md:text-2xl text-[#FFFFFF] uppercase tracking-wide"
+          >
             {example.name}
           </h3>
+          <p class="text-sm text-[#FFFFFF]/80 leading-relaxed mt-3">
+            {example.summary}
+          </p>
         </div>
 
-        <p class="text-sm text-[#FFFFFF]/80 leading-relaxed">
-          {example.summary}
-        </p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-[#2E2E2E] text-xs"
+        >
           {#each example.parts as part}
-            <div class="bg-[#404040] p-4">
-              <span class="text-[10px] text-[#86A881] block mb-1 uppercase"
+            <div class="space-y-1.5">
+              <span
+                class="text-[11px] text-[#86A881] block uppercase tracking-wider"
                 >{part.label}</span
               >
-              <span class="text-[#FFFFFF]/85 leading-relaxed">{part.text}</span>
+              <span class="text-[#FFFFFF]/75 leading-relaxed block"
+                >{part.text}</span
+              >
             </div>
           {/each}
         </div>
 
-        <!-- Connections + Typical Uses (fills the panel floor) -->
-        <div class="mt-auto bg-[#000000] p-4 space-y-3">
-          <div class="flex justify-between items-center gap-3">
-            <span class="text-[10px] text-[#86A881] uppercase tracking-widest"
-              >WHAT IT CONNECTS TO</span
-            >
-            <span
-              class="text-[10px] text-[#FFFFFF]/45 uppercase tracking-widest"
-              >DEPENDING ON THE PRODUCT</span
-            >
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            {#each example.connects as item}
-              <span
-                class="border border-[#404040] px-2 py-1 text-[10px] text-[#FFFFFF]/85"
-                >{item}</span
+        <div class="mt-auto pt-6 border-t border-[#2E2E2E] space-y-5">
+          <div>
+            <div class="flex justify-between items-center gap-3 mb-2">
+              <span class="text-[10px] text-[#86A881] uppercase tracking-widest"
+                >CONNECTIVITY</span
               >
-            {/each}
+              <span
+                class="text-[10px] text-[#FFFFFF]/45 uppercase tracking-widest"
+                >CUSTOMIZED PER PRODUCT</span
+              >
+            </div>
+            <div
+              class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#FFFFFF]/80"
+            >
+              {#each example.connects as item}
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="text-[#86A881]">·</span>
+                  {item}
+                </span>
+              {/each}
+            </div>
           </div>
 
-          <div class="border-t border-[#353535] pt-3 space-y-2">
+          <div class="space-y-2">
             <span
               class="text-[10px] text-[#86A881] uppercase tracking-widest block"
-              >WHERE YOU WOULD SEE IT</span
+              >TYPICAL USE CASES</span
             >
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {#each example.uses as use, i}
-                <div
-                  class="bg-[#353535] px-3 py-2 text-[11px] text-[#FFFFFF]/75"
-                >
-                  <span class="text-[#86A881]"
-                    >REF_{String(i + 1).padStart(2, "0")}</span
-                  >
-                  {use}
+            <div
+              class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[#FFFFFF]/75"
+            >
+              {#each example.uses as use}
+                <div class="leading-relaxed">
+                  <span class="text-[#86A881] mr-1.5">+</span>{use}
                 </div>
               {/each}
             </div>
@@ -202,31 +198,32 @@
       </div>
     {/key}
 
-    <!-- Engagement / Business Panel -->
     <div
-      class="lg:col-span-5 bg-[#404040] p-6 md:p-8 flex flex-col justify-between"
+      class="lg:col-span-5 bg-[#1E1E1E] p-6 md:p-8 flex flex-col justify-between"
     >
       <div>
-        <div class="flex justify-between items-center mb-6">
+        <div
+          class="flex justify-between items-center mb-6 pb-4 border-b border-[#2E2E2E]"
+        >
           <span class="text-xs text-[#86A881] uppercase tracking-widest"
             >HOW WE WORK TOGETHER</span
           >
-          <span class="text-[10px] bg-[#000000] text-[#FFFFFF] px-2 py-1"
+          <span class="text-[10px] text-[#FFFFFF]/60 uppercase tracking-wider"
             >NDA BY DEFAULT</span
           >
         </div>
 
-        <div class="space-y-3">
+        <div class="divide-y divide-[#2E2E2E]">
           {#each engagement as eng}
-            <div class="bg-[#000000] p-4 space-y-1.5">
-              <div class="flex justify-between items-center gap-3">
-                <span class="text-xs text-[#FFFFFF] uppercase">{eng.name}</span>
+            <div class="py-4 first:pt-0 last:pb-0 space-y-1.5">
+              <div class="flex justify-between items-baseline gap-3">
+                <span class="text-sm text-[#FFFFFF] uppercase">{eng.name}</span>
                 <span
-                  class="text-[10px] text-[#000000] bg-[#86A881] px-1.5 py-0.5"
+                  class="text-xs text-[#86A881] uppercase tracking-wider font-bold"
                   >{eng.tag}</span
                 >
               </div>
-              <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
+              <p class="text-xs text-[#FFFFFF]/65 leading-relaxed">
                 {eng.desc}
               </p>
             </div>
@@ -235,10 +232,10 @@
       </div>
 
       <div
-        class="mt-6 bg-[#000000] p-3 text-[11px] text-[#86A881] flex justify-between gap-3"
+        class="mt-6 pt-4 border-t border-[#2E2E2E] text-xs text-[#86A881] flex justify-between gap-3"
       >
         <span>REPLY WITHIN: 24H</span>
-        <span>[REMOTE // WORLDWIDE]</span>
+        <span>REMOTE · WORLDWIDE</span>
       </div>
     </div>
   </div>

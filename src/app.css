@@ -5,47 +5,53 @@
 @source "./**/*.{html,js,svelte,ts,md}";
 
 @font-face {
-  font-family: 'Undefined';
-  src: url('/undefined-medium.otf') format('opentype');
+  font-family: "Undefined";
+  src: url("/undefined-medium.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  --bg: #86A881;
+  --bg: #86a881;
   --fg: #ffffff;
-  --border: #353535;
-  --link: #353535;
-  --link-hover: #353535;
+  --border: #1e1e1e;
+  --link: #1e1e1e;
+  --link-hover: #1e1e1e;
   --accent: #ffffff;
-  --surface: #74986E;
+  --surface: #1e1e1e;
   --subtle: #ffffff;
   --code-bg: #ffffff;
-  --code-fg: #353535;
+  --code-fg: #1e1e1e;
 }
 
 :root.dark {
   --bg: #000000;
   --fg: #ffffff;
-  --border: #131313;
+  --border: #1e1e1e;
   --link: #229147;
-  --link-hover: #A8B365;
+  --link-hover: #a8b365;
   --accent: #229147;
-  --surface: #1a1a1a;
-  --subtle: #131313;
-  --code-bg: #131313;
-  --code-fg: #A8B365;
+  --surface: #1e1e1e;
+  --subtle: #1e1e1e;
+  --code-bg: #1e1e1e;
+  --code-fg: #a8b365;
 }
 
 @layer base {
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
   body {
-    font-family: 'Undefined', monospace;
+    font-family: "Undefined", monospace;
     background: var(--bg);
     color: var(--fg);
     line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   button {
@@ -54,30 +60,73 @@
     cursor: pointer;
   }
 
-  a { color: var(--link); text-decoration: underline; }
-  a:hover { color: var(--link-hover); }
+  a {
+    color: var(--link);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--link-hover);
+    text-decoration: none;
+  }
 
-  h1, h2, h3, h4, h5, h6 { margin: 1rem 0 0.5rem 0; font-weight: normal; }
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.25rem; }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 1rem 0 0.5rem 0;
+    font-weight: normal;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
 
-  p { margin: 0.5rem 0; }
-  img { max-width: 100%; height: auto; }
+  p {
+    margin: 0.5rem 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 
-  nav { border-bottom: 2px solid var(--border); margin-bottom: 2rem; padding-bottom: 0.5rem; }
-  nav a { margin-right: 1rem; text-decoration: none; }
-  nav a:hover { text-decoration: underline; }
+  nav {
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+  }
+  nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  nav a:hover {
+    text-decoration: none;
+  }
 
-  main, article, section { animation: fadeIn 0.4s ease-out; }
+  main,
+  article,
+  section {
+    animation: fadeIn 0.4s ease-out;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Centered reading measure for pages without their own full-width layout */
 .page-shell {
   max-width: 800px;
   margin: 0 auto;
@@ -85,7 +134,14 @@
 }
 
 @media (max-width: 600px) {
-  h1 { font-size: 1.5rem; }
-  h2 { font-size: 1.25rem; }
-  .avatar { width: 60px; height: 60px; }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
 }
