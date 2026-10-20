@@ -103,7 +103,7 @@
   }
 
   nav {
-    border-bottom: 2px solid var(--border);
+    border-bottom: none;
     margin-bottom: 2rem;
     padding-bottom: 0.5rem;
   }

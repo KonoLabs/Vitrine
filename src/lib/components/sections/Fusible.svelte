@@ -80,7 +80,7 @@
         >
       </div>
       <div
-        class="bg-[#000000] p-4 md:p-5 font-mono text-xs md:text-sm leading-loose border border-[#2E2E2E]"
+        class="bg-[#000000] p-4 md:p-5 font-['Undefined',monospace] text-xs md:text-sm leading-loose border border-[#2E2E2E]"
       >
         {#each commands as cmd}
           <div class="flex flex-wrap gap-x-2">

@@ -21,7 +21,7 @@
         href="mailto:yann@facile.studio"
         class="block w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1F1F1F] p-4 text-md tracking-widest text-center no-underline transition-colors"
       >
-        &gt; yann@facile.studio
+        yann@facile.studio
       </a>
     </div>
   </div>
