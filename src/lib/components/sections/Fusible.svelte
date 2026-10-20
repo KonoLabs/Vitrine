@@ -69,7 +69,7 @@
       </h2>
     </div>
     <div
-      class="text-[11px] uppercase tracking-widest text-[#FFFFFF]/60 md:text-right"
+      class="text-xs uppercase tracking-widest text-[#FFFFFF] md:text-right"
     >
       WRITTEN IN RUST · FAIL-CLOSED BY DESIGN
     </div>

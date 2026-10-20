@@ -83,7 +83,7 @@
       </h2>
     </div>
     <div
-      class="text-[11px] uppercase tracking-widest text-[#FFFFFF]/60 md:text-right"
+      class="text-xs uppercase tracking-widest text-[#FFFFFF] md:text-right"
     >
       FIXED-PRICE QUOTES · PAY BY MILESTONE · YOU OWN IT ALL
     </div>

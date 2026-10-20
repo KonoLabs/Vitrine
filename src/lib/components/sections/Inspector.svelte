@@ -105,7 +105,7 @@
     </div>
     <div class="md:col-span-7 flex flex-col md:items-end gap-3">
       <span
-        class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/50 md:text-right"
+        class="text-xs uppercase tracking-widest text-[#FFFFFF] md:text-right"
       >
         Representative examples - we build on any board, chip or server
       </span>
