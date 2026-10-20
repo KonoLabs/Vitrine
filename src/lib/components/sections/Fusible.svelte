@@ -20,11 +20,7 @@
   const commands = [
     { prompt: "$", line: "cargo install fusible", note: "" },
     { prompt: "$", line: "fusible init --name sensor-node", note: "" },
-    {
-      prompt: "$",
-      line: "fusible check",
-      note: "# circuit validated (fuse intact) - or the fuse blows",
-    },
+    { prompt: "$", line: "fusible check" },
   ];
 </script>
 
