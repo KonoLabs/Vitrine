@@ -1,66 +1,80 @@
 <script lang="ts">
-  type TargetKey = "luckfox" | "esp32";
+  type ExampleKey = "camera" | "sensor";
 
-  interface Target {
+  interface Example {
     code: string;
     name: string;
-    arch: string;
-    clock: string;
-    mem: string;
-    os: string;
-    io: string[];
-    shipments: string[];
+    summary: string;
+    parts: { label: string; text: string }[];
+    connects: string[];
+    uses: string[];
   }
 
-  const targets: Record<TargetKey, Target> = {
-    luckfox: {
-      code: "SOC_RV1106",
-      name: "LUCKFOX PICO // ROCKCHIP RV1106",
-      arch: "ARM Cortex-A7 + RISC-V MCU + 1.0 TOPS NPU",
-      clock: "1.2 GHz / 250 MHz",
-      mem: "256MB DDR3L / SPI NAND",
-      os: "Custom Buildroot / BusyBox / Linux 5.10",
-      io: [
-        "MIPI-CSI",
-        "RMII ETHERNET",
-        "USB 2.0 OTG",
-        "SDMMC",
-        "SPI",
-        "I2C",
-        "UART",
-        "PWM",
-        "ADC",
-        "JTAG"
+  const examples: Record<ExampleKey, Example> = {
+    camera: {
+      code: "EXAMPLE_01",
+      name: "A CAMERA THAT THINKS ON ITS OWN",
+      summary:
+        "A small board with a camera that recognises what it sees directly on the device. Nothing is sent to the cloud, so the footage never leaves the board and it keeps working even when the network drops.",
+      parts: [
+        {
+          label: "THE BOARD",
+          text: "Designed from scratch around a chip cheap enough to put in every unit, with power and network over a single cable.",
+        },
+        {
+          label: "THE SOFTWARE ON IT",
+          text: "A trimmed-down system that starts in seconds and our own image-recognition code, tuned for this exact board.",
+        },
+        {
+          label: "AROUND IT",
+          text: "A web page to view results and change settings, plus a small service to collect what the boards report.",
+        },
       ],
-      shipments: ["Edge vision / camera nodes", "PoE field gateways", "On-device audio + NLU"]
+      connects: [
+        "Camera",
+        "Wired network",
+        "USB",
+        "Memory card",
+        "Sensors",
+        "Lights",
+      ],
+      uses: [
+        "Spotting defects on a production line",
+        "Gateways collecting data in the field",
+        "Devices that listen and respond",
+      ],
     },
-    esp32: {
-      code: "MCU_ESP32_S3",
-      name: "ESP32-S3 // DUAL-CORE XTENSA LX7",
-      arch: "Dual Xtensa LX7 + ULP RISC-V Co-Processor",
-      clock: "240 MHz",
-      mem: "512KB SRAM / 8MB Octal PSRAM / 16MB Flash",
-      os: "ESP-IDF v5.x / FreeRTOS SMP",
-      io: [
-        "USB-OTG",
-        "TWAI / CAN",
-        "LCD 8080 BUS",
-        "CAMERA DVP",
-        "SPI",
-        "I2C",
-        "UART",
-        "LEDC PWM",
-        "ADC",
-        "TOUCH",
-        "JTAG"
+    sensor: {
+      code: "EXAMPLE_02",
+      name: "A SENSOR THAT RUNS FOR MONTHS",
+      summary:
+        "A pocket-sized board that measures temperature, movement or anything else and reports it over Wi-Fi or Bluetooth. It sleeps most of the time, so one battery lasts for months.",
+      parts: [
+        {
+          label: "THE BOARD",
+          text: "Small enough to fit anywhere, sips power, and leaves room for the sensors your product needs.",
+        },
+        {
+          label: "THE SOFTWARE ON IT",
+          text: "Wakes up, takes a reading, sends it, goes back to sleep — and still recovers on its own if something goes wrong.",
+        },
+        {
+          label: "AROUND IT",
+          text: "A phone or browser view of the readings, with alerts when a value goes out of range.",
+        },
       ],
-      shipments: ["Battery sensor nodes", "BLE mesh & beacons", "USB dongles & tools"]
-    }
+      connects: ["Sensors", "Wi-Fi", "Bluetooth", "USB", "Display", "Battery"],
+      uses: [
+        "Rooms, fridges and machines being monitored",
+        "Tags and beacons that report where things are",
+        "Small USB tools and dongles",
+      ],
+    },
   };
 
-  const tabs: { key: TargetKey; label: string }[] = [
-    { key: "luckfox", label: "[01] LUCKFOX RV1106" },
-    { key: "esp32", label: "[02] ESP32-S3 / C6" }
+  const tabs: { key: ExampleKey; label: string }[] = [
+    { key: "camera", label: "[01] CAMERA NODE" },
+    { key: "sensor", label: "[02] BATTERY SENSOR" },
   ];
 
   // Engagement Models (business data)
@@ -68,42 +82,44 @@
     {
       name: "Fixed-Scope Project",
       tag: "48H QUOTE",
-      desc: "Fixed price, milestone-based payments, full IP and source transfer on delivery."
+      desc: "One price agreed up front, paid by milestone, and everything — files, designs, source code — is yours on delivery.",
     },
     {
       name: "Monthly Retainer",
       tag: "FLEX HOURS",
-      desc: "Reserved engineering hours for iteration, field support and urgent board fixes."
+      desc: "Reserved engineering time for changes, field support and urgent fixes on a product already in the wild.",
     },
     {
       name: "Audit / Rescue",
       tag: "2-5 DAYS",
-      desc: "Design review, DFM pass or code audit of an existing PCB, firmware or repository."
-    }
+      desc: "A second pair of eyes on an existing board, firmware or codebase: what is wrong, what it would cost to fix.",
+    },
   ];
 
-  // Interactive Board / Target Selector
-  let selectedTarget = $state<TargetKey>("luckfox");
+  // Interactive example selector
+  let selectedExample = $state<ExampleKey>("camera");
 </script>
 
-<!-- SECTION 01: EXAMPLE TARGET ARCHITECTURES -->
+<!-- SECTION 01: WHAT WE BUILD -->
 <section id="inspector" class="space-y-8">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
     <div class="md:col-span-4">
       <div class="text-xs text-[#86A881] uppercase tracking-widest mb-2">
-        01 // EXAMPLE TARGET ARCHITECTURES
+        01 // WHAT WE BUILD
       </div>
-      <h2 class="text-2xl md:text-3xl uppercase">INTERACTIVE ARCHITECTURE INSPECTOR</h2>
+      <h2 class="text-2xl md:text-3xl uppercase">TWO EXAMPLES OF OUR WORK</h2>
     </div>
     <div class="md:col-span-8 flex flex-col items-end gap-3">
-      <span class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/50 text-right">
-        Representative targets // we ship on any MCU, SoC, SBC or server
+      <span
+        class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/50 text-right"
+      >
+        Representative examples // we build on any board, chip or server
       </span>
       <div class="flex flex-wrap gap-3 md:justify-end">
         {#each tabs as tab}
           <button
-            onclick={() => (selectedTarget = tab.key)}
-            class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer {selectedTarget ===
+            onclick={() => (selectedExample = tab.key)}
+            class="px-5 py-3 text-xs uppercase tracking-widest cursor-pointer {selectedExample ===
             tab.key
               ? 'bg-[#86A881] text-[#000000]'
               : 'bg-[#353535] text-[#FFFFFF] hover:bg-[#404040]'}"
@@ -115,62 +131,69 @@
     </div>
   </div>
 
-  <!-- Active Target Datasheet Panel -->
+  <!-- Active Example Panel -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-    {#key selectedTarget}
-      {@const target = targets[selectedTarget]}
-      <!-- Target Specs -->
+    {#key selectedExample}
+      {@const example = examples[selectedExample]}
+      <!-- Example Detail -->
       <div class="lg:col-span-7 bg-[#353535] p-6 md:p-8 flex flex-col gap-6">
         <div class="bg-[#000000] p-4">
-          <span class="text-[10px] text-[#86A881] block">TARGET_ID // {target.code}</span>
-          <h3 class="text-lg md:text-xl text-[#FFFFFF] uppercase">{target.name}</h3>
+          <span class="text-[10px] text-[#86A881] block">{example.code}</span>
+          <h3 class="text-lg md:text-xl text-[#FFFFFF] uppercase">
+            {example.name}
+          </h3>
         </div>
+
+        <p class="text-sm text-[#FFFFFF]/80 leading-relaxed">
+          {example.summary}
+        </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-          <div class="bg-[#404040] p-4">
-            <span class="text-[10px] text-[#86A881] block mb-1">CORE ARCH</span>
-            <span>{target.arch}</span>
-          </div>
-          <div class="bg-[#404040] p-4">
-            <span class="text-[10px] text-[#86A881] block mb-1">CLOCK</span>
-            <span>{target.clock}</span>
-          </div>
-          <div class="bg-[#404040] p-4">
-            <span class="text-[10px] text-[#86A881] block mb-1">MEMORY</span>
-            <span>{target.mem}</span>
-          </div>
+          {#each example.parts as part}
+            <div class="bg-[#404040] p-4">
+              <span class="text-[10px] text-[#86A881] block mb-1 uppercase"
+                >{part.label}</span
+              >
+              <span class="text-[#FFFFFF]/85 leading-relaxed">{part.text}</span>
+            </div>
+          {/each}
         </div>
 
-        <div class="text-[10px] text-[#86A881] uppercase tracking-widest">OS_ENV: {target.os}</div>
-
-        <!-- Interface Matrix + Reference Shipments (fills the panel floor) -->
+        <!-- Connections + Typical Uses (fills the panel floor) -->
         <div class="mt-auto bg-[#000000] p-4 space-y-3">
           <div class="flex justify-between items-center gap-3">
             <span class="text-[10px] text-[#86A881] uppercase tracking-widest"
-              >IO_MATRIX // EXPOSED_INTERFACES</span
+              >WHAT IT CONNECTS TO</span
             >
-            <span class="text-[10px] text-[#FFFFFF]/45 uppercase tracking-widest"
-              >PINMUX // BOARD-DEPENDENT</span
+            <span
+              class="text-[10px] text-[#FFFFFF]/45 uppercase tracking-widest"
+              >DEPENDING ON THE PRODUCT</span
             >
           </div>
 
           <div class="flex flex-wrap gap-2">
-            {#each target.io as iface}
-              <span class="border border-[#404040] px-2 py-1 text-[10px] text-[#FFFFFF]/85"
-                >{iface}</span
+            {#each example.connects as item}
+              <span
+                class="border border-[#404040] px-2 py-1 text-[10px] text-[#FFFFFF]/85"
+                >{item}</span
               >
             {/each}
           </div>
 
           <div class="border-t border-[#353535] pt-3 space-y-2">
-            <span class="text-[10px] text-[#86A881] uppercase tracking-widest block"
-              >TYPICAL SHIPMENTS ON THIS TARGET</span
+            <span
+              class="text-[10px] text-[#86A881] uppercase tracking-widest block"
+              >WHERE YOU WOULD SEE IT</span
             >
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {#each target.shipments as ship, i}
-                <div class="bg-[#353535] px-3 py-2 text-[11px] text-[#FFFFFF]/75">
-                  <span class="text-[#86A881]">REF_{String(i + 1).padStart(2, "0")}</span>
-                  {ship}
+              {#each example.uses as use, i}
+                <div
+                  class="bg-[#353535] px-3 py-2 text-[11px] text-[#FFFFFF]/75"
+                >
+                  <span class="text-[#86A881]"
+                    >REF_{String(i + 1).padStart(2, "0")}</span
+                  >
+                  {use}
                 </div>
               {/each}
             </div>
@@ -180,11 +203,17 @@
     {/key}
 
     <!-- Engagement / Business Panel -->
-    <div class="lg:col-span-5 bg-[#404040] p-6 md:p-8 flex flex-col justify-between">
+    <div
+      class="lg:col-span-5 bg-[#404040] p-6 md:p-8 flex flex-col justify-between"
+    >
       <div>
         <div class="flex justify-between items-center mb-6">
-          <span class="text-xs text-[#86A881] uppercase tracking-widest">ENGAGEMENT MODELS</span>
-          <span class="text-[10px] bg-[#000000] text-[#FFFFFF] px-2 py-1">NDA BY DEFAULT</span>
+          <span class="text-xs text-[#86A881] uppercase tracking-widest"
+            >HOW WE WORK TOGETHER</span
+          >
+          <span class="text-[10px] bg-[#000000] text-[#FFFFFF] px-2 py-1"
+            >NDA BY DEFAULT</span
+          >
         </div>
 
         <div class="space-y-3">
@@ -192,16 +221,23 @@
             <div class="bg-[#000000] p-4 space-y-1.5">
               <div class="flex justify-between items-center gap-3">
                 <span class="text-xs text-[#FFFFFF] uppercase">{eng.name}</span>
-                <span class="text-[10px] text-[#000000] bg-[#86A881] px-1.5 py-0.5">{eng.tag}</span>
+                <span
+                  class="text-[10px] text-[#000000] bg-[#86A881] px-1.5 py-0.5"
+                  >{eng.tag}</span
+                >
               </div>
-              <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">{eng.desc}</p>
+              <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
+                {eng.desc}
+              </p>
             </div>
           {/each}
         </div>
       </div>
 
-      <div class="mt-6 bg-[#000000] p-3 text-[11px] text-[#86A881] flex justify-between gap-3">
-        <span>RESPONSE_TIME: &lt; 24H</span>
+      <div
+        class="mt-6 bg-[#000000] p-3 text-[11px] text-[#86A881] flex justify-between gap-3"
+      >
+        <span>REPLY WITHIN: 24H</span>
         <span>[REMOTE // WORLDWIDE]</span>
       </div>
     </div>

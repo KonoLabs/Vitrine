@@ -3,27 +3,30 @@
   <!-- Left Column: Manifesto & Direct Callouts -->
   <div class="lg:col-span-7 flex flex-col justify-between space-y-8">
     <div class="space-y-6 mt-16">
-      <h1 class="text-4xl sm:text-5xl xl:text-6xl leading-[1.08] uppercase tracking-tight">
-        CUSTOM <span class="bg-[#86A881] text-[#000000] px-2">PCB</span> HARDWARE, EMBEDDED
+      <h1
+        class="text-4xl sm:text-5xl xl:text-6xl leading-[1.08] uppercase tracking-tight"
+      >
+        CUSTOM <span class="bg-[#86A881] text-[#000000] px-2">PCB</span>
+        HARDWARE, EMBEDDED
         <span class="text-[#86A881]">FIRMWARE</span> & FULL-STACK SOFTWARE.
       </h1>
 
-      <p class="text-sm md:text-base text-[#FFFFFF]/80 max-w-2xl leading-relaxed">
-        Kono is a hardware and software engineering foundry. We route multi-layer circuit boards,
-        write deterministic firmware for anything from 8-bit microcontrollers to
-        <span class="text-[#86A881]">ESP32</span> and
-        <span class="text-[#86A881]">Luckfox RV1106</span>-class SoCs — and build the software
-        around them just as often: backend services, APIs, static binaries and websites, zero
-        dependency bloat.
+      <p
+        class="text-sm md:text-base text-[#FFFFFF]/80 max-w-2xl leading-relaxed"
+      >
+        Kono is an engineering studio that designs electronic products and
+        writes the software running on them. We draw the circuit board, write
+        the code that makes it work, then build the apps, backends and websites
+        around it — one team, from the first sketch to the finished product.
       </p>
     </div>
 
     <div class="flex flex-wrap gap-4">
       <a
         href="#terminal"
-        class="bg-[#86A881] text-[#000000] px-8 py-4 text-xs uppercase tracking-widest hover:bg-[#FFFFFF]"
+        class="bg-[#86A881] text-[#000000] px-8 py-4 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF]"
       >
-        &gt; TRANSMIT_GERBERS_OR_SPECS
+        &gt; TELL US WHAT YOU WANT TO BUILD
       </a>
     </div>
   </div>
@@ -31,14 +34,21 @@
   <!-- PCB ANIMATION DISABLED FOR NOW - revisit later -->
   {#if false}
     <div class="lg:col-span-5 flex flex-col gap-3">
-      <div class="flex justify-between items-center text-[10px] uppercase tracking-widest text-[#86A881]">
+      <div
+        class="flex justify-between items-center text-[10px] uppercase tracking-widest text-[#86A881]"
+      >
         <span>CAD_VIEW // KONO-CARRIER-V4.KICAD_PCB</span>
       </div>
 
       <svg viewBox="0 20 400 300" class="w-full h-auto block">
         <!-- Background Grid Dots -->
         <defs>
-          <pattern id="pcb-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <pattern
+            id="pcb-grid"
+            width="20"
+            height="20"
+            patternUnits="userSpaceOnUse"
+          >
             <rect x="0" y="0" width="2" height="2" fill="#404040" />
           </pattern>
         </defs>
@@ -78,12 +88,30 @@
         <rect x="165" y="75" width="70" height="70" fill="#000000" />
         <!-- Pin 1 Indicator (static, as in real EDA tooling) -->
         <rect x="170" y="80" width="6" height="6" fill="#86A881" />
-        <text x="172" y="115" fill="#86A881" font-size="9" font-family="monospace">MCU / SOC</text>
-        <text x="172" y="130" fill="#FFFFFF" font-size="7" font-family="monospace">KONO_CORE</text>
+        <text
+          x="172"
+          y="115"
+          fill="#86A881"
+          font-size="9"
+          font-family="monospace">MCU / SOC</text
+        >
+        <text
+          x="172"
+          y="130"
+          fill="#FFFFFF"
+          font-size="7"
+          font-family="monospace">KONO_CORE</text
+        >
 
         <!-- Secondary IC (SPI NAND / Transceiver) -->
         <rect x="165" y="165" width="70" height="30" fill="#404040" />
-        <text x="175" y="183" fill="#FFFFFF" font-size="8" font-family="monospace">W25Q128JV</text>
+        <text
+          x="175"
+          y="183"
+          fill="#FFFFFF"
+          font-size="8"
+          font-family="monospace">W25Q128JV</text
+        >
 
         <!-- Via Pads & Test Points -->
         {#each [[30, 50], [30, 90], [30, 130], [370, 50], [370, 150], [370, 210], [40, 280], [360, 290], [290, 270]] as [cx, cy]}

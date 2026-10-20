@@ -8,17 +8,25 @@
     </div>
 
     <div class="flex items-center gap-6">
-      <a href="#inspector" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
-        >01.SILICON</a
+      <a
+        href="#inspector"
+        class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+        >01.EXAMPLES</a
       >
-      <a href="#delivery" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+      <a
+        href="#delivery"
+        class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
         >02.DELIVERY</a
       >
-      <a href="#capabilities" class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
-        >03.DISCIPLINES</a
+      <a
+        href="#capabilities"
+        class="hover:bg-[#86A881] hover:text-[#000000] px-2 py-0.5"
+        >03.SERVICES</a
       >
-      <a href="#terminal" class="bg-[#86A881] text-[#000000] px-3 py-0.5 hover:bg-[#FFFFFF]"
-        >INIT_TX</a
+      <a
+        href="#terminal"
+        class="bg-[#86A881] text-[#000000] px-3 py-0.5 hover:bg-[#FFFFFF]"
+        >CONTACT</a
       >
     </div>
   </div>
