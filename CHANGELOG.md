@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0] - 2026-10-21
+
+### Added
+
+- `/fieldcam` case study with an interactive 3D view of the FieldCam controller board.
+- `npm run build:model` bakes the tscircuit circuit JSON into `static/models/fieldcam.glb`.
+- FieldCam entry in the projects list.
+
+### Changed
+
+- three.js and the board model load lazily, only on `/fieldcam`.
+
 ## [0.2.0] - 2026-10-21
 
 ### Added
