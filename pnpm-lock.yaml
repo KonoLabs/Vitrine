@@ -20,22 +20,31 @@ importers:
       mdsvex:
         specifier: ^0.12.6
         version: 0.12.6(svelte@5.53.6)
+      three:
+        specifier: ^0.186.1
+        version: 0.186.1
     devDependencies:
+      '@resvg/resvg-js':
+        specifier: ^2.6.2
+        version: 2.6.2
       '@sveltejs/adapter-auto':
         specifier: ^7.0.1
-        version: 7.0.1(@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))
+        version: 7.0.1(@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(typescript@5.9.3)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))
       '@sveltejs/kit':
         specifier: ^2.53.4
-        version: 2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))
+        version: 2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(typescript@5.9.3)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))
       '@sveltejs/vite-plugin-svelte':
         specifier: ^6.2.4
-        version: 6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))
+        version: 6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))
       '@tailwindcss/postcss':
         specifier: ^4.2.1
         version: 4.2.1
       autoprefixer:
         specifier: ^10.4.27
         version: 10.4.27(postcss@8.5.6)
+      circuit-json-to-gltf:
+        specifier: ^0.0.154
+        version: 0.0.154(@resvg/resvg-js@2.6.2)(@tscircuit/circuit-json-util@0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76))(@tscircuit/footprinter@0.0.444(circuit-json@0.0.426)(typescript@5.9.3))(circuit-json@0.0.426)(circuit-to-svg@0.0.453(@tscircuit/alphabet@0.0.25(typescript@5.9.3))(@tscircuit/circuit-json-util@0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76))(circuit-json-to-connectivity-map@0.0.35(typescript@5.9.3))(circuit-json@0.0.426)(schematic-symbols@0.0.249(typescript@5.9.3))(typescript@5.9.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.186.1)(typescript@5.9.3)(zod@3.25.76)
       eslint:
         specifier: ^10.0.2
         version: 10.0.2(jiti@2.6.1)
@@ -62,7 +71,7 @@ importers:
         version: 4.2.1
       vite:
         specifier: ^7.3.1
-        version: 7.3.1(jiti@2.6.1)(lightningcss@1.31.1)
+        version: 7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)
 
 packages:
 
@@ -256,6 +265,14 @@ packages:
     resolution: {integrity: sha512-bIZEUzOI1jkhviX2cp5vNyXQc6olzb2ohewQubuYlMXZ2Q/XjBO0x0XhGPvc9fjSIiUN0vw+0hq53BJ4eQSJKQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
+  '@flatten-js/core@1.6.14':
+    resolution: {integrity: sha512-9Aa7Y+tTDtTGjL2mH5dYAGeY43CISj0w1DxQ0MPxgWnwVuIJV6jzRlTNHGSeJEnleMngldwdZORarOMcszqpLg==}
+    engines: {node: '>=4.2.4'}
+
+  '@flatten-js/interval-tree@2.0.3':
+    resolution: {integrity: sha512-Lv3eaITqU20WD+5W8L7JeJdjDXC9hfTUEzY0cRLx/sXj1+P3XdK6Fig4UdxvsekakTK8XeOwnpAKEpTI728U4g==}
+    engines: {node: '>=16.0.0'}
+
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
     engines: {node: '>=18.18.0'}
@@ -296,8 +313,91 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@jscad/modeling@2.13.0':
+    resolution: {integrity: sha512-Thv/JJZZOMzQ9rfhP+75PbgrNbBTZduRL+ClaGfGFts9+JdIXcUueqRL3NtZZ/v/hyZCUBkPSRxHIi4icz04tQ==}
+
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
+
+  '@resvg/resvg-js-android-arm-eabi@2.6.2':
+    resolution: {integrity: sha512-FrJibrAk6v29eabIPgcTUMPXiEz8ssrAk7TXxsiZzww9UTQ1Z5KAbFJs+Z0Ez+VZTYgnE5IQJqBcoSiMebtPHA==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [android]
+
+  '@resvg/resvg-js-android-arm64@2.6.2':
+    resolution: {integrity: sha512-VcOKezEhm2VqzXpcIJoITuvUS/fcjIw5NA/w3tjzWyzmvoCdd+QXIqy3FBGulWdClvp4g+IfUemigrkLThSjAQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [android]
+
+  '@resvg/resvg-js-darwin-arm64@2.6.2':
+    resolution: {integrity: sha512-nmok2LnAd6nLUKI16aEB9ydMC6Lidiiq2m1nEBDR1LaaP7FGs4AJ90qDraxX+CWlVuRlvNjyYJTNv8qFjtL9+A==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@resvg/resvg-js-darwin-x64@2.6.2':
+    resolution: {integrity: sha512-GInyZLjgWDfsVT6+SHxQVRwNzV0AuA1uqGsOAW+0th56J7Nh6bHHKXHBWzUrihxMetcFDmQMAX1tZ1fZDYSRsw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@resvg/resvg-js-linux-arm-gnueabihf@2.6.2':
+    resolution: {integrity: sha512-YIV3u/R9zJbpqTTNwTZM5/ocWetDKGsro0SWp70eGEM9eV2MerWyBRZnQIgzU3YBnSBQ1RcxRZvY/UxwESfZIw==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [linux]
+
+  '@resvg/resvg-js-linux-arm64-gnu@2.6.2':
+    resolution: {integrity: sha512-zc2BlJSim7YR4FZDQ8OUoJg5holYzdiYMeobb9pJuGDidGL9KZUv7SbiD4E8oZogtYY42UZEap7dqkkYuA91pg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@resvg/resvg-js-linux-arm64-musl@2.6.2':
+    resolution: {integrity: sha512-3h3dLPWNgSsD4lQBJPb4f+kvdOSJHa5PjTYVsWHxLUzH4IFTJUAnmuWpw4KqyQ3NA5QCyhw4TWgxk3jRkQxEKg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@resvg/resvg-js-linux-x64-gnu@2.6.2':
+    resolution: {integrity: sha512-IVUe+ckIerA7xMZ50duAZzwf1U7khQe2E0QpUxu5MBJNao5RqC0zwV/Zm965vw6D3gGFUl7j4m+oJjubBVoftw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@resvg/resvg-js-linux-x64-musl@2.6.2':
+    resolution: {integrity: sha512-UOf83vqTzoYQO9SZ0fPl2ZIFtNIz/Rr/y+7X8XRX1ZnBYsQ/tTb+cj9TE+KHOdmlTFBxhYzVkP2lRByCzqi4jQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@resvg/resvg-js-win32-arm64-msvc@2.6.2':
+    resolution: {integrity: sha512-7C/RSgCa+7vqZ7qAbItfiaAWhyRSoD4l4BQAbVDqRRsRgY+S+hgS3in0Rxr7IorKUpGE69X48q6/nOAuTJQxeQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@resvg/resvg-js-win32-ia32-msvc@2.6.2':
+    resolution: {integrity: sha512-har4aPAlvjnLcil40AC77YDIk6loMawuJwFINEM7n0pZviwMkMvjb2W5ZirsNOZY4aDbo5tLx0wNMREp5Brk+w==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+
+  '@resvg/resvg-js-win32-x64-msvc@2.6.2':
+    resolution: {integrity: sha512-ZXtYhtUr5SSaBrUDq7DiyjOFJqBVL/dOBN7N/qmi/pO0IgiWW/f/ue3nbvu9joWE5aAKDoIzy/CxsY0suwGosQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+
+  '@resvg/resvg-js@2.6.2':
+    resolution: {integrity: sha512-xBaJish5OeGmniDj9cW5PRa/PtmuVU3ziqrbr5xJj901ZDN4TosrVaNZpEiLZAxdfnhAe7uQ7QFWfjPe9d9K2Q==}
+    engines: {node: '>= 10'}
 
   '@rollup/rollup-android-arm-eabi@4.59.0':
     resolution: {integrity: sha512-upnNBkA6ZH2VKGcBj9Fyl9IGNPULcjXRlg0LLeaioQWueH30p6IXtJEbKAgvyv+mJaMxSm1l6xwDXYjpEMiLMg==}
@@ -578,6 +678,49 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
+  '@thednp/dommatrix@3.1.2':
+    resolution: {integrity: sha512-wxRH2/Qdqd+JxFpjb5vw+ZMaij8Hqa/9Hgl41n2Jb+3WNRhdemrosK0FxEo/yEvhvHGW8D1tZ3oPH9N0m1QG+A==}
+
+  '@tscircuit/alphabet@0.0.25':
+    resolution: {integrity: sha512-PWLjptI6AlLEtF/wjN1N8uC+n3G7vtg0j3xKE1fgWHDhahtnlQRqHDrtPSLlkIR9aJjRfjplzLuaUEaCRvJmZA==}
+    peerDependencies:
+      typescript: ^5.0.0
+
+  '@tscircuit/cableprinter@0.0.6':
+    resolution: {integrity: sha512-zF8n02gMfwM+0oo1OkRsQMSErPKslzyMSvko2qpp5GJ0zi4+PsNwYDAMKZ2608vFs88WfDrol2eQr1AirUTCbw==}
+
+  '@tscircuit/circuit-json-util@0.0.126':
+    resolution: {integrity: sha512-8rkhFCLW1qAy4SVmk7MSMdhojwj186w6KjJ+mDNXwb/Nj95UScpcmqjI1GFPpGLb8xwPORVlqIIfHQzYtUrrWg==}
+    peerDependencies:
+      circuit-json: '*'
+      transformation-matrix: '*'
+      zod: '3'
+
+  '@tscircuit/footprinter@0.0.444':
+    resolution: {integrity: sha512-sJd3RMFUDQNWVHA16ACJt2inMBB9FT8jhwZT58Y0G8EXYvnND82WXxqkCZ/BugbC/c7wUVOHiIQxDxdgVJADPg==}
+    peerDependencies:
+      circuit-json: '*'
+
+  '@tscircuit/math-utils@0.0.9':
+    resolution: {integrity: sha512-sPzfXndijet8z29X6f5vnSZddiso2tRg7m6rB+268bVj60mxnxUMD14rKuMlLn6n84fMOpD/X7pRTZUfi6M+Tg==}
+    peerDependencies:
+      typescript: ^5.0.0
+
+  '@tscircuit/mm@0.0.8':
+    resolution: {integrity: sha512-nl7nxE7AhARbKuobflI0LUzoir7+wJyvwfPw6bzA/O0Q3YTcH3vBkU/Of+V/fp6ht+AofiCXj7YAH9E446138Q==}
+    peerDependencies:
+      typescript: ^5.0.0
+
+  '@tscircuit/mm@0.0.9':
+    resolution: {integrity: sha512-hkvVwVEuKMsM8ac3cbDyYUHu1WWdz6LooeLg/N+CLYwFrMrY7OBbXXEPm1PWczg8ytu0MObqzkcM70/LCJhF6A==}
+    peerDependencies:
+      typescript: ^5.0.0
+
+  '@tscircuit/modelprinter@0.0.14':
+    resolution: {integrity: sha512-Ea1zYwiuBoAKbyIvIiNj5rgRPrdoSiqLrLFfFD4UNfOM8LV+EjPmOHHXrcvDKhyp0bgbNrpnflJy3LFB0NjSJg==}
+    peerDependencies:
+      zod: ^3.25.67
+
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
@@ -592,6 +735,9 @@ packages:
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
+
+  '@types/node@22.20.5':
+    resolution: {integrity: sha512-U2+DNr+wSjpsTS/wZGYHq7GcwfuSmKiKvoPvK22zwTlRhU91yOniN4qRR5KhIjvif7ysw/dz/hKmfDH0Ris4aA==}
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
@@ -645,12 +791,69 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  bun-types@1.4.3:
+    resolution: {integrity: sha512-tinRJNGOmUN+tEAsn2y2e942n9JHRHR42iUYzDH75NmhJqVBokGSQkkfSFdNWwsANIdrK6ACH9t01M452YyTwg==}
+
+  calculate-elbow@0.0.12:
+    resolution: {integrity: sha512-UkGS4EhabJn1WR6+UyoWpcxhKMx6MxM7+rK+3G0JcaPLMiYlvv5pEuc91unC/nH7kLGHV9xsVavhr5jJ50o+HA==}
+    peerDependencies:
+      typescript: ^5
+
   caniuse-lite@1.0.30001775:
     resolution: {integrity: sha512-s3Qv7Lht9zbVKE9XoTyRG6wVDCKdtOFIjBGg3+Yhn6JaytuNKPIjBMTMIY1AnOH3seL5mvF+x33oGAyK3hVt3A==}
+
+  circuit-json-to-connectivity-map@0.0.35:
+    resolution: {integrity: sha512-+9qsZDxsKuzukIzg3gfUxusZWaZs+A4CZfgaULbIfjiIxaTrNY9MdLPBofFxVcNX37j6Hcymoc4oMJr4Uelqog==}
+    peerDependencies:
+      typescript: ^5.9.3
+
+  circuit-json-to-gltf@0.0.154:
+    resolution: {integrity: sha512-yn7mzgpPJJoYdNYhZRyVGpL4+fK0UnySFNWXzUvUlLd/kWef021T2J2J+B/q8HGlivbuV+ayEwgPgzMJOsI3hg==}
+    peerDependencies:
+      '@resvg/resvg-js': '2'
+      '@resvg/resvg-wasm': '2'
+      '@tscircuit/circuit-json-util': '*'
+      circuit-json: '*'
+      circuit-to-svg: '>=0.0.445'
+      typescript: ^5
+    peerDependenciesMeta:
+      '@resvg/resvg-js':
+        optional: true
+      '@resvg/resvg-wasm':
+        optional: true
+
+  circuit-json@0.0.426:
+    resolution: {integrity: sha512-MLpfx4F5Ti32KYKs+2Wfl5QLLflcwXiIlxwx/LHVTGAh9JCpnkM/NrC1gFlGruQDbLQ4l0R6PqFSOQYg7y/kyg==}
+
+  circuit-to-svg@0.0.453:
+    resolution: {integrity: sha512-tl9GVwpo17bdCiypOypnc6sLqvJ4rkGz5jWBcy9MNeKnymMzjx/bdj5aznbu0/n8OHAUxxSJDYQcB6auvzuImw==}
+    engines: {node: 24.x}
+    peerDependencies:
+      '@tscircuit/alphabet': '*'
+      '@tscircuit/circuit-json-util': '*'
+      circuit-json: '*'
+      circuit-json-to-connectivity-map: '*'
+      schematic-symbols: '*'
 
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
+
+  color-convert@3.1.3:
+    resolution: {integrity: sha512-fasDH2ont2GqF5HpyO4w0+BcewlhHEZOFn9c1ckZdHpJ56Qb7MHhH/IcJZbBGgvdtwdwNbLvxiBEdg336iA9Sg==}
+    engines: {node: '>=14.6'}
+
+  color-name@2.1.1:
+    resolution: {integrity: sha512-p2FdgwVx1a9yWBHP2wI0VgShkDpgN4kZISkxdNipGBJWpa5G6b04OINlVWCyJj0JmfvcPrgqt95E9k8yvaOJFg==}
+    engines: {node: '>=12.20'}
+
+  color-string@2.1.4:
+    resolution: {integrity: sha512-Bb6Cq8oq0IjDOe8wJmi4JeNn763Xs9cfrBcaylK1tPypWzyoy2G3l90v9k64kjphl/ZJjPIShFztenRomi8WTg==}
+    engines: {node: '>=18'}
+
+  color@5.0.3:
+    resolution: {integrity: sha512-ezmVcLR3xAVp8kYOm4GS45ZLLgIE6SPAFoduLr6hTDajwb3KZ2F46gulK3XpcwRFb5KKGCSezCBAY4Dw4HsyXA==}
+    engines: {node: '>=18'}
 
   cookie@0.6.0:
     resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
@@ -677,6 +880,10 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
+  deep-rename-keys@0.2.1:
+    resolution: {integrity: sha512-RHd9ABw4Fvk+gYDWqwOftG849x0bYOySl/RgX0tLI9i27ZIeSO91mLZJEp7oPHOMFqHvpgu21YptmDt0FYD/0A==}
+    engines: {node: '>=0.10.0'}
+
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
@@ -687,6 +894,9 @@ packages:
 
   devalue@5.6.3:
     resolution: {integrity: sha512-nc7XjUU/2Lb+SvEFVGcWLiKkzfw8+qHI7zn8WYXKkLMgfGSHbgCEaR6bJpev8Cm6Rmrb19Gfd/tZvGqx9is3wg==}
+
+  earcut@3.2.4:
+    resolution: {integrity: sha512-FHc6yNpnTORB0tM5kmZ03iD2mDuNakDE2lvf4Hw1XkfxtEHIGVi01B/GqUSwx+NcC1WGjidAfpTXzeALtPtfpg==}
 
   electron-to-chromium@1.5.302:
     resolution: {integrity: sha512-sM6HAN2LyK82IyPBpznDRqlTQAtuSaO+ShzFiWTvoMJLHyZ+Y39r8VMfHzwbU8MVBzQ4Wdn85+wlZl2TLGIlwg==}
@@ -784,6 +994,9 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
+  eventemitter3@2.0.3:
+    resolution: {integrity: sha512-jLN68Dx5kyFHaePoXWPsCGW5qdyZQtLYHkxkg02/Mz6g0kYpDx4FyP6XfArhQdlOC4b8Mv+EMxPo/8La7Tzghg==}
+
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
 
@@ -825,6 +1038,9 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
 
+  gl-matrix@3.4.4:
+    resolution: {integrity: sha512-latSnyDNt/8zYUB6VIJ6PCh2jBjJX6gnDsoCZ7LyW7GkqrD51EWwa9qCoGixj8YqBtETQK/xY7OmpTF8xz1DdQ==}
+
   glob-parent@6.0.2:
     resolution: {integrity: sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==}
     engines: {node: '>=10.13.0'}
@@ -844,6 +1060,9 @@ packages:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
 
+  is-buffer@1.1.6:
+    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
+
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
     engines: {node: '>=0.10.0'}
@@ -862,6 +1081,37 @@ packages:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
 
+  jscad-electronics@0.0.210:
+    resolution: {integrity: sha512-4oWXjJiMFabldB+GhXuSVZYSEEOe1IgNOWCvGleBJgsu64cvXaJ1FEF7GBL6TeB5kU4XTauctw9cSt11+2lHqw==}
+    engines: {node: 24.x}
+    peerDependencies:
+      '@jscad/modeling': ^2.12.5
+      '@tscircuit/alphabet': ^0.0.24
+      '@tscircuit/footprinter': '*'
+      circuit-json: ^0.0.426
+      jscad-fiber: ^0.0.89
+      react: 19.1.0
+      react-dom: 19.1.0
+      three: ^0.179.1
+    peerDependenciesMeta:
+      jscad-fiber:
+        optional: true
+
+  jscad-planner@0.0.13:
+    resolution: {integrity: sha512-Lkx7PDT0s90o25dhENrvcYLlgKRvSmhyX7H7LMMq85Hl5ICzirU4MAPxeveKWLlKrdS+4krybVAuKsJ9uvUppg==}
+    peerDependencies:
+      typescript: ^5.0.0
+
+  jscad-planner@0.0.19:
+    resolution: {integrity: sha512-VTK4wI8wZAty2oRNcPktSrdJD9XfnHWsXJjx4tf20JcMZnlbGYZ5ikTHEFQByRXrMAK3HSUilc+MQUapXRLO9Q==}
+    peerDependencies:
+      typescript: ^5.0.0
+
+  jscad-to-gltf@0.0.5:
+    resolution: {integrity: sha512-WB0JMzeiZnBhUlwpOgNNwkRryDZ+TZ3OhArereeXj9K+UVOpSahgwcGJGMaLeVQ8XHkwp0wMDM2FXf8M4Dzymw==}
+    peerDependencies:
+      typescript: ^5
+
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
 
@@ -873,6 +1123,10 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
+
+  kind-of@3.2.2:
+    resolution: {integrity: sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ==}
+    engines: {node: '>=0.10.0'}
 
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
@@ -1003,6 +1257,9 @@ packages:
   obug@2.1.1:
     resolution: {integrity: sha512-uTqF9MuPraAQ+IsnPf366RG4cP9RtUi7MLO1N3KEc+wb0a6yKpeL0lmk2IB1jY5KHPAlTc6T/JRdC/YqxHNwkQ==}
 
+  occt-import-js@0.0.23:
+    resolution: {integrity: sha512-RFfYQXYFX5C1mB1Aywm0ShcUKzXOr/VzTnlzhBSDJOR6YCAPt1HYCzeXWg1vwwjn/cUxwqRNhhtf1dlewoZYCQ==}
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -1014,6 +1271,9 @@ packages:
   p-locate@5.0.0:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
     engines: {node: '>=10'}
+
+  parsel-js@1.2.3:
+    resolution: {integrity: sha512-kJHFmSNnujpusFfVEXjNaoJ09VYHF8Ih0aVUn7Clu+Ug8AFoA2wx7Ezh17JfW4+vhm/lauAd9A+//uFkmydZtQ==}
 
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
@@ -1095,10 +1355,31 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
+  react-dom@19.1.0:
+    resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
+    peerDependencies:
+      react: ^19.1.0
+
+  react@19.1.0:
+    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
+    engines: {node: '>=0.10.0'}
+
+  rename-keys@1.2.0:
+    resolution: {integrity: sha512-U7XpAktpbSgHTRSNRrjKSrjYkZKuhUukfoBlXWXUExCAqhzh1TU3BDRAfJmarcl5voKS+pbKU9MvyLWKZ4UEEg==}
+    engines: {node: '>= 0.8.0'}
+
   rollup@4.59.0:
     resolution: {integrity: sha512-2oMpl67a3zCH9H79LeMcbDhXW/UmWG/y2zuqnF2jQq5uq9TbM9TVyXvA4+t+ne2IIkBdrLpAaRQAvo7YI/Yyeg==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
+
+  scheduler@0.26.0:
+    resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
+
+  schematic-symbols@0.0.249:
+    resolution: {integrity: sha512-2tqY2yZklHHy2VqFp75OIHhC6ZLPs7iQ0A5lFhch7gBGOecQ5FIEN1d8+ydYF4aR8GhRwR8eLkypJ7LhzXz+fQ==}
+    peerDependencies:
+      typescript: ^5.5.4
 
   semver@7.7.4:
     resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
@@ -1137,12 +1418,21 @@ packages:
     resolution: {integrity: sha512-lP5DGF3oDDI9fhHcSpaBiJEkFLuS16h92DhM1L5K1lFm0WjOmUh1i2sNkBBk8rkxJRpob0dBE75jRfUzGZUOGA==}
     engines: {node: '>=18'}
 
+  svg-path-commander@2.3.3:
+    resolution: {integrity: sha512-eeNMlh4JHxAG0820MwHM7A4UD3PRMFALNORZbEwCJx5O1Uhn2CWnLBNxHXWGdahiJVtSsG8VKoW+HzLtY73J/A==}
+
+  svgson@5.3.1:
+    resolution: {integrity: sha512-qdPgvUNWb40gWktBJnbJRelWcPzkLed/ShhnRsjbayXz8OtdPOzbil9jtiZdrYvSDumAz/VNQr6JaNfPx/gvPA==}
+
   tailwindcss@4.2.1:
     resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
 
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
+
+  three@0.186.1:
+    resolution: {integrity: sha512-blFeqb49wRCSGUGj7gtpfnSGHy2lwDk94RhUmS1c/hTby70kvChbWpkJ4Pm1390LqzzvTmzgXKHPEafJwCb8jA==}
 
   tinyglobby@0.2.15:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
@@ -1152,9 +1442,26 @@ packages:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
 
+  transformation-matrix@2.16.1:
+    resolution: {integrity: sha512-tdtC3wxVEuzU7X/ydL131Q3JU5cPMEn37oqVLITjRDSDsnSHVFzW2JiCLfZLIQEgWzZHdSy3J6bZzvKEN24jGA==}
+
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
+
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
+  undici-types@8.12.3:
+    resolution: {integrity: sha512-EXE4ydL3S76dFb27UFjNVZHTyv/TLdATj/KUe29ptdcg6qXL48J2tZ3126E5kICj5jn781OR+XlVH1N6Mz8jbA==}
 
   unist-util-is@4.1.0:
     resolution: {integrity: sha512-ZOQSsnce92GrxSqlnEEseX0gi7GH9zTJZ0p9dtu87WRb/37mMPO2Ilx1s/t9vBHrFhbgweUwb+t7cIn5dxPhZg==}
@@ -1240,6 +1547,12 @@ packages:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
 
+  xml-lexer@0.2.2:
+    resolution: {integrity: sha512-G0i98epIwiUEiKmMcavmVdhtymW+pCAohMRgybyIME9ygfVu8QheIi+YoQh3ngiThsT0SQzJT4R0sKDEv8Ou0w==}
+
+  xml-reader@2.4.3:
+    resolution: {integrity: sha512-xWldrIxjeAMAu6+HSf9t50ot1uL5M+BtOidRCWHXIeewvSeIpscWCsp4Zxjk8kHHhdqFBrfK8U0EJeCcnyQ/gA==}
+
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
@@ -1250,6 +1563,9 @@ packages:
 
   zimmerframe@1.1.4:
     resolution: {integrity: sha512-B58NGBEoc8Y9MWWCQGl/gq9xBCe4IiKM0a2x7GZdQKOW5Exr8S1W24J6OgM1njK8xCRGvAJIL/MxXHf6SkmQKQ==}
+
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
 snapshots:
 
@@ -1363,6 +1679,14 @@ snapshots:
       '@eslint/core': 1.1.0
       levn: 0.4.1
 
+  '@flatten-js/core@1.6.14':
+    dependencies:
+      '@flatten-js/interval-tree': 2.0.3
+
+  '@flatten-js/interval-tree@2.0.3':
+    dependencies:
+      tslib: 2.8.1
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.7':
@@ -1400,7 +1724,60 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@jscad/modeling@2.13.0': {}
+
   '@polka/url@1.0.0-next.29': {}
+
+  '@resvg/resvg-js-android-arm-eabi@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-android-arm64@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-darwin-arm64@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-darwin-x64@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-linux-arm-gnueabihf@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-linux-arm64-gnu@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-linux-arm64-musl@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-linux-x64-gnu@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-linux-x64-musl@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-win32-arm64-msvc@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-win32-ia32-msvc@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js-win32-x64-msvc@2.6.2':
+    optional: true
+
+  '@resvg/resvg-js@2.6.2':
+    optionalDependencies:
+      '@resvg/resvg-js-android-arm-eabi': 2.6.2
+      '@resvg/resvg-js-android-arm64': 2.6.2
+      '@resvg/resvg-js-darwin-arm64': 2.6.2
+      '@resvg/resvg-js-darwin-x64': 2.6.2
+      '@resvg/resvg-js-linux-arm-gnueabihf': 2.6.2
+      '@resvg/resvg-js-linux-arm64-gnu': 2.6.2
+      '@resvg/resvg-js-linux-arm64-musl': 2.6.2
+      '@resvg/resvg-js-linux-x64-gnu': 2.6.2
+      '@resvg/resvg-js-linux-x64-musl': 2.6.2
+      '@resvg/resvg-js-win32-arm64-msvc': 2.6.2
+      '@resvg/resvg-js-win32-ia32-msvc': 2.6.2
+      '@resvg/resvg-js-win32-x64-msvc': 2.6.2
 
   '@rollup/rollup-android-arm-eabi@4.59.0':
     optional: true
@@ -1483,15 +1860,15 @@ snapshots:
     dependencies:
       acorn: 8.16.0
 
-  '@sveltejs/adapter-auto@7.0.1(@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))':
+  '@sveltejs/adapter-auto@7.0.1(@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(typescript@5.9.3)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))':
     dependencies:
-      '@sveltejs/kit': 2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))
+      '@sveltejs/kit': 2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(typescript@5.9.3)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))
 
-  '@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))':
+  '@sveltejs/kit@2.53.4(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(typescript@5.9.3)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@sveltejs/acorn-typescript': 1.0.9(acorn@8.16.0)
-      '@sveltejs/vite-plugin-svelte': 6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))
+      '@sveltejs/vite-plugin-svelte': 6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))
       '@types/cookie': 0.6.0
       acorn: 8.16.0
       cookie: 0.6.0
@@ -1503,24 +1880,26 @@ snapshots:
       set-cookie-parser: 3.0.1
       sirv: 3.0.2
       svelte: 5.53.6
-      vite: 7.3.1(jiti@2.6.1)(lightningcss@1.31.1)
+      vite: 7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)
+    optionalDependencies:
+      typescript: 5.9.3
 
-  '@sveltejs/vite-plugin-svelte-inspector@5.0.2(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))':
+  '@sveltejs/vite-plugin-svelte-inspector@5.0.2(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))
+      '@sveltejs/vite-plugin-svelte': 6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))
       obug: 2.1.1
       svelte: 5.53.6
-      vite: 7.3.1(jiti@2.6.1)(lightningcss@1.31.1)
+      vite: 7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)
 
-  '@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))':
+  '@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 5.0.2(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))
+      '@sveltejs/vite-plugin-svelte-inspector': 5.0.2(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)))(svelte@5.53.6)(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))
       deepmerge: 4.3.1
       magic-string: 0.30.21
       obug: 2.1.1
       svelte: 5.53.6
-      vite: 7.3.1(jiti@2.6.1)(lightningcss@1.31.1)
-      vitefu: 1.1.2(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1))
+      vite: 7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)
+      vitefu: 1.1.2(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1))
 
   '@tailwindcss/node@4.2.1':
     dependencies:
@@ -1596,6 +1975,51 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.2.1
 
+  '@thednp/dommatrix@3.1.2': {}
+
+  '@tscircuit/alphabet@0.0.25(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
+  '@tscircuit/cableprinter@0.0.6':
+    dependencies:
+      zod: 3.25.76
+
+  '@tscircuit/circuit-json-util@0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76)':
+    dependencies:
+      '@flatten-js/core': 1.6.14
+      circuit-json: 0.0.426
+      parsel-js: 1.2.3
+      transformation-matrix: 2.16.1
+      zod: 3.25.76
+
+  '@tscircuit/footprinter@0.0.444(circuit-json@0.0.426)(typescript@5.9.3)':
+    dependencies:
+      '@tscircuit/mm': 0.0.8(typescript@5.9.3)
+      circuit-json: 0.0.426
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - typescript
+
+  '@tscircuit/math-utils@0.0.9(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
+  '@tscircuit/mm@0.0.8(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
+  '@tscircuit/mm@0.0.9(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
+  '@tscircuit/modelprinter@0.0.14(typescript@5.9.3)(zod@3.25.76)':
+    dependencies:
+      '@tscircuit/mm': 0.0.9(typescript@5.9.3)
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - typescript
+
   '@types/cookie@0.6.0': {}
 
   '@types/esrecurse@4.3.1': {}
@@ -1607,6 +2031,10 @@ snapshots:
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 2.0.11
+
+  '@types/node@22.20.5':
+    dependencies:
+      undici-types: 6.21.0
 
   '@types/trusted-types@2.0.7': {}
 
@@ -1654,9 +2082,84 @@ snapshots:
       node-releases: 2.0.27
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
 
+  bun-types@1.4.3:
+    dependencies:
+      '@types/node': 22.20.5
+      undici-types: 8.12.3
+
+  calculate-elbow@0.0.12(typescript@5.9.3):
+    dependencies:
+      typescript: 5.9.3
+
   caniuse-lite@1.0.30001775: {}
 
+  circuit-json-to-connectivity-map@0.0.35(typescript@5.9.3):
+    dependencies:
+      '@tscircuit/math-utils': 0.0.9(typescript@5.9.3)
+      typescript: 5.9.3
+
+  circuit-json-to-gltf@0.0.154(@resvg/resvg-js@2.6.2)(@tscircuit/circuit-json-util@0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76))(@tscircuit/footprinter@0.0.444(circuit-json@0.0.426)(typescript@5.9.3))(circuit-json@0.0.426)(circuit-to-svg@0.0.453(@tscircuit/alphabet@0.0.25(typescript@5.9.3))(@tscircuit/circuit-json-util@0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76))(circuit-json-to-connectivity-map@0.0.35(typescript@5.9.3))(circuit-json@0.0.426)(schematic-symbols@0.0.249(typescript@5.9.3))(typescript@5.9.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.186.1)(typescript@5.9.3)(zod@3.25.76):
+    dependencies:
+      '@jscad/modeling': 2.13.0
+      '@tscircuit/alphabet': 0.0.25(typescript@5.9.3)
+      '@tscircuit/cableprinter': 0.0.6
+      '@tscircuit/circuit-json-util': 0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76)
+      circuit-json: 0.0.426
+      circuit-to-svg: 0.0.453(@tscircuit/alphabet@0.0.25(typescript@5.9.3))(@tscircuit/circuit-json-util@0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76))(circuit-json-to-connectivity-map@0.0.35(typescript@5.9.3))(circuit-json@0.0.426)(schematic-symbols@0.0.249(typescript@5.9.3))(typescript@5.9.3)
+      earcut: 3.2.4
+      gl-matrix: 3.4.4
+      jscad-electronics: 0.0.210(@jscad/modeling@2.13.0)(@tscircuit/alphabet@0.0.25(typescript@5.9.3))(@tscircuit/footprinter@0.0.444(circuit-json@0.0.426)(typescript@5.9.3))(circuit-json@0.0.426)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.186.1)(typescript@5.9.3)(zod@3.25.76)
+      jscad-planner: 0.0.19(typescript@5.9.3)
+      jscad-to-gltf: 0.0.5(typescript@5.9.3)
+      occt-import-js: 0.0.23
+      typescript: 5.9.3
+    optionalDependencies:
+      '@resvg/resvg-js': 2.6.2
+    transitivePeerDependencies:
+      - '@tscircuit/footprinter'
+      - jscad-fiber
+      - react
+      - react-dom
+      - three
+      - zod
+
+  circuit-json@0.0.426: {}
+
+  circuit-to-svg@0.0.453(@tscircuit/alphabet@0.0.25(typescript@5.9.3))(@tscircuit/circuit-json-util@0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76))(circuit-json-to-connectivity-map@0.0.35(typescript@5.9.3))(circuit-json@0.0.426)(schematic-symbols@0.0.249(typescript@5.9.3))(typescript@5.9.3):
+    dependencies:
+      '@tscircuit/alphabet': 0.0.25(typescript@5.9.3)
+      '@tscircuit/circuit-json-util': 0.0.126(circuit-json@0.0.426)(transformation-matrix@2.16.1)(zod@3.25.76)
+      '@types/node': 22.20.5
+      bun-types: 1.4.3
+      calculate-elbow: 0.0.12(typescript@5.9.3)
+      circuit-json: 0.0.426
+      circuit-json-to-connectivity-map: 0.0.35(typescript@5.9.3)
+      color: 5.0.3
+      debug: 4.4.3
+      schematic-symbols: 0.0.249(typescript@5.9.3)
+      svg-path-commander: 2.3.3
+      svgson: 5.3.1
+      transformation-matrix: 2.16.1
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
   clsx@2.1.1: {}
+
+  color-convert@3.1.3:
+    dependencies:
+      color-name: 2.1.1
+
+  color-name@2.1.1: {}
+
+  color-string@2.1.4:
+    dependencies:
+      color-name: 2.1.1
+
+  color@5.0.3:
+    dependencies:
+      color-convert: 3.1.3
+      color-string: 2.1.4
 
   cookie@0.6.0: {}
 
@@ -1674,11 +2177,18 @@ snapshots:
 
   deep-is@0.1.4: {}
 
+  deep-rename-keys@0.2.1:
+    dependencies:
+      kind-of: 3.2.2
+      rename-keys: 1.2.0
+
   deepmerge@4.3.1: {}
 
   detect-libc@2.1.2: {}
 
   devalue@5.6.3: {}
+
+  earcut@3.2.4: {}
 
   electron-to-chromium@1.5.302: {}
 
@@ -1827,6 +2337,8 @@ snapshots:
 
   esutils@2.0.3: {}
 
+  eventemitter3@2.0.3: {}
+
   fast-deep-equal@3.1.3: {}
 
   fast-json-stable-stringify@2.1.0: {}
@@ -1858,6 +2370,8 @@ snapshots:
   fsevents@2.3.3:
     optional: true
 
+  gl-matrix@3.4.4: {}
+
   glob-parent@6.0.2:
     dependencies:
       is-glob: 4.0.3
@@ -1869,6 +2383,8 @@ snapshots:
   ignore@5.3.2: {}
 
   imurmurhash@0.1.4: {}
+
+  is-buffer@1.1.6: {}
 
   is-extglob@2.1.1: {}
 
@@ -1884,6 +2400,37 @@ snapshots:
 
   jiti@2.6.1: {}
 
+  jscad-electronics@0.0.210(@jscad/modeling@2.13.0)(@tscircuit/alphabet@0.0.25(typescript@5.9.3))(@tscircuit/footprinter@0.0.444(circuit-json@0.0.426)(typescript@5.9.3))(circuit-json@0.0.426)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.186.1)(typescript@5.9.3)(zod@3.25.76):
+    dependencies:
+      '@jscad/modeling': 2.13.0
+      '@tscircuit/alphabet': 0.0.25(typescript@5.9.3)
+      '@tscircuit/footprinter': 0.0.444(circuit-json@0.0.426)(typescript@5.9.3)
+      '@tscircuit/mm': 0.0.8(typescript@5.9.3)
+      '@tscircuit/modelprinter': 0.0.14(typescript@5.9.3)(zod@3.25.76)
+      circuit-json: 0.0.426
+      earcut: 3.2.4
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      three: 0.186.1
+    transitivePeerDependencies:
+      - typescript
+      - zod
+
+  jscad-planner@0.0.13(typescript@5.9.3):
+    dependencies:
+      typescript: 5.9.3
+
+  jscad-planner@0.0.19(typescript@5.9.3):
+    dependencies:
+      gl-matrix: 3.4.4
+      typescript: 5.9.3
+
+  jscad-to-gltf@0.0.5(typescript@5.9.3):
+    dependencies:
+      '@jscad/modeling': 2.13.0
+      jscad-planner: 0.0.13(typescript@5.9.3)
+      typescript: 5.9.3
+
   json-buffer@3.0.1: {}
 
   json-schema-traverse@0.4.1: {}
@@ -1893,6 +2440,10 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
+
+  kind-of@3.2.2:
+    dependencies:
+      is-buffer: 1.1.6
 
   kleur@4.1.5: {}
 
@@ -1990,6 +2541,8 @@ snapshots:
 
   obug@2.1.1: {}
 
+  occt-import-js@0.0.23: {}
+
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -2006,6 +2559,8 @@ snapshots:
   p-locate@5.0.0:
     dependencies:
       p-limit: 3.1.0
+
+  parsel-js@1.2.3: {}
 
   path-exists@4.0.0: {}
 
@@ -2063,6 +2618,15 @@ snapshots:
 
   punycode@2.3.1: {}
 
+  react-dom@19.1.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      scheduler: 0.26.0
+
+  react@19.1.0: {}
+
+  rename-keys@1.2.0: {}
+
   rollup@4.59.0:
     dependencies:
       '@types/estree': 1.0.8
@@ -2093,6 +2657,12 @@ snapshots:
       '@rollup/rollup-win32-x64-gnu': 4.59.0
       '@rollup/rollup-win32-x64-msvc': 4.59.0
       fsevents: 2.3.3
+
+  scheduler@0.26.0: {}
+
+  schematic-symbols@0.0.249(typescript@5.9.3):
+    dependencies:
+      typescript: 5.9.3
 
   semver@7.7.4: {}
 
@@ -2143,9 +2713,20 @@ snapshots:
       magic-string: 0.30.21
       zimmerframe: 1.1.4
 
+  svg-path-commander@2.3.3:
+    dependencies:
+      '@thednp/dommatrix': 3.1.2
+
+  svgson@5.3.1:
+    dependencies:
+      deep-rename-keys: 0.2.1
+      xml-reader: 2.4.3
+
   tailwindcss@4.2.1: {}
 
   tapable@2.3.0: {}
+
+  three@0.186.1: {}
 
   tinyglobby@0.2.15:
     dependencies:
@@ -2154,9 +2735,19 @@ snapshots:
 
   totalist@3.0.1: {}
 
+  transformation-matrix@2.16.1: {}
+
+  tslib@2.8.1: {}
+
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
+
+  typescript@5.9.3: {}
+
+  undici-types@6.21.0: {}
+
+  undici-types@8.12.3: {}
 
   unist-util-is@4.1.0: {}
 
@@ -2192,7 +2783,7 @@ snapshots:
       '@types/unist': 2.0.11
       unist-util-stringify-position: 2.0.3
 
-  vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1):
+  vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1):
     dependencies:
       esbuild: 0.27.3
       fdir: 6.5.0(picomatch@4.0.3)
@@ -2201,13 +2792,14 @@ snapshots:
       rollup: 4.59.0
       tinyglobby: 0.2.15
     optionalDependencies:
+      '@types/node': 22.20.5
       fsevents: 2.3.3
       jiti: 2.6.1
       lightningcss: 1.31.1
 
-  vitefu@1.1.2(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)):
+  vitefu@1.1.2(vite@7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)):
     optionalDependencies:
-      vite: 7.3.1(jiti@2.6.1)(lightningcss@1.31.1)
+      vite: 7.3.1(@types/node@22.20.5)(jiti@2.6.1)(lightningcss@1.31.1)
 
   which@2.0.2:
     dependencies:
@@ -2215,8 +2807,19 @@ snapshots:
 
   word-wrap@1.2.5: {}
 
+  xml-lexer@0.2.2:
+    dependencies:
+      eventemitter3: 2.0.3
+
+  xml-reader@2.4.3:
+    dependencies:
+      eventemitter3: 2.0.3
+      xml-lexer: 0.2.2
+
   yaml@1.10.2: {}
 
   yocto-queue@0.1.0: {}
 
   zimmerframe@1.1.4: {}
+
+  zod@3.25.76: {}
