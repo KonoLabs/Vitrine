@@ -1,31 +1,20 @@
 <script>
-  import { page } from "$app/stores";
-  export let data;
+  import Seo from "$lib/components/Seo.svelte";
+  import { site } from "$lib/seo";
+
+  let { data } = $props();
+
+  const tags = $derived(data.meta.tags ?? []);
 </script>
 
-<svelte:head>
-  <title>{data.meta.title} - Saravenpi's Blog</title>
-  <meta name="description" content={data.meta.description} />
-  <meta name="author" content="saravenpi" />
-  <meta name="robots" content="index, follow" />
-  <meta name="keywords" content={data.meta.tags ? data.meta.tags.join(", ") : "blog, web development, programming"} />
-  <meta name="theme-color" content="#16a34a" />
-  <link rel="canonical" href="https://saravenpi.com/blog/{$page.params.slug}" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="{data.meta.title} - Saravenpi's Blog" />
-  <meta property="og:description" content={data.meta.description} />
-  <meta property="og:url" content="https://saravenpi.com/blog/{$page.params.slug}" />
-  <meta property="og:site_name" content="Saravenpi's Blog" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="article:published_time" content={data.meta.date} />
-  <meta property="article:author" content="saravenpi" />
-  <meta property="article:section" content="Technology" />
-  {#if data.meta.tags}{#each data.meta.tags as tag}<meta property="article:tag" content={tag} />{/each}{/if}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{data.meta.title} - Saravenpi's Blog" />
-  <meta name="twitter:description" content={data.meta.description} />
-  <meta name="twitter:creator" content="@saravenpi" />
-</svelte:head>
+<Seo
+  title={data.meta.title ? `${data.meta.title} — ${site.name}` : site.title}
+  description={data.meta.description ?? site.description}
+  keywords={tags.length > 0 ? tags.join(", ") : undefined}
+  type="article"
+  publishedTime={data.meta.date}
+  {tags}
+/>
 
 <div class="page-shell">
 <article>

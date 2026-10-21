@@ -9,6 +9,8 @@
   import Fusible from "$lib/components/sections/Fusible.svelte";
   import Contact from "$lib/components/sections/Contact.svelte";
   import Footer from "$lib/components/sections/Footer.svelte";
+  import Seo from "$lib/components/Seo.svelte";
+  import { site } from "$lib/seo";
 
   let introActive = $state(true);
 
@@ -44,9 +46,12 @@
   });
 </script>
 
-<svelte:head>
-  <title>KONO - HARDWARE, FIRMWARE & SOFTWARE ENGINEERING</title>
-</svelte:head>
+<Seo
+  title={site.title}
+  description={site.description}
+  keywords={site.keywords}
+  path="/"
+/>
 
 <div
   class="relative min-h-screen bg-[#000000] text-[#FFFFFF] font-['undefined',monospace] selection:bg-[#86A881] selection:text-[#000000] overflow-x-hidden antialiased"
