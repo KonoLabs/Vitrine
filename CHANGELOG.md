@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.0] - 2026-10-21
+
+### Changed
+
+- FieldCam board model rebuilt from the latest export: 40 × 154 mm, four layers, 49 components.
+- FieldCam section moved ahead of the end-to-end engineering section.
+
+### Fixed
+
+- Crosshair and coordinate readout now cross-fade from black-on-green to green-on-black with the intro wipe instead of switching abruptly.
+
 ## [0.4.0] - 2026-10-21
 
 ### Added
