@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.1] - 2026-10-21
+
+### Fixed
+
+- Production installs failed because the pnpm lockfile was missing the new dependencies.
+
 ## [0.3.0] - 2026-10-21
 
 ### Added
