@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0] - 2026-10-21
+
+### Added
+
+- FieldCam section on the landing page with the interactive 3D board and a link to the case study.
+- `FIELD CAM` entry in the top navigation.
+
+### Changed
+
+- The crosshair and coordinate readout stay visible during the loading animation, inverted to black-on-green.
+
 ## [0.3.1] - 2026-10-21
 
 ### Fixed
