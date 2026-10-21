@@ -7,6 +7,7 @@
   import Delivery from "$lib/components/sections/Delivery.svelte";
   import Capabilities from "$lib/components/sections/Capabilities.svelte";
   import Fusible from "$lib/components/sections/Fusible.svelte";
+  import FieldCam from "$lib/components/sections/FieldCam.svelte";
   import Contact from "$lib/components/sections/Contact.svelte";
   import Footer from "$lib/components/sections/Footer.svelte";
   import Seo from "$lib/components/Seo.svelte";
@@ -34,7 +35,7 @@
         {
           rootMargin: "0px 0px -50px 0px",
           threshold: 0.08,
-        }
+        },
       );
 
       targets.forEach((el) => observer.observe(el));
@@ -56,7 +57,7 @@
 <div
   class="relative min-h-screen bg-[#000000] text-[#FFFFFF] font-['undefined',monospace] selection:bg-[#86A881] selection:text-[#000000] overflow-x-hidden antialiased"
 >
-  <Backdrop />
+  <Backdrop {introActive} />
   <SerpentTrace bind:introActive />
 
   {#if !introActive}
@@ -77,6 +78,9 @@
       </div>
       <div class="scroll-reveal">
         <Fusible />
+      </div>
+      <div class="scroll-reveal">
+        <FieldCam />
       </div>
       <div class="scroll-reveal">
         <Contact />

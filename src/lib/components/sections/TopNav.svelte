@@ -58,6 +58,11 @@
           >FUSIBLE</a
         >
         <a
+          href="#fieldcam"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
+          >FIELD CAM</a
+        >
+        <a
           href="#terminal"
           class="no-underline bg-[#86A881] text-[#000000] px-3 py-1 leading-none hover:bg-[#FFFFFF] transition-colors"
           >CONTACT</a
@@ -131,6 +136,12 @@
           onclick={() => (mobileMenuOpen = false)}
           class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
           >FUSIBLE</a
+        >
+        <a
+          href="#fieldcam"
+          onclick={() => (mobileMenuOpen = false)}
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          >FIELD CAM</a
         >
         <a
           href="#terminal"
