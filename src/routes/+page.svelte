@@ -14,6 +14,7 @@
   import { site } from "$lib/seo";
 
   let introActive = $state(true);
+  let wiping = $state(false);
 
   $effect(() => {
     if (!introActive) {
@@ -57,8 +58,8 @@
 <div
   class="relative min-h-screen bg-[#000000] text-[#FFFFFF] font-['undefined',monospace] selection:bg-[#86A881] selection:text-[#000000] overflow-x-hidden antialiased"
 >
-  <Backdrop {introActive} />
-  <SerpentTrace bind:introActive />
+  <Backdrop {introActive} {wiping} />
+  <SerpentTrace bind:introActive bind:wiping />
 
   {#if !introActive}
     <TopNav />
@@ -74,13 +75,13 @@
         <Delivery />
       </div>
       <div class="scroll-reveal">
+        <FieldCam />
+      </div>
+      <div class="scroll-reveal">
         <Capabilities />
       </div>
       <div class="scroll-reveal">
         <Fusible />
-      </div>
-      <div class="scroll-reveal">
-        <FieldCam />
       </div>
       <div class="scroll-reveal">
         <Contact />

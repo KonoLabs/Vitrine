@@ -1,7 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  let { introActive = $bindable(true) }: { introActive?: boolean } = $props();
+  let {
+    introActive = $bindable(true),
+    wiping = $bindable(false),
+  }: { introActive?: boolean; wiping?: boolean } = $props();
 
   let canvas: HTMLCanvasElement;
   let progress = $state(0);
@@ -109,6 +112,12 @@
       }
 
       const elapsed = time - startTime;
+
+      // The raster wipe is the hand-off between the inverted intro palette and
+      // the page palette, so overlays above the canvas can cross-fade with it.
+      const wipePhase = introActive && elapsed >= 2900 && elapsed < 3700;
+      if (wiping !== wipePhase) wiping = wipePhase;
+
       const isMobile = width < 768;
       const containerWidth = Math.min(width, 1440);
       const containerLeft = (width - containerWidth) / 2;

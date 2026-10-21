@@ -2,9 +2,9 @@
   import PcbViewer from "$lib/components/PcbViewer.svelte";
 
   const specs = [
-    { label: "BOARD", value: "80 × 60 mm · 2-layer" },
-    { label: "PARTS", value: "39 components" },
-    { label: "NETS", value: "117 connections" },
+    { label: "BOARD", value: "40 × 154 mm · 4-layer" },
+    { label: "PARTS", value: "49 components" },
+    { label: "NETS", value: "132 connections" },
   ];
 </script>
 

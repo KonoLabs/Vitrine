@@ -3,10 +3,12 @@
 // the web 3D viewer. Run by hand whenever the board changes:
 //
 //   node scripts/build-pcb-model.mjs
-//   node scripts/build-pcb-model.mjs ../FieldCam/dist/fab/circuit.json
+//   node scripts/build-pcb-model.mjs ../FieldCam/hardware/dist/index/circuit.json
 //
-// The output is committed to static/models so builds and CI never need the
-// hardware workspace or the converter's WASM dependencies.
+// The default source is the latest `tsci build` output from the hardware
+// workspace, which tracks hardware/index.tsx. The output is committed to
+// static/models so builds and CI never need the hardware workspace or the
+// converter's WASM dependencies.
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -15,7 +17,8 @@ import { convertCircuitJsonToGltf } from "circuit-json-to-gltf";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const source = resolve(
-  process.argv[2] ?? resolve(root, "../FieldCam/dist/circuit.json"),
+  process.argv[2] ??
+    resolve(root, "../FieldCam/hardware/dist/index/circuit.json"),
 );
 const output = resolve(root, "static/models/fieldcam.glb");
 

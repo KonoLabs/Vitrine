@@ -18,13 +18,13 @@
         "SIM7600G-H 4G LTE modem",
         "RFM69HCW sub-GHz transceiver",
         "PAM8302A voice amplifier",
-        "SMA antenna + speaker terminals",
+        "SMA antenna, speaker + audio terminals",
       ],
     },
     {
       code: "POWER",
       items: [
-        "USB-C inlet with CC resistors",
+        "Wired JST-PH power inlet",
         "MCP73831 LiPo charger",
         "Diode-OR load sharing",
         "AP2112K 3.3 V regulator",
@@ -33,10 +33,10 @@
   ];
 
   const facts = [
-    { label: "BOARD", value: "80 × 60 mm" },
-    { label: "STACKUP", value: "2 layers · 1.4 mm" },
-    { label: "PARTS", value: "39" },
-    { label: "CONNECTIONS", value: "117" },
+    { label: "BOARD", value: "40 × 154 mm" },
+    { label: "STACKUP", value: "4 layers · 1.4 mm" },
+    { label: "PARTS", value: "49" },
+    { label: "CONNECTIONS", value: "132" },
   ];
 
   const pipeline = [
@@ -123,7 +123,7 @@
         class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px] uppercase tracking-widest text-[#FFFFFF]/45"
       >
         <span>
-          Live glTF export of the tscircuit circuit — 39 components, 117
+          Live glTF export of the tscircuit circuit — 49 components, 132
           connections
         </span>
         <a

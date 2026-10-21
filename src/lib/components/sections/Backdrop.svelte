@@ -1,5 +1,12 @@
 <script lang="ts">
-  let { introActive = false }: { introActive?: boolean } = $props();
+  let {
+    introActive = false,
+    wiping = false,
+  }: { introActive?: boolean; wiping?: boolean } = $props();
+
+  // Black while the green intro is on screen, green once the wipe hands the
+  // page back. The class transition starts with the wipe, not after it.
+  const inverted = $derived(introActive && !wiping);
 
   let mouseX = $state(0);
   let mouseY = $state(0);
@@ -25,19 +32,19 @@
     : 'z-40'}"
 >
   <div
-    class="absolute left-0 right-0 h-[1px] {introActive
+    class="absolute left-0 right-0 h-[1px] transition-colors duration-700 ease-out {inverted
       ? 'bg-[#000000]/35'
       : 'bg-[#86A881]/30'}"
     style="top: {mouseY}px;"
   ></div>
   <div
-    class="absolute top-0 bottom-0 w-[1px] {introActive
+    class="absolute top-0 bottom-0 w-[1px] transition-colors duration-700 ease-out {inverted
       ? 'bg-[#000000]/35'
       : 'bg-[#86A881]/30'}"
     style="left: {mouseX}px;"
   ></div>
   <div
-    class="absolute px-2 py-1 text-[10px] tracking-widest whitespace-nowrap {introActive
+    class="absolute px-2 py-1 text-[10px] tracking-widest whitespace-nowrap transition-colors duration-700 ease-out {inverted
       ? 'bg-[#86A881] text-[#000000]'
       : 'bg-[#000000] text-[#86A881]'}"
     style="left: {mouseX + 12}px; top: {mouseY + 12}px;"
