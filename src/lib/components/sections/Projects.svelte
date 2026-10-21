@@ -1,6 +1,14 @@
 <script>
   const projects = [
     {
+      name: "fieldcam",
+      tagline: "FIELD CAMERA · HARDWARE + FIRMWARE",
+      description:
+        "An autonomous field camera for remote sites: ESP32-S3 controller board, 4G LTE video, sub-GHz voice, LiPo power and bare-metal Rust firmware generated from the same circuit file.",
+      stack: ["tscircuit", "ESP32-S3", "Rust"],
+      href: "/fieldcam",
+    },
+    {
       name: "knot",
       tagline: "LANGUAGE-AGNOSTIC MONOREPO MANAGER",
       description:
