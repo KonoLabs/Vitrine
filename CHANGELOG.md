@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.2] - 2026-10-22
+
+### Changed
+
+- FieldCam auto rotate speed raised to 1.5.
+- Fusible Studio gallery opens on the PCB layout and ends on the 3D view.
+
+### Fixed
+
+- Top navigation order matches the page: FIELD CAM comes before SERVICES, on desktop and mobile.
+
 ## [0.5.1] - 2026-10-22
 
 ### Changed
