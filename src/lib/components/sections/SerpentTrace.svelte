@@ -64,9 +64,31 @@
     return { x: last.x, r: last.r };
   }
 
+  const DOCK_START = 1400;
+  const WIPE_START = 2900;
+  const INTRO_END = 3700;
+  const GREEN = 0xff81a886;
+  const BLACK = 0xff000000;
+
+  function smoothstep(t: number): number {
+    const c = Math.min(1, Math.max(0, t));
+    return c * c * (3 - 2 * c);
+  }
+
+  function dockEase(t: number): number {
+    const a = t * t;
+    const b = Math.pow(1 - t, 3.5);
+    return a / (a + b);
+  }
+
   onMount(() => {
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const maybeCtx = canvas.getContext("2d");
+    if (!maybeCtx) return;
+    const ctx = maybeCtx;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      introActive = false;
+    }
 
     let animId = 0;
     let width = 0;
@@ -74,7 +96,7 @@
     let gridW = 0;
     let gridH = 0;
     const step = 4;
-    let startTime = performance.now();
+    let startTime: number | null = null;
 
     let offCanvas: HTMLCanvasElement;
     let offCtx: CanvasRenderingContext2D | null;
@@ -105,312 +127,179 @@
     resize();
     window.addEventListener("resize", resize);
 
+    function pulseAt(worldY: number, time: number): number {
+      return Math.sin(worldY * 0.015 - time * 0.004) * 0.22;
+    }
+
+    function ambientWave(worldY: number, time: number, isMobile: boolean) {
+      return Math.sin(worldY * 0.0028 - time * 0.0016) * (isMobile ? 12 : 26);
+    }
+
+    function drawSwimming(time: number, dock: number, isMobile: boolean) {
+      const containerWidth = Math.min(width, 1440);
+      const containerLeft = (width - containerWidth) / 2;
+      const spineCount = 64;
+      const discs: { x: number; y: number; r: number }[] = [];
+      let prevX = 0;
+      let prevY = 0;
+      let prevR = 0;
+
+      for (let i = 0; i < spineCount; i++) {
+        const s = i / (spineCount - 1);
+        const baseY = -60 + s * (height + 120);
+        const pt = getSplinePoint(baseY);
+        const targetR = isMobile ? pt.r * 0.55 : pt.r;
+
+        const wave1 =
+          Math.sin(baseY * 0.003 - time * 0.0022) *
+          (isMobile ? width * 0.14 : width * 0.18);
+        const wave2 =
+          Math.cos(baseY * 0.006 + time * 0.0015) *
+          (isMobile ? width * 0.05 : width * 0.07);
+        const sway = Math.sin(time * 0.0016 + s * 1.2) * (isMobile ? 14 : 28);
+
+        const sx = width * 0.52 + wave1 + wave2 + sway;
+        const sy = baseY + Math.sin(baseY * 0.004 + time * 0.002) * 16;
+        const sr =
+          targetR * (0.85 + 0.15 * Math.sin(baseY * 0.006 - time * 0.003));
+
+        const targetX =
+          containerLeft +
+          containerWidth * pt.x +
+          ambientWave(baseY, time, isMobile);
+
+        const curX = sx + (targetX - sx) * dock;
+        const curY = sy + (baseY - sy) * dock;
+        const curR = sr + (targetR - sr) * dock;
+
+        if (i > 0) {
+          discs.push({
+            x: (prevX + curX) * 0.5,
+            y: (prevY + curY) * 0.5,
+            r: (prevR + curR) * 0.5,
+          });
+        }
+        discs.push({ x: curX, y: curY, r: curR });
+        prevX = curX;
+        prevY = curY;
+        prevR = curR;
+      }
+
+      densityGrid.fill(0);
+      for (const disc of discs) {
+        const gcx = disc.x / step;
+        const gcy = disc.y / step;
+        const gr = disc.r / step;
+        const gr2 = gr * gr;
+        const minX = Math.max(0, Math.floor(gcx - gr));
+        const maxX = Math.min(gridW - 1, Math.ceil(gcx + gr));
+        const minY = Math.max(0, Math.floor(gcy - gr));
+        const maxY = Math.min(gridH - 1, Math.ceil(gcy + gr));
+
+        for (let gy = minY; gy <= maxY; gy++) {
+          const dy2 = (gy - gcy) * (gy - gcy);
+          const row = gy * gridW;
+          for (let gx = minX; gx <= maxX; gx++) {
+            const d2 = (gx - gcx) * (gx - gcx) + dy2;
+            if (d2 <= gr2) {
+              const val = 1 - d2 / gr2;
+              const idx = row + gx;
+              if (val > densityGrid[idx]) densityGrid[idx] = val;
+            }
+          }
+        }
+      }
+
+      for (let gy = 0; gy < gridH; gy++) {
+        const by = gy & 3;
+        const row = gy * gridW;
+        const pulse = pulseAt(gy * step, time) * dock;
+        for (let gx = 0; gx < gridW; gx++) {
+          const idx = row + gx;
+          const d = densityGrid[idx];
+          const th = bayer4[by * 4 + (gx & 3)];
+          u32[idx] = d > 0 && d + pulse > th ? BLACK : GREEN;
+        }
+      }
+    }
+
+    function drawDocked(
+      time: number,
+      wipeT: number | null,
+      isMobile: boolean,
+    ) {
+      const containerWidth = Math.min(width, 1440);
+      const containerLeft = (width - containerWidth) / 2;
+      const scrollY = window.scrollY;
+      const band = 80;
+      const scanY = wipeT === null ? 0 : wipeT * (height + 160) - 80;
+
+      for (let gy = 0; gy < gridH; gy++) {
+        const sy = gy * step;
+        const worldY = sy + scrollY;
+        const pt = getSplinePoint(worldY);
+        const cx =
+          containerLeft +
+          containerWidth * pt.x +
+          ambientWave(worldY, time, isMobile);
+        const radius = isMobile ? pt.r * 0.55 : pt.r;
+        const pulse = pulseAt(worldY, time);
+
+        const gcx = cx / step;
+        const gr = radius / step;
+        const minX = Math.max(0, Math.floor(gcx - gr));
+        const maxX = Math.min(gridW - 1, Math.ceil(gcx + gr));
+        const by = gy & 3;
+        const row = gy * gridW;
+
+        const u =
+          wipeT === null ? 0 : smoothstep((sy - (scanY - band)) / (2 * band));
+
+        for (let gx = 0; gx < gridW; gx++) {
+          u32[row + gx] = bayer4[by * 4 + (gx & 3)] < u ? GREEN : 0;
+        }
+        for (let gx = minX; gx <= maxX; gx++) {
+          const norm = Math.abs(gx - gcx) / gr;
+          if (norm > 1) continue;
+          const th = bayer4[by * 4 + (gx & 3)];
+          if (1 - norm * norm + pulse > th) {
+            u32[row + gx] = th < u ? BLACK : GREEN;
+          }
+        }
+      }
+    }
+
     function render(time: number) {
       if (!offCtx || !u32 || !densityGrid) {
         animId = requestAnimationFrame(render);
         return;
       }
 
+      if (startTime === null) startTime = time;
       const elapsed = time - startTime;
-
-      // The raster wipe is the hand-off between the inverted intro palette and
-      // the page palette, so overlays above the canvas can cross-fade with it.
-      const wipePhase = introActive && elapsed >= 2900 && elapsed < 3700;
-      if (wiping !== wipePhase) wiping = wipePhase;
-
       const isMobile = width < 768;
-      const containerWidth = Math.min(width, 1440);
-      const containerLeft = (width - containerWidth) / 2;
 
-      if (introActive && elapsed < 1400) {
-        const t = Math.min(1, elapsed / 1400);
-        const eased = t * t * (3 - 2 * t);
-        progress = eased * 50;
+      const wipePhase =
+        introActive && elapsed >= WIPE_START && elapsed < INTRO_END;
+      if (wiping !== wipePhase) wiping = wipePhase;
+      if (introActive) {
+        const t = Math.min(1, elapsed / INTRO_END);
+        progress = 100 * (1 - (1 - t) * (1 - t));
+      }
 
-        const spineCount = 64;
-        const discs: { x: number; y: number; r: number }[] = [];
-        let prevX = 0;
-        let prevY = 0;
-        let prevR = 0;
-
-        for (let i = 0; i < spineCount; i++) {
-          const s = i / (spineCount - 1);
-          const baseY = -60 + s * (height + 120);
-          const pt = getSplinePoint(baseY);
-          const targetR = isMobile ? pt.r * 0.55 : pt.r;
-
-          const wave1 =
-            Math.sin(baseY * 0.003 - time * 0.0022) *
-            (isMobile ? width * 0.14 : width * 0.18);
-          const wave2 =
-            Math.cos(baseY * 0.006 + time * 0.0015) *
-            (isMobile ? width * 0.05 : width * 0.07);
-          const sway =
-            Math.sin(time * 0.0016 + s * 1.2) * (isMobile ? 14 : 28);
-
-          const sx = width * 0.52 + wave1 + wave2 + sway;
-          const sy = baseY + Math.sin(baseY * 0.004 + time * 0.002) * 16;
-          const sr =
-            targetR * (0.85 + 0.15 * Math.sin(baseY * 0.006 - time * 0.003));
-
-          if (i > 0) {
-            discs.push({
-              x: (prevX + sx) * 0.5,
-              y: (prevY + sy) * 0.5,
-              r: (prevR + sr) * 0.5,
-            });
-          }
-          discs.push({ x: sx, y: sy, r: sr });
-          prevX = sx;
-          prevY = sy;
-          prevR = sr;
-        }
-
-        densityGrid.fill(0);
-        for (let d = 0; d < discs.length; d++) {
-          const disc = discs[d];
-          const gcx = disc.x / step;
-          const gcy = disc.y / step;
-          const gr = disc.r / step;
-          const gr2 = gr * gr;
-          const minX = Math.max(0, Math.floor(gcx - gr));
-          const maxX = Math.min(gridW - 1, Math.ceil(gcx + gr));
-          const minY = Math.max(0, Math.floor(gcy - gr));
-          const maxY = Math.min(gridH - 1, Math.ceil(gcy + gr));
-
-          for (let gy = minY; gy <= maxY; gy++) {
-            const dy2 = (gy - gcy) * (gy - gcy);
-            const row = gy * gridW;
-            for (let gx = minX; gx <= maxX; gx++) {
-              const d2 = (gx - gcx) * (gx - gcx) + dy2;
-              if (d2 <= gr2) {
-                const val = 1 - d2 / gr2;
-                const idx = row + gx;
-                if (val > densityGrid[idx]) densityGrid[idx] = val;
-              }
-            }
-          }
-        }
-
-        for (let gy = 0; gy < gridH; gy++) {
-          const by = gy & 3;
-          const row = gy * gridW;
-          for (let gx = 0; gx < gridW; gx++) {
-            const idx = row + gx;
-            const d = densityGrid[idx];
-            const bx = gx & 3;
-            const th = bayer4[by * 4 + bx];
-            u32[idx] = d > th ? 0xff000000 : 0xff81a886;
-          }
-        }
-      } else if (introActive && elapsed < 2900) {
-        const dockT = (elapsed - 1400) / 1500;
-        const p1 = Math.pow(dockT, 2);
-        const p2 = Math.pow(1 - dockT, 3.5);
-        const ease = p1 / (p1 + p2);
-
-        progress = 50 + dockT * 42;
-
-        const spineCount = 64;
-        const discs: { x: number; y: number; r: number }[] = [];
-        let prevX = 0;
-        let prevY = 0;
-        let prevR = 0;
-
-        for (let i = 0; i < spineCount; i++) {
-          const s = i / (spineCount - 1);
-          const baseY = -60 + s * (height + 120);
-          const pt = getSplinePoint(baseY);
-          const targetR = isMobile ? pt.r * 0.55 : pt.r;
-
-          const wave1 =
-            Math.sin(baseY * 0.003 - time * 0.0022) *
-            (isMobile ? width * 0.14 : width * 0.18);
-          const wave2 =
-            Math.cos(baseY * 0.006 + time * 0.0015) *
-            (isMobile ? width * 0.05 : width * 0.07);
-          const sway =
-            Math.sin(time * 0.0016 + s * 1.2) * (isMobile ? 14 : 28);
-
-          const sx = width * 0.52 + wave1 + wave2 + sway;
-          const sy = baseY + Math.sin(baseY * 0.004 + time * 0.002) * 16;
-          const sr =
-            targetR * (0.85 + 0.15 * Math.sin(baseY * 0.006 - time * 0.003));
-
-          const ambientWave =
-            Math.sin(baseY * 0.0028 - time * 0.0016) * (isMobile ? 12 : 26);
-          const targetX = containerLeft + containerWidth * pt.x + ambientWave;
-          const targetY = baseY;
-
-          const curX = sx + (targetX - sx) * ease;
-          const curY = sy + (targetY - sy) * ease;
-          const curR = sr + (targetR - sr) * ease;
-
-          if (i > 0) {
-            discs.push({
-              x: (prevX + curX) * 0.5,
-              y: (prevY + curY) * 0.5,
-              r: (prevR + curR) * 0.5,
-            });
-          }
-          discs.push({ x: curX, y: curY, r: curR });
-          prevX = curX;
-          prevY = curY;
-          prevR = curR;
-        }
-
-        densityGrid.fill(0);
-        for (let d = 0; d < discs.length; d++) {
-          const disc = discs[d];
-          const gcx = disc.x / step;
-          const gcy = disc.y / step;
-          const gr = disc.r / step;
-          const gr2 = gr * gr;
-          const minX = Math.max(0, Math.floor(gcx - gr));
-          const maxX = Math.min(gridW - 1, Math.ceil(gcx + gr));
-          const minY = Math.max(0, Math.floor(gcy - gr));
-          const maxY = Math.min(gridH - 1, Math.ceil(gcy + gr));
-
-          for (let gy = minY; gy <= maxY; gy++) {
-            const dy2 = (gy - gcy) * (gy - gcy);
-            const row = gy * gridW;
-            for (let gx = minX; gx <= maxX; gx++) {
-              const d2 = (gx - gcx) * (gx - gcx) + dy2;
-              if (d2 <= gr2) {
-                const val = 1 - d2 / gr2;
-                const idx = row + gx;
-                if (val > densityGrid[idx]) densityGrid[idx] = val;
-              }
-            }
-          }
-        }
-
-        for (let gy = 0; gy < gridH; gy++) {
-          const by = gy & 3;
-          const row = gy * gridW;
-          for (let gx = 0; gx < gridW; gx++) {
-            const idx = row + gx;
-            const d = densityGrid[idx];
-            const bx = gx & 3;
-            const th = bayer4[by * 4 + bx];
-            u32[idx] = d > th ? 0xff000000 : 0xff81a886;
-          }
-        }
-      } else if (introActive && elapsed < 3700) {
-        const wipeT = (elapsed - 2900) / 800;
-        progress = Math.min(100, 92 + wipeT * 8);
-        uiOpacity = Math.max(0, 1 - wipeT * 1.6);
-
-        const scanY = wipeT * (height + 160) - 80;
-        const band = 80;
-        const scrollY = window.scrollY;
-
-        for (let gy = 0; gy < gridH; gy++) {
-          const sy = gy * step;
-          const worldY = sy + scrollY;
-          const pt = getSplinePoint(worldY);
-          const baseCenterX = containerLeft + containerWidth * pt.x;
-          const wave =
-            Math.sin(worldY * 0.0028 - time * 0.0016) * (isMobile ? 12 : 26);
-          const cx = baseCenterX + wave;
-          const radius = isMobile ? pt.r * 0.55 : pt.r;
-          const pulse = Math.sin(worldY * 0.015 - time * 0.004) * 0.22;
-
-          const gcx = cx / step;
-          const gr = radius / step;
-          const minX = Math.max(0, Math.floor(gcx - gr));
-          const maxX = Math.min(gridW - 1, Math.ceil(gcx + gr));
-          const by = gy & 3;
-          const row = gy * gridW;
-
-          const inSolidGreen = sy >= scanY + band;
-          const inTransparent = sy <= scanY - band;
-
-          if (inSolidGreen) {
-            for (let gx = 0; gx < gridW; gx++) {
-              u32[row + gx] = 0xff81a886;
-            }
-            for (let gx = minX; gx <= maxX; gx++) {
-              const dx = Math.abs(gx - gcx);
-              const norm = dx / gr;
-              if (norm > 1) continue;
-              const intensity = 1 - norm * norm + pulse;
-              const bx = gx & 3;
-              if (intensity > bayer4[by * 4 + bx]) {
-                u32[row + gx] = 0xff000000;
-              }
-            }
-          } else if (inTransparent) {
-            for (let gx = 0; gx < gridW; gx++) {
-              u32[row + gx] = 0x00000000;
-            }
-            for (let gx = minX; gx <= maxX; gx++) {
-              const dx = Math.abs(gx - gcx);
-              const norm = dx / gr;
-              if (norm > 1) continue;
-              const intensity = 1 - norm * norm + pulse;
-              const bx = gx & 3;
-              if (intensity > bayer4[by * 4 + bx]) {
-                u32[row + gx] = 0xff81a886;
-              }
-            }
-          } else {
-            const u = (sy - (scanY - band)) / (2 * band);
-            for (let gx = 0; gx < gridW; gx++) {
-              const bx = gx & 3;
-              u32[row + gx] =
-                bayer4[by * 4 + bx] < u ? 0xff81a886 : 0x00000000;
-            }
-            for (let gx = minX; gx <= maxX; gx++) {
-              const dx = Math.abs(gx - gcx);
-              const norm = dx / gr;
-              if (norm > 1) continue;
-              const intensity = 1 - norm * norm + pulse;
-              const bx = gx & 3;
-              const th = bayer4[by * 4 + bx];
-              if (intensity > th) {
-                u32[row + gx] = th < u ? 0xff000000 : 0xff81a886;
-              }
-            }
-          }
-        }
+      if (introActive && elapsed < WIPE_START) {
+        const dock =
+          elapsed < DOCK_START
+            ? 0
+            : dockEase((elapsed - DOCK_START) / (WIPE_START - DOCK_START));
+        drawSwimming(time, dock, isMobile);
+      } else if (introActive && elapsed < INTRO_END) {
+        const wipeT = (elapsed - WIPE_START) / (INTRO_END - WIPE_START);
+        uiOpacity = 1 - smoothstep(wipeT * 1.6);
+        drawDocked(time, wipeT, isMobile);
       } else {
-        if (introActive) {
-          introActive = false;
-        }
-
-        u32.fill(0);
-        const scrollY = window.scrollY;
-
-        for (let gy = 0; gy < gridH; gy++) {
-          const sy = gy * step;
-          const worldY = sy + scrollY;
-          const pt = getSplinePoint(worldY);
-          const baseCenterX = containerLeft + containerWidth * pt.x;
-          const wave =
-            Math.sin(worldY * 0.0028 - time * 0.0016) * (isMobile ? 12 : 26);
-          const cx = baseCenterX + wave;
-          const radius = isMobile ? pt.r * 0.55 : pt.r;
-          const pulse = Math.sin(worldY * 0.015 - time * 0.004) * 0.22;
-
-          const gcx = cx / step;
-          const gr = radius / step;
-          const minX = Math.max(0, Math.floor(gcx - gr));
-          const maxX = Math.min(gridW - 1, Math.ceil(gcx + gr));
-          const by = gy & 3;
-          const row = gy * gridW;
-
-          for (let gx = minX; gx <= maxX; gx++) {
-            const dx = Math.abs(gx - gcx);
-            const norm = dx / gr;
-            if (norm > 1) continue;
-            const intensity = 1 - norm * norm + pulse;
-            const bx = gx & 3;
-            if (intensity > bayer4[by * 4 + bx]) {
-              u32[row + gx] = 0xff81a886;
-            }
-          }
-        }
+        if (introActive) introActive = false;
+        drawDocked(time, null, isMobile);
       }
 
       offCtx.putImageData(imgData, 0, 0);
@@ -432,15 +321,15 @@
 
 <canvas
   bind:this={canvas}
-  class="fixed inset-0 block {introActive
-    ? 'z-50 pointer-events-none'
-    : 'z-0 pointer-events-none opacity-75'}"
+  class="fixed inset-0 block pointer-events-none transition-opacity duration-1000 ease-out {introActive
+    ? 'z-50'
+    : 'z-0 opacity-75'}"
   style="image-rendering: pixelated;"
 ></canvas>
 
 {#if introActive}
   <div
-    class="fixed inset-0 z-50 pointer-events-none select-none transition-opacity duration-300"
+    class="fixed inset-0 z-50 pointer-events-none select-none"
     style="opacity: {uiOpacity};"
   >
     <div
@@ -467,13 +356,9 @@
         class="h-2 w-full bg-[#000000]/20 p-[1px] border border-[#000000]/40"
       >
         <div
-          class="h-full bg-[#000000] transition-[width] duration-200 ease-out"
-          style="width: {progress}%;"
+          class="h-full bg-[#000000] origin-left"
+          style="transform: scaleX({progress / 100});"
         ></div>
-      </div>
-
-      <div class="flex justify-between items-center text-[10px] tracking-widest text-[#000000]/60 uppercase pt-1 font-mono">
-        &nbsp;
       </div>
     </div>
   </div>
