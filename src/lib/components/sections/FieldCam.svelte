@@ -15,7 +15,7 @@
         CASE STUDY
       </div>
       <h2 class="text-xl md:text-2xl uppercase mt-1">
-        FIELD CAM: A BOARD YOU CAN ORBIT
+        FIELD CAM: CONTROLLER BOARD
       </h2>
     </div>
     <div class="text-xs uppercase tracking-widest text-[#FFFFFF] md:text-right">
@@ -31,8 +31,8 @@
         FieldCam is an autonomous field camera for remote farms. Its controller
         board carries the ESP32-S3, the camera interface, a 4G modem, a sub-GHz
         voice link and the entire power chain. The board is written as code,
-        checked by Fusible, and exported to glTF — so what you just orbited is
-        the design itself, not a render of it.
+        checked by Fusible, and exported to glTF — this is the board you orbit,
+        not a render of it.
       </p>
       <div class="space-y-2 text-xs text-[#86A881]">
         <div>+ Designed in tscircuit, verified by the fuse contract</div>

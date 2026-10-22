@@ -465,7 +465,7 @@
         class="h-2 w-full bg-[#000000]/20 p-[1px] border border-[#000000]/40"
       >
         <div
-          class="h-full bg-[#000000] transition-[width] duration-75 ease-linear"
+          class="h-full bg-[#000000] transition-[width] duration-200 ease-out"
           style="width: {progress}%;"
         ></div>
       </div>
@@ -473,8 +473,8 @@
       <div
         class="flex justify-between items-center text-[10px] tracking-widest text-[#000000]/60 uppercase pt-1 font-mono"
       >
-        <span>KONO ENGINEERING</span>
-        <span>STUDIO</span>
+        <span>KONO</span>
+        <span>ENGINEERING</span>
       </div>
     </div>
   </div>

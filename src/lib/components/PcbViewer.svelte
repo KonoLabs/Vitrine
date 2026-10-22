@@ -20,6 +20,8 @@
     setRotating: (value: boolean) => void;
   } | null = null;
 
+  const rotateSpeed = 1.2;
+
   function choosePreset(next: Preset) {
     preset = next;
     rotating = false;
@@ -97,7 +99,7 @@
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.075;
-        controls.rotateSpeed = 0.8;
+        controls.rotateSpeed = 1.2;
         controls.zoomSpeed = 0.7;
         controls.enablePan = false;
         controls.autoRotateSpeed = 0.55;

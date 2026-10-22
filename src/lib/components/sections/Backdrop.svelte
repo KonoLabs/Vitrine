@@ -8,14 +8,18 @@
   // page back. The class transition starts with the wipe, not after it.
   const inverted = $derived(introActive && !wiping);
 
-  let mouseX = $state(0);
-  let mouseY = $state(0);
+  let mouseX = $state(-1);
+  let mouseY = $state(-1);
 </script>
 
 <svelte:window
   onmousemove={(e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+  }}
+  onmouseenter={() => {
+    mouseX = -1;
+    mouseY = -1;
   }}
 />
 
@@ -49,11 +53,13 @@
       : 'bg-[#000000] text-[#86A881]'}"
     style="left: {mouseX + 12}px; top: {mouseY + 12}px;"
   >
-    X:{mouseX.toString().padStart(4, "0")} Y:{mouseY
-      .toString()
-      .padStart(4, "0")} 0x{(mouseX ^ mouseY)
-      .toString(16)
-      .toUpperCase()
-      .padStart(4, "0")}
+    {#if mouseX >= 0 && mouseY >= 0}
+      X:{mouseX.toString().padStart(4, "0")} Y:{mouseY
+        .toString()
+        .padStart(4, "0")} 0x{(mouseX ^ mouseY)
+        .toString(16)
+        .toUpperCase()
+        .padStart(4, "0")}
+    {/if}
   </div>
 </div>

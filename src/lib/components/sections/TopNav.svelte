@@ -85,15 +85,16 @@
 {#if mobileMenuOpen}
   <button
     type="button"
-    class="fixed inset-0 bg-[#000000]/80 backdrop-blur-sm z-50 md:hidden border-none p-0 cursor-pointer"
+    class="fixed inset-0 bg-[#000000]/80 backdrop-blur-sm z-50 md:hidden border-none p-0 cursor-pointer transition-opacity duration-300"
     onclick={() => (mobileMenuOpen = false)}
     aria-label="Close navigation overlay"
     tabindex="-1"
   ></button>
 
   <aside
-    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#000000] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
+    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#000000] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden transform transition-transform duration-300 ease-out translate-x-0"
     aria-label="Mobile navigation"
+    style="will-change: transform;"
   >
     <div class="space-y-8">
       <div
