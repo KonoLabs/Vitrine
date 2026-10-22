@@ -97,7 +97,7 @@
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.075;
-        controls.rotateSpeed = 1.2;
+        controls.rotateSpeed = 0.8;
         controls.zoomSpeed = 0.7;
         controls.enablePan = false;
         controls.autoRotateSpeed = 1.5;
