@@ -25,11 +25,11 @@
 
   const demos = [
     {
-      id: "3d",
-      label: "3D VIEW",
-      desc: "Interactive 3D board rendering with live component placement.",
-      src: "/fusible/demo1.png",
-      alt: "Fusible Studio 3D view",
+      id: "pcb",
+      label: "PCB LAYOUT",
+      desc: "Native RS-274X Extended Gerber and Excellon drill visualizer.",
+      src: "/fusible/demo4.png",
+      alt: "Fusible Studio PCB layout",
     },
     {
       id: "diagnostics",
@@ -46,15 +46,15 @@
       alt: "Fusible Studio Schematic",
     },
     {
-      id: "pcb",
-      label: "PCB LAYOUT",
-      desc: "Native RS-274X Extended Gerber and Excellon drill visualizer.",
-      src: "/fusible/demo4.png",
-      alt: "Fusible Studio PCB layout",
+      id: "3d",
+      label: "3D VIEW",
+      desc: "Interactive 3D board rendering with live component placement.",
+      src: "/fusible/demo1.png",
+      alt: "Fusible Studio 3D view",
     },
   ];
 
-  let selectedDemo = $state("3d");
+  let selectedDemo = $state("pcb");
   const activeDemo = $derived(
     demos.find((d) => d.id === selectedDemo) ?? demos[0],
   );

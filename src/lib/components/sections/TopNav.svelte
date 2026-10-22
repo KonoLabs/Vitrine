@@ -50,6 +50,11 @@
           >DELIVERY</a
         >
         <a
+          href="#fieldcam"
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
+          >FIELD CAM</a
+        >
+        <a
           href="#capabilities"
           class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >SERVICES</a
@@ -58,11 +63,6 @@
           href="#fusible"
           class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >FUSIBLE</a
-        >
-        <a
-          href="#fieldcam"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
-          >FIELD CAM</a
         >
         <a
           href="#terminal"
@@ -130,6 +130,12 @@
           >DELIVERY</a
         >
         <a
+          href="#fieldcam"
+          onclick={() => (mobileMenuOpen = false)}
+          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          >FIELD CAM</a
+        >
+        <a
           href="#capabilities"
           onclick={() => (mobileMenuOpen = false)}
           class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
@@ -140,12 +146,6 @@
           onclick={() => (mobileMenuOpen = false)}
           class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
           >FUSIBLE</a
-        >
-        <a
-          href="#fieldcam"
-          onclick={() => (mobileMenuOpen = false)}
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
-          >FIELD CAM</a
         >
         <a
           href="#terminal"

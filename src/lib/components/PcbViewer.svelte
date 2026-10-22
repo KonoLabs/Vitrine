@@ -100,7 +100,7 @@
         controls.rotateSpeed = 1.2;
         controls.zoomSpeed = 0.7;
         controls.enablePan = false;
-        controls.autoRotateSpeed = 0.55;
+        controls.autoRotateSpeed = 1.5;
         controls.minPolarAngle = 0.02;
         controls.maxPolarAngle = Math.PI - 0.02;
 
