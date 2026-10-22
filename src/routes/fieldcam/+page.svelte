@@ -35,8 +35,8 @@
   const facts = [
     { label: "BOARD", value: "40 × 154 mm" },
     { label: "STACKUP", value: "4 layers · 1.4 mm" },
-    { label: "PARTS", value: "49" },
-    { label: "CONNECTIONS", value: "132" },
+    { label: "PARTS", value: "52" },
+    { label: "CONNECTIONS", value: "143" },
   ];
 
   const pipeline = [
@@ -123,7 +123,7 @@
         class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px] uppercase tracking-widest text-[#FFFFFF]/45"
       >
         <span>
-          Live glTF export of the tscircuit circuit — 49 components, 132
+          Live glTF export of the tscircuit circuit — 52 components, 143
           connections
         </span>
         <a

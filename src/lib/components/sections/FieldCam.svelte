@@ -3,8 +3,8 @@
 
   const specs = [
     { label: "BOARD", value: "40 × 154 mm · 4-layer" },
-    { label: "PARTS", value: "49 components" },
-    { label: "NETS", value: "132 connections" },
+    { label: "PARTS", value: "52 components" },
+    { label: "NETS", value: "143 connections" },
   ];
 </script>
 
