@@ -33,7 +33,7 @@
     {#each posts as post}
       <a
         href="/blog/{post.slug}"
-        class="block p-6 no-underline bg-[var(--color-surface)] text-[#FFFFFF] transition-colors hover:bg-[var(--color-surface-hover)]"
+        class="block p-6 no-underline bg-surface text-[#FFFFFF] transition-colors hover:bg-surface-hover"
       >
         <span class="text-[10px] uppercase tracking-widest text-[#86A881]">
           {formatDate(post.date)}

@@ -77,7 +77,7 @@
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
     <div
-      class="lg:col-span-5 bg-[var(--color-surface)] p-6 md:p-8 space-y-5 flex flex-col justify-between"
+      class="lg:col-span-5 bg-surface p-6 md:p-8 space-y-5 flex flex-col justify-between"
     >
       <div class="space-y-5">
         <p class="text-sm text-[#FFFFFF]/80 leading-relaxed">
@@ -94,13 +94,13 @@
         </div>
       </div>
       <div
-        class="border-t border-[var(--color-border)] pt-4 text-[10px] uppercase tracking-widest text-[#FFFFFF]/45"
+        class="border-t border-border pt-4 text-[10px] uppercase tracking-widest text-[#FFFFFF]/45"
       >
         OPEN SOURCE · GITHUB.COM/KONOLABS/FUSIBLE
       </div>
     </div>
 
-    <div class="lg:col-span-7 bg-[var(--color-surface)] p-6 md:p-8 space-y-6">
+    <div class="lg:col-span-7 bg-surface p-6 md:p-8 space-y-6">
       <div class="flex justify-between items-center gap-3">
         <span class="text-xs text-[#86A881] uppercase tracking-widest"
           >QUICK START</span
@@ -110,7 +110,7 @@
         >
       </div>
       <div
-        class="bg-[#000000] p-4 md:p-5 font-['Undefined',monospace] text-xs md:text-sm leading-loose border border-[var(--color-border)]"
+        class="bg-[#000000] p-4 md:p-5 font-['Undefined',monospace] text-xs md:text-sm leading-loose border border-border"
       >
         {#each commands as cmd}
           <div class="flex flex-wrap gap-x-2">
@@ -149,9 +149,9 @@
     </div>
   </div>
 
-  <div class="bg-[var(--color-surface)] p-6 md:p-8 space-y-6">
+  <div class="bg-surface p-6 md:p-8 space-y-6">
     <div
-      class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--color-border)] pb-4"
+      class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4"
     >
       <div>
         <div class="text-xs text-[#86A881] uppercase tracking-widest">
@@ -179,7 +179,7 @@
     </div>
 
     <div
-      class="bg-[#000000] border border-[var(--color-border)] overflow-hidden flex items-center justify-center"
+      class="bg-[#000000] border border-border overflow-hidden flex items-center justify-center"
     >
       <img
         src={activeDemo.src}

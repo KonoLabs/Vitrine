@@ -50,7 +50,7 @@
     {#each projects as project}
       <a
         href={project.href}
-        class="flex flex-col justify-between p-8 bg-[var(--color-surface)] text-[#FFFFFF] no-underline transition-colors hover:bg-[var(--color-surface-hover)]"
+        class="flex flex-col justify-between p-8 bg-surface text-[#FFFFFF] no-underline transition-colors hover:bg-surface-hover"
       >
         <div>
           <span
@@ -65,7 +65,7 @@
         </div>
 
         <div
-          class="mt-8 pt-4 border-t border-[var(--color-border)] flex flex-wrap gap-x-3 gap-y-1 text-[10px] uppercase tracking-widest text-[#86A881]"
+          class="mt-8 pt-4 border-t border-border flex flex-wrap gap-x-3 gap-y-1 text-[10px] uppercase tracking-widest text-[#86A881]"
         >
           {#each project.stack as tech}
             <span>{tech}</span>

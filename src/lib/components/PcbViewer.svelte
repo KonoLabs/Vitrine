@@ -20,8 +20,6 @@
     setRotating: (value: boolean) => void;
   } | null = null;
 
-  const rotateSpeed = 1.2;
-
   function choosePreset(next: Preset) {
     preset = next;
     rotating = false;
@@ -301,7 +299,7 @@
             class="px-2.5 py-1 text-[10px] uppercase tracking-widest border transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#86A881] {preset ===
             option
               ? 'bg-[#86A881] text-[#000000] border-[#86A881]'
-              : 'bg-[#000000]/70 text-[#FFFFFF]/70 border-[#2E2E2E] hover:text-[#FFFFFF]'}"
+              : 'bg-[#000000]/70 text-[#FFFFFF]/70 border-border-subtle hover:text-[#FFFFFF]'}"
             aria-pressed={preset === option}
           >
             {option}
@@ -312,7 +310,7 @@
           onclick={toggleRotate}
           class="px-2.5 py-1 text-[10px] uppercase tracking-widest border transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#86A881] {rotating
             ? 'bg-[#86A881] text-[#000000] border-[#86A881]'
-            : 'bg-[#000000]/70 text-[#FFFFFF]/70 border-[#2E2E2E] hover:text-[#FFFFFF]'}"
+            : 'bg-[#000000]/70 text-[#FFFFFF]/70 border-border-subtle hover:text-[#FFFFFF]'}"
           aria-pressed={rotating}
         >
           auto

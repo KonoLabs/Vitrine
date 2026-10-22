@@ -66,7 +66,7 @@
 />
 
 <div class="relative min-h-screen bg-[#000000] text-[#FFFFFF]">
-  <header class="border-b border-[#1F1F1F]">
+  <header class="border-b border-border">
     <div
       class="max-w-[1440px] mx-auto px-6 md:px-12 py-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest"
     >
@@ -137,7 +137,7 @@
 
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {#each subsystems as subsystem}
-        <div class="bg-[#1F1F1F] p-6 md:p-7 space-y-3">
+        <div class="bg-surface p-6 md:p-7 space-y-3">
           <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
             {subsystem.code}
           </div>
@@ -160,7 +160,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {#each pipeline as item}
-          <div class="border-t border-[#2E2E2E] pt-4 space-y-2">
+          <div class="border-t border-border pt-4 space-y-2">
             <span class="text-[10px] uppercase tracking-widest text-[#86A881]"
               >{item.step}</span
             >
