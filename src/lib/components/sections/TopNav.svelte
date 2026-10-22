@@ -1,5 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
+  import { cubicOut } from "svelte/easing";
+  import { fade, fly } from "svelte/transition";
 
   let scrollY = $state(0);
   let isScrolled = $derived(scrollY > 20);
@@ -85,20 +87,21 @@
 {#if mobileMenuOpen}
   <button
     type="button"
-    class="fixed inset-0 bg-[#000000]/80 backdrop-blur-sm z-50 md:hidden border-none p-0 cursor-pointer transition-opacity duration-300"
+    class="fixed inset-0 bg-[#000000]/80 backdrop-blur-sm z-50 md:hidden border-none p-0 cursor-pointer"
+    transition:fade={{ duration: 200 }}
     onclick={() => (mobileMenuOpen = false)}
     aria-label="Close navigation overlay"
     tabindex="-1"
   ></button>
 
   <aside
-    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#000000] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden transform transition-transform duration-300 ease-out translate-x-0"
+    class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-[#000000] z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
     aria-label="Mobile navigation"
-    style="will-change: transform;"
+    transition:fly={{ x: 288, duration: 300, easing: cubicOut, opacity: 1 }}
   >
     <div class="space-y-8">
       <div
-        class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]"
+        class="flex items-center justify-between pb-4 border-b border-border"
       >
         <img src="/long-logo-green-bg.png" alt="KONO" class="h-5 w-auto" />
         <button
@@ -153,7 +156,7 @@
       </div>
     </div>
 
-    <div class="pt-6 border-t border-[var(--color-border)]">
+    <div class="pt-6 border-t border-border">
       <a
         href="mailto:yann@facile.studio"
         class="inline-flex items-center gap-2 text-[11px] text-[#FFFFFF]/70 hover:text-[#86A881] no-underline tracking-wider leading-none"
