@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.1] - 2026-10-22
+
+### Changed
+
+- Darker surface color (#111111) shared through theme tokens, and no border around the 3D board.
+- FieldCam heading reads "FIELD CAM: CONTROLLER BOARD".
+
+### Fixed
+
+- The loading animation runs on one continuous curve: no stall at 50%, no lagging bar, no flicker when the page appears.
+- The intro is skipped when the system asks for reduced motion.
+- The coordinate readout no longer shows an empty box before the mouse moves, and hides when the pointer leaves the page.
+- The mobile menu slides in and fades its overlay instead of appearing instantly.
+
 ## [0.5.0] - 2026-10-21
 
 ### Changed
