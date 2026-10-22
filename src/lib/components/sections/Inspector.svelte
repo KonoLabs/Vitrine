@@ -118,7 +118,7 @@
             class="inline-flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-widest cursor-pointer no-underline leading-none {selectedExample ===
             tab.key
               ? 'bg-[#86A881] text-[#000000]'
-              : 'bg-[#1F1F1F] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
+              : 'bg-[var(--color-surface)] text-[#FFFFFF] hover:bg-[var(--color-surface-hover)]'}"
           >
             <Icon icon={tab.icon} class="w-4 h-4 shrink-0" />
             <span class="leading-none">{tab.label}</span>
@@ -131,7 +131,7 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
     {#key selectedExample}
       {@const example = examples[selectedExample]}
-      <div class="lg:col-span-7 bg-[#1F1F1F] p-6 md:p-8 flex flex-col gap-6">
+      <div class="lg:col-span-7 bg-[var(--color-surface)] p-6 md:p-8 flex flex-col gap-6">
         <div>
           <h3
             class="text-xl md:text-2xl text-[#FFFFFF] uppercase tracking-wide"
@@ -144,7 +144,7 @@
         </div>
 
         <div
-          class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-[#2E2E2E] text-xs"
+          class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-[var(--color-border)] text-xs"
         >
           {#each example.parts as part}
             <div class="space-y-1.5">
@@ -159,7 +159,7 @@
           {/each}
         </div>
 
-        <div class="mt-auto pt-6 border-t border-[#2E2E2E] space-y-5">
+        <div class="mt-auto pt-6 border-t border-[var(--color-border)] space-y-5">
           <div>
             <div class="flex justify-between items-center gap-3 mb-2">
               <span class="text-[10px] text-[#86A881] uppercase tracking-widest"
@@ -202,11 +202,11 @@
     {/key}
 
     <div
-      class="lg:col-span-5 bg-[#1F1F1F] p-6 md:p-8 flex flex-col justify-between"
+      class="lg:col-span-5 bg-[var(--color-surface)] p-6 md:p-8 flex flex-col justify-between"
     >
       <div>
         <div
-          class="flex justify-between items-center mb-6 pb-4 border-b border-[#2E2E2E]"
+          class="flex justify-between items-center mb-6 pb-4 border-b border-[var(--color-border)]"
         >
           <span class="text-xs text-[#86A881] uppercase tracking-widest"
             >HOW WE WORK TOGETHER</span
@@ -216,7 +216,7 @@
           >
         </div>
 
-        <div class="divide-y divide-[#2E2E2E]">
+        <div class="divide-y divide-[var(--color-border)]">
           {#each engagement as eng}
             <div class="py-4 first:pt-0 last:pb-0 space-y-1.5">
               <div class="flex justify-between items-baseline gap-3">
@@ -234,7 +234,7 @@
       </div>
 
       <div
-        class="mt-6 pt-4 border-t border-[#2E2E2E] text-xs text-[#86A881] flex justify-between gap-3"
+        class="mt-6 pt-4 border-t border-[var(--color-border)] text-xs text-[#86A881] flex justify-between gap-3"
       >
         <span>REPLY WITHIN: 24H</span>
         <span>REMOTE · WORLDWIDE</span>

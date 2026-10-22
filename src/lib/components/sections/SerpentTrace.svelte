@@ -123,7 +123,9 @@
       const containerLeft = (width - containerWidth) / 2;
 
       if (introActive && elapsed < 1400) {
-        progress = Math.min(50, (elapsed / 1400) * 50);
+        const t = Math.min(1, elapsed / 1400);
+        const eased = t * t * (3 - 2 * t);
+        progress = eased * 50;
 
         const spineCount = 64;
         const discs: { x: number; y: number; r: number }[] = [];
@@ -470,11 +472,8 @@
         ></div>
       </div>
 
-      <div
-        class="flex justify-between items-center text-[10px] tracking-widest text-[#000000]/60 uppercase pt-1 font-mono"
-      >
-        <span>KONO</span>
-        <span>ENGINEERING</span>
+      <div class="flex justify-between items-center text-[10px] tracking-widest text-[#000000]/60 uppercase pt-1 font-mono">
+        &nbsp;
       </div>
     </div>
   </div>

@@ -77,7 +77,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
     {#each disciplines as discipline}
       <div
-        class="bg-[#1F1F1F] p-8 flex flex-col justify-between hover:bg-[#252525] transition-colors"
+        class="bg-[var(--color-surface)] p-8 flex flex-col justify-between hover:bg-[var(--color-surface-hover)] transition-colors"
       >
         <div>
           <span
@@ -97,7 +97,7 @@
           </div>
         </div>
         <div
-          class="mt-8 pt-4 border-t border-[#2E2E2E] text-[10px] uppercase tracking-widest text-[#FFFFFF]/50"
+          class="mt-8 pt-4 border-t border-[var(--color-border)] text-[10px] uppercase tracking-widest text-[#FFFFFF]/50"
         >
           {discipline.stack}
         </div>
@@ -106,7 +106,7 @@
   </div>
 
   <div
-    class="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-[#1F1F1F] pt-6 text-xs text-[#FFFFFF]/70"
+    class="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-[var(--color-surface)] pt-6 text-xs text-[#FFFFFF]/70"
   >
     <span class="text-[10px] uppercase tracking-widest text-[#86A881]"
       >OPEN SOURCE ·</span

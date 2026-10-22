@@ -96,7 +96,7 @@
         class="text-left p-5 cursor-pointer no-underline transition-colors {activeStage ===
         i
           ? 'bg-[#86A881] text-[#000000]'
-          : 'bg-[#1F1F1F] text-[#FFFFFF] hover:bg-[#2A2A2A]'}"
+          : 'bg-[var(--color-surface)] text-[#FFFFFF] hover:bg-[var(--color-surface-hover)]'}"
       >
         <div
           class="text-[10px] uppercase tracking-widest {activeStage === i
@@ -112,7 +112,7 @@
 
   {#key activeStage}
     {@const stage = pipeline[activeStage]}
-    <div class="bg-[#1F1F1F] p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+    <div class="bg-[var(--color-surface)] p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
       <div class="md:col-span-5 space-y-4">
         <div>
           <h3 class="text-lg md:text-xl uppercase">{stage.title}</h3>
@@ -120,7 +120,7 @@
         <p class="text-xs md:text-sm text-[#FFFFFF]/75 leading-relaxed">
           {stage.summary}
         </p>
-        <div class="pt-4 border-t border-[#2E2E2E] text-xs text-[#86A881]">
+        <div class="pt-4 border-t border-[var(--color-border)] text-xs text-[#86A881]">
           ESTIMATED DURATION: {stage.duration}
         </div>
       </div>
@@ -129,7 +129,7 @@
         <div class="text-xs text-[#86A881] uppercase tracking-widest mb-3">
           WHAT YOU RECEIVE
         </div>
-        <div class="divide-y divide-[#2E2E2E]">
+        <div class="divide-y divide-[var(--color-border)]">
           {#each stage.deliverables as d}
             <div
               class="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-4 text-xs text-[#FFFFFF]"
@@ -145,7 +145,7 @@
 
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     {#each metrics as m}
-      <div class="bg-[#1F1F1F] p-6 space-y-2">
+      <div class="bg-[var(--color-surface)] p-6 space-y-2">
         <div class="text-2xl md:text-3xl text-[#86A881]">{m.value}</div>
         <div class="text-[11px] uppercase tracking-widest text-[#FFFFFF]">
           {m.label}

@@ -23,7 +23,7 @@
     <div class="space-y-3">
       <a
         href="mailto:yann@facile.studio"
-        class="inline-flex items-center justify-center gap-2.5 w-full bg-[#000000] text-[#FFFFFF] hover:bg-[#1F1F1F] p-4 text-sm sm:text-base tracking-widest text-center no-underline transition-colors leading-none"
+        class="inline-flex items-center justify-center gap-2.5 w-full bg-[#000000] text-[#FFFFFF] hover:bg-[var(--color-surface)] p-4 text-sm sm:text-base tracking-widest text-center no-underline transition-colors leading-none"
       >
         <Icon
           icon="pixelarticons:mail"

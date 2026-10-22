@@ -26,7 +26,7 @@
   <PcbViewer />
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-    <div class="lg:col-span-8 bg-[#1F1F1F] p-6 md:p-8 space-y-5">
+    <div class="lg:col-span-8 bg-[#111111] p-6 md:p-8 space-y-5">
       <p class="text-sm text-[#FFFFFF]/80 leading-relaxed">
         FieldCam is an autonomous field camera for remote farms. Its controller
         board carries the ESP32-S3, the camera interface, a 4G modem, a sub-GHz
@@ -42,12 +42,12 @@
     </div>
 
     <div
-      class="lg:col-span-4 bg-[#1F1F1F] p-6 md:p-8 flex flex-col justify-between gap-6"
+      class="lg:col-span-4 bg-[var(--color-surface)] p-6 md:p-8 flex flex-col justify-between gap-6"
     >
       <div class="space-y-3">
         {#each specs as spec}
           <div
-            class="flex items-baseline justify-between gap-3 border-b border-[#2E2E2E] pb-2 text-[10px] uppercase tracking-widest"
+            class="flex items-baseline justify-between gap-3 border-b border-[var(--color-border)] pb-2 text-[10px] uppercase tracking-widest"
           >
             <span class="text-[#FFFFFF]/45">{spec.label}</span>
             <span class="text-[#FFFFFF]">{spec.value}</span>

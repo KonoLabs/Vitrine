@@ -98,7 +98,7 @@
   >
     <div class="space-y-8">
       <div
-        class="flex items-center justify-between pb-4 border-b border-[#2E2E2E]"
+        class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]"
       >
         <img src="/long-logo-green-bg.png" alt="KONO" class="h-5 w-auto" />
         <button
@@ -153,7 +153,7 @@
       </div>
     </div>
 
-    <div class="pt-6 border-t border-[#2E2E2E]">
+    <div class="pt-6 border-t border-[var(--color-border)]">
       <a
         href="mailto:yann@facile.studio"
         class="inline-flex items-center gap-2 text-[11px] text-[#FFFFFF]/70 hover:text-[#86A881] no-underline tracking-wider leading-none"

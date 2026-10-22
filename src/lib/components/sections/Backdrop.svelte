@@ -24,7 +24,7 @@
 />
 
 <div
-  class="fixed inset-0 pointer-events-none opacity-20 bg-[linear-gradient(to_right,#1F1F1F_1px,transparent_1px),linear-gradient(to_bottom,#1F1F1F_1px,transparent_1px)] bg-[size:16px_16px]"
+  class="fixed inset-0 pointer-events-none opacity-20 bg-[linear-gradient(to_right,var(--color-surface)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-surface)_1px,transparent_1px)] bg-[size:16px_16px]"
 ></div>
 <div
   class="fixed inset-0 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#86A881_1px,transparent_1px),linear-gradient(to_bottom,#86A881_1px,transparent_1px)] bg-[size:96px_96px]"

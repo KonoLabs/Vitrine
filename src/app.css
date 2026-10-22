@@ -4,6 +4,13 @@
 
 @source "./**/*.{html,js,svelte,ts,md}";
 
+@theme {
+  --color-surface: #111111;
+  --color-surface-hover: #1a1a1a;
+  --color-border: #1a1a1a;
+  --color-border-subtle: #2e2e2e;
+}
+
 @font-face {
   font-family: "Undefined";
   src: url("/undefined-medium.otf") format("opentype");
@@ -14,26 +21,26 @@
 :root {
   --bg: #86a881;
   --fg: #ffffff;
-  --border: #1f1f1f;
-  --link: #1f1f1f;
-  --link-hover: #1f1f1f;
+  --border: #111111;
+  --link: #111111;
+  --link-hover: #111111;
   --accent: #ffffff;
-  --surface: #1f1f1f;
+  --surface: #111111;
   --subtle: #ffffff;
   --code-bg: #ffffff;
-  --code-fg: #1f1f1f;
+  --code-fg: #111111;
 }
 
 :root.dark {
   --bg: #000000;
   --fg: #ffffff;
-  --border: #1f1f1f;
+  --border: #111111;
   --link: #229147;
   --link-hover: #a8b365;
   --accent: #229147;
-  --surface: #1f1f1f;
-  --subtle: #1f1f1f;
-  --code-bg: #1f1f1f;
+  --surface: #111111;
+  --subtle: #111111;
+  --code-bg: #111111;
   --code-fg: #a8b365;
 }
 

@@ -279,7 +279,7 @@
 </script>
 
 <div
-  class="relative w-full h-[340px] sm:h-[460px] lg:h-[560px] bg-[#000000] border border-[#2E2E2E] overflow-hidden"
+  class="relative w-full h-[340px] sm:h-[460px] lg:h-[560px] bg-[#000000] overflow-hidden"
 >
   <div bind:this={host} class="absolute inset-0" aria-hidden="true"></div>
 
