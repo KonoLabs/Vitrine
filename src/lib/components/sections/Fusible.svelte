@@ -138,12 +138,24 @@
           </div>
         {/each}
       </div>
-      <div>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+        <a
+          href="/fusible/download"
+          class="inline-flex items-center justify-center gap-3 bg-[#86A881] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF]"
+        >
+          &gt; DOWNLOAD
+        </a>
+        <a
+          href="/fusible"
+          class="inline-flex items-center justify-center gap-3 border border-border-subtle text-[#FFFFFF] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:border-[#86A881] hover:text-[#86A881]"
+        >
+          READ MORE
+        </a>
         <a
           href="https://github.com/KonoLabs/Fusible#readme"
-          class="inline-flex items-center gap-3 bg-[#86A881] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF]"
+          class="inline-flex items-center justify-center gap-3 text-[#FFFFFF]/60 px-2 py-3 text-xs uppercase tracking-widest no-underline hover:text-[#86A881]"
         >
-          &gt; READ THE DOCS ON GITHUB
+          DOCS ON GITHUB
         </a>
       </div>
     </div>
