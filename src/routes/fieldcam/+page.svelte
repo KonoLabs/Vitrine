@@ -42,27 +42,27 @@
   const pipeline = [
     {
       step: "01",
-      title: "CIRCUIT AS CODE",
-      text: "The board is written in tscircuit TSX, so the schematic, layout and netlist all come from one file.",
+      title: "DESIGNED IN KICAD",
+      text: "The board is designed by hand in KiCad: schematic, placement and routing.",
     },
     {
       step: "02",
       title: "FAIL-CLOSED CHECK",
-      text: "Fusible lints the exported circuit JSON and refuses to generate firmware for a board that fails.",
+      text: "Fusible lints the board and refuses to generate firmware for a board that fails.",
     },
     {
       step: "03",
       title: "BAKED FOR THE WEB",
-      text: "That same JSON is converted to a single glTF at asset time, so this page ships a 1.7 MB model instead of a CAD kernel.",
+      text: "The checked board is converted to a single glTF at asset time, so this page ships a 1.7 MB model instead of a CAD kernel.",
     },
   ];
 </script>
 
 <Seo
   title="FieldCam — ESP32-S3 field camera PCB | Kono"
-  description="An interactive 3D view of the FieldCam controller board: ESP32-S3, OV2640 camera, 4G LTE, sub-GHz voice and LiPo power, designed in tscircuit and checked with Fusible."
+  description="An interactive 3D view of the FieldCam controller board: ESP32-S3, OV2640 camera, 4G LTE, sub-GHz voice and LiPo power, designed in KiCad and checked with Fusible."
   path="/fieldcam"
-  keywords="FieldCam, ESP32-S3, PCB design, tscircuit, Fusible, 3D PCB viewer, 4G LTE, sub-GHz"
+  keywords="FieldCam, ESP32-S3, PCB design, KiCad, Fusible, 3D PCB viewer, 4G LTE, sub-GHz"
 />
 
 <div class="relative min-h-screen bg-[#000000] text-[#FFFFFF]">
@@ -123,7 +123,7 @@
         class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px] uppercase tracking-widest text-[#FFFFFF]/45"
       >
         <span>
-          Live glTF export of the tscircuit circuit — 52 components, 143
+          Live glTF export of the KiCad board — 52 components, 143
           connections
         </span>
         <a
