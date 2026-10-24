@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.0] - 2026-10-24
+
+### Added
+
+- `/fusible` landing page: the six fuse-contract rules, studio screenshots, the one-manifest story, export presets and the CLI quickstart.
+- `/fusible/download` page: the installer for the visitor's system first, the others listed below, first-run notes for the unsigned builds, and the latest release version from GitHub.
+- Download and Read more buttons on the home Fusible section.
+
+### Changed
+
+- The top navigation sends FUSIBLE to `/fusible` off the home page and keeps `#fusible` on it.
+- FieldCam copy says the board was designed in KiCad, on the home page, the projects list and `/fieldcam`.
+
 ## [0.5.2] - 2026-10-22
 
 ### Changed
