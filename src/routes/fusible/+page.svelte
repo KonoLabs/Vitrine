@@ -295,6 +295,7 @@ bodies:
           </div>
           <pre
             class="font-['Undefined',monospace] text-xs leading-relaxed text-[#FFFFFF]"><code
+              class="font-[inherit]"
               >{#each manifestLines as tokens, row}{#each tokens as token}<span
                     class={tones[token.tone]}>{token.text}</span
                   >{/each}{#if row < manifestLines.length - 1}{"\n"}{/if}{/each}</code
