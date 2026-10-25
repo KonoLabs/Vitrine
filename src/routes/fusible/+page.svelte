@@ -73,6 +73,29 @@ bodies:
     generate: enclosure
     board: main`;
 
+  type Token = { text: string; tone: string };
+
+  const tones: Record<string, string> = {
+    key: "text-[#86A881]",
+    path: "text-[#D9B26F]",
+    value: "text-[#8FB8D8]",
+    punct: "text-[#FFFFFF]/40",
+    space: "",
+  };
+
+  function tokenize(line: string): Token[] {
+    const parts = line.match(/\s+|[{},:]|[^\s{},:]+/g) ?? [];
+    return parts.map((text, index) => {
+      if (/^\s+$/.test(text)) return { text, tone: "space" };
+      if (/^[{},:]$/.test(text)) return { text, tone: "punct" };
+      const next = parts.slice(index + 1).find((part) => !/^\s+$/.test(part));
+      if (next === ":") return { text, tone: "key" };
+      return { text, tone: /[/.]/.test(text) ? "path" : "value" };
+    });
+  }
+
+  const manifestLines = manifest.split("\n").map(tokenize);
+
   const manifestPoints = [
     {
       code: "BOARDS",
@@ -258,7 +281,11 @@ bodies:
             FUSIBLE.YML
           </div>
           <pre
-            class="font-['Undefined',monospace] text-xs leading-relaxed text-[#FFFFFF]">{manifest}</pre>
+            class="font-['Undefined',monospace] text-xs leading-relaxed text-[#FFFFFF]"><code
+              >{#each manifestLines as tokens, row}{#each tokens as token}<span
+                    class={tones[token.tone]}>{token.text}</span
+                  >{/each}{#if row < manifestLines.length - 1}{"\n"}{/if}{/each}</code
+            ></pre>
         </div>
       </div>
     </section>
