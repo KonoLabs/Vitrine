@@ -2,7 +2,7 @@
   import { page } from "$app/state";
   import Seo from "$lib/components/Seo.svelte";
 
-  const rules = [
+  const boardRules = [
     {
       code: "unconnected_net",
       text: "A net with a single pin goes nowhere. Fusible flags every dangling pad.",
@@ -26,6 +26,52 @@
     {
       code: "pin_mux",
       text: "A pin wired to a function the chip cannot route is rejected against the silicon's mux table.",
+    },
+  ];
+
+  const productRules = [
+    {
+      code: "harness_mismatch",
+      text: "A cable between two boards must land on pins that exist and carry the nets you declared.",
+    },
+    {
+      code: "body_interference",
+      text: "A case that overlaps the board, a component or another body is caught before anything is printed or cut.",
+    },
+    {
+      code: "hole_misaligned",
+      text: "Every mounting hole needs a boss in the body, and no material may sit in its bore.",
+    },
+    {
+      code: "connector_blocked",
+      text: "A wall in front of a connector at the board edge blows the fuse, not your first prototype.",
+    },
+  ];
+
+  const scope = [
+    {
+      code: "MANY BOARDS, ONE PROJECT",
+      text: "Name every board once. Check, build and export them together or one at a time, and cable them with links the fuse verifies.",
+    },
+    {
+      code: "BODIES AND ASSEMBLY",
+      text: "Generate an enclosure that fits the board, or bring your own STEP. Place boards and bodies in one model and check how they meet.",
+    },
+    {
+      code: "FIRMWARE",
+      text: "Typed pin bindings come from the checked board, so the code and the copper cannot drift apart.",
+    },
+    {
+      code: "PARTS AND COSTS",
+      text: "A bill of materials from the placed components and the printed bodies, with prices, picks and manual parts in bom.yml.",
+    },
+    {
+      code: "KICAD, BOTH WAYS",
+      text: "Move a part in KiCad and the position is written back to your TSX. Part and net changes are reported, never silently applied.",
+    },
+    {
+      code: "MADE FOR TEAMS",
+      text: "A Sync panel saves and shares work in plain words, with no git vocabulary. Builds are cached, and Studio updates itself.",
     },
   ];
 
@@ -62,6 +108,13 @@ boards:
   main:   { entry: boards/main/index.tsx, mcu: esp32-s3 }
   sensor: { entry: boards/sensor/index.tsx, mcu: rp2040 }
 
+links:
+  cable:
+    from: main.J2
+    to: sensor.J1
+    wires:
+      - { a: 1, b: 1, net: GND }
+
 firmware:
   app:
     board: main
@@ -72,7 +125,13 @@ firmware:
 bodies:
   case:
     generate: enclosure
-    board: main`;
+    board: main
+
+assembly:
+  parts:
+    main:   { at: [0, 0, 0] }
+    sensor: { at: [0, 0, 12] }
+    case:   {}`;
 
   type Token = { text: string; tone: string };
 
@@ -85,10 +144,10 @@ bodies:
   };
 
   function tokenize(line: string): Token[] {
-    const parts = line.match(/\s+|[{},:]|[^\s{},:]+/g) ?? [];
+    const parts = line.match(/\s+|[{}[\],:]|[^\s{}[\],:]+/g) ?? [];
     return parts.map((text, index) => {
       if (/^\s+$/.test(text)) return { text, tone: "space" };
-      if (/^[{},:]$/.test(text)) return { text, tone: "punct" };
+      if (/^[{}[\],:]$/.test(text)) return { text, tone: "punct" };
       const next = parts.slice(index + 1).find((part) => !/^\s+$/.test(part));
       if (next === ":") return { text, tone: "key" };
       return { text, tone: /[/.]/.test(text) ? "path" : "value" };
@@ -107,8 +166,16 @@ bodies:
       text: "Typed pin bindings are generated from the checked board, never hand-copied.",
     },
     {
+      code: "LINKS",
+      text: "Cables between boards, verified pin by pin and net by net.",
+    },
+    {
       code: "BODIES",
       text: "Authored or generated enclosures, built only once the board passes.",
+    },
+    {
+      code: "ASSEMBLY",
+      text: "Boards and bodies placed in one model, checked for collisions, blocked connectors and missing bosses.",
     },
   ];
 
@@ -128,6 +195,11 @@ bodies:
       files: "schematic.svg · pcb.svg · schematic.pdf",
       text: "What a reviewer needs.",
     },
+    {
+      code: "ASSEMBLY",
+      files: "assembly.glb · assembly.step",
+      text: "The whole product in one model: boards and bodies, fitted.",
+    },
   ];
 
   const commands = [
@@ -139,8 +211,8 @@ bodies:
 </script>
 
 <Seo
-  title="Fusible — the fuse for your hardware | Kono"
-  description="Fusible is an open-source electronic linter and tscircuit project manager. A failing rule blows the fuse and blocks exports and firmware codegen. Download Fusible Studio or the CLI."
+  title="Fusible — the fuse for your whole hardware product | Kono"
+  description="Fusible is an open-source tool that checks a whole hardware product: boards, cables between them, firmware and enclosure. A failing rule blows the fuse and blocks exports and codegen. Download Fusible Studio or the CLI."
   path="/fusible"
   jsonLd={{
     "@type": "SoftwareApplication",
@@ -148,13 +220,13 @@ bodies:
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Windows, macOS, Linux",
     description:
-      "Open-source electronic linter and tscircuit project manager. A failing rule blows the fuse and blocks exports and firmware codegen.",
+      "Open-source tool that checks a whole hardware product: boards, cables, firmware and enclosure. A failing rule blows the fuse and blocks exports and codegen.",
     url: `${page.url.origin}/fusible`,
     downloadUrl: `${page.url.origin}/fusible/download`,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: { "@type": "Organization", name: "Kono" },
   }}
-  keywords="Fusible, tscircuit, electronic linter, PCB design rule check, Circuit JSON, Embassy, firmware codegen, Gerber export"
+  keywords="Fusible, tscircuit, electronic linter, PCB design rule check, enclosure generator, hardware assembly check, bill of materials, KiCad sync, firmware codegen, Gerber export"
 />
 
 <div class="relative min-h-screen bg-[#000000] text-[#FFFFFF]">
@@ -195,10 +267,11 @@ bodies:
         THE FUSE FOR YOUR HARDWARE
       </h1>
       <p class="text-sm text-[#FFFFFF]/75 max-w-2xl leading-relaxed">
-        Fusible reads the circuit your tscircuit design produces and checks it
-        against the rules a board must respect. When a rule fails, the fuse
-        blows: exports stop and no firmware is generated. A broken board never
-        leaves your machine.
+        Fusible started as a linter for tscircuit boards. It now follows the
+        whole product: several boards, the cables between them, the firmware
+        and the enclosure around them. When a rule fails, the fuse blows:
+        exports stop and nothing is generated. A broken design never leaves
+        your machine.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 pt-2">
         <a
@@ -223,12 +296,51 @@ bodies:
           EXIT 1 WHEN ANY RULE FAILS
         </span>
       </div>
+      <div class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/45">
+        ON EACH BOARD
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {#each rules as rule}
+        {#each boardRules as rule}
           <div class="bg-surface p-6 space-y-2">
             <div class="text-xs text-[#86A881] break-words">{rule.code}</div>
             <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
               {rule.text}
+            </p>
+          </div>
+        {/each}
+      </div>
+      <div class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/45 pt-2">
+        ACROSS BOARDS AND BODIES
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {#each productRules as rule}
+          <div class="bg-surface p-6 space-y-2">
+            <div class="text-xs text-[#86A881] break-words">{rule.code}</div>
+            <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
+              {rule.text}
+            </p>
+          </div>
+        {/each}
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+        <h2 class="text-xl md:text-2xl uppercase">
+          FROM ONE BOARD TO THE WHOLE PRODUCT
+        </h2>
+        <span class="text-[10px] uppercase tracking-widest text-[#FFFFFF]/45">
+          ONE PROJECT, ONE FUSE
+        </span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {#each scope as item}
+          <div class="border-t border-border pt-4 space-y-2">
+            <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+              {item.code}
+            </div>
+            <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
+              {item.text}
             </p>
           </div>
         {/each}
@@ -268,8 +380,9 @@ bodies:
       <div class="lg:col-span-5 space-y-5">
         <h2 class="text-xl md:text-2xl uppercase">ONE MANIFEST</h2>
         <p class="text-sm text-[#FFFFFF]/75 leading-relaxed">
-          A single fusible.yml ties boards, firmware and bodies together, so
-          the circuit, the chip and the code can never drift apart.
+          A single fusible.yml ties boards, cables, firmware, bodies and the
+          assembly together, so the circuit, the chip, the code and the case can
+          never drift apart.
         </p>
         <div class="space-y-4">
           {#each manifestPoints as point}
@@ -311,7 +424,7 @@ bodies:
           FUSIBLE EXPORT --PRESET ALL
         </span>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {#each presets as preset}
           <div class="border-t border-border pt-4 space-y-2">
             <div class="text-[10px] uppercase tracking-widest text-[#86A881]">

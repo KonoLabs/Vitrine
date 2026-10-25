@@ -3,17 +3,17 @@
     {
       code: "CONTRACT",
       title: "ONE FILE",
-      text: "A single fusible.yml ties the circuit, the chip and the firmware together, so the three can never drift apart.",
+      text: "A single fusible.yml ties boards, cables, firmware and enclosure together, so they can never drift apart.",
     },
     {
       code: "CHECK",
       title: "BEFORE THE BENCH",
-      text: "Electrical and physical rules run on the circuit file itself, before a line of firmware exists.",
+      text: "Electrical and physical rules run on the design itself, from one board to the finished assembly, before anything is built.",
     },
     {
       code: "FUSE BLOWS",
       title: "FAIL-CLOSED",
-      text: "A failing rule exits with an error and no firmware is generated. A broken board never reaches production.",
+      text: "A failing rule exits with an error and nothing is generated. A broken design never reaches production.",
     },
   ];
 
@@ -81,15 +81,17 @@
     >
       <div class="space-y-5">
         <p class="text-sm text-[#FFFFFF]/80 leading-relaxed">
-          Hardware and firmware usually live in two separate worlds, and
-          mistakes only show up on the bench. Fusible reads the circuit file
-          your design tools produce, checks it against the rules a board must
-          respect, and refuses to generate firmware for a board that fails them.
+          Boards, firmware and enclosures usually live in separate worlds, and
+          mistakes only show up on the bench. Fusible reads the design your
+          tools produce, checks every board, the cables between them and the
+          case around them, and refuses to generate anything for a design that
+          fails.
         </p>
         <div class="space-y-2 text-xs text-[#86A881]">
           <div>+ Reads the circuit JSON produced by tscircuit</div>
           <div>+ Checks the electrical and physical rules of the board</div>
-          <div>+ One fusible.yml for circuit, chip and firmware</div>
+          <div>+ One fusible.yml for boards, firmware and enclosure</div>
+          <div>+ Checks that cases fit boards: holes, bosses, connectors</div>
           <div>+ Documented exit codes your build can act on</div>
         </div>
       </div>
