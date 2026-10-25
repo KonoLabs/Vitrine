@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import Backdrop from "$lib/components/sections/Backdrop.svelte";
   import SerpentTrace from "$lib/components/sections/SerpentTrace.svelte";
   import TopNav from "$lib/components/sections/TopNav.svelte";
@@ -53,6 +54,22 @@
   description={site.description}
   keywords={site.keywords}
   path="/"
+  jsonLd={[
+    {
+      "@type": "Organization",
+      name: site.name,
+      url: page.url.origin,
+      logo: `${page.url.origin}/logo-green-bg.png`,
+      description: site.description,
+      sameAs: ["https://github.com/KonoLabs"],
+    },
+    {
+      "@type": "WebSite",
+      name: site.name,
+      url: page.url.origin,
+      inLanguage: "en",
+    },
+  ]}
 />
 
 <div

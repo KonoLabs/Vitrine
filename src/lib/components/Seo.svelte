@@ -16,6 +16,7 @@
     publishedTime = undefined,
     tags = [],
     noindex = false,
+    jsonLd = [],
   }: {
     title?: string;
     description?: string;
@@ -30,12 +31,21 @@
     publishedTime?: string;
     tags?: string[];
     noindex?: boolean;
+    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   } = $props();
 
   const canonicalUrl = $derived(
     new URL(path ?? page.url.pathname, page.url.origin).href,
   );
   const imageUrl = $derived(new URL(image, page.url.origin).href);
+  const structured = $derived(
+    [jsonLd].flat().map((node) =>
+      JSON.stringify({ "@context": "https://schema.org", ...node }).replace(
+        /</g,
+        "\\u003c",
+      ),
+    ),
+  );
 </script>
 
 <svelte:head>
@@ -44,8 +54,11 @@
   {#if keywords}<meta name="keywords" content={keywords} />{/if}
   <meta
     name="robots"
-    content={noindex ? "noindex, nofollow" : "index, follow"}
+    content={noindex
+      ? "noindex, nofollow"
+      : "index, follow, max-image-preview:large, max-snippet:-1"}
   />
+  <meta name="author" content={site.name} />
   <meta name="theme-color" content={site.themeColor} />
   <link rel="canonical" href={canonicalUrl} />
 
@@ -75,4 +88,8 @@
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
   <meta name="twitter:image:alt" content={imageAlt} />
+
+  {#each structured as json}
+    {@html `<script type="application/ld+json">${json}<\/script>`}
+  {/each}
 </svelte:head>

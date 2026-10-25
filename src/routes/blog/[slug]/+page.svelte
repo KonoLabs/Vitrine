@@ -1,4 +1,5 @@
 <script>
+  import { page } from "$app/state";
   import Seo from "$lib/components/Seo.svelte";
   import { site } from "$lib/seo";
 
@@ -14,6 +15,16 @@
   type="article"
   publishedTime={data.meta.date}
   {tags}
+  jsonLd={{
+    "@type": "BlogPosting",
+    headline: data.meta.title,
+    description: data.meta.description ?? site.description,
+    datePublished: data.meta.date,
+    author: { "@type": "Organization", name: site.name },
+    publisher: { "@type": "Organization", name: site.name },
+    mainEntityOfPage: page.url.href,
+    image: `${page.url.origin}${site.image}`,
+  }}
 />
 
 <div class="page-shell">

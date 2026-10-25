@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import Seo from "$lib/components/Seo.svelte";
 
   const rules = [
@@ -141,6 +142,18 @@ bodies:
   title="Fusible — the fuse for your hardware | Kono"
   description="Fusible is an open-source electronic linter and tscircuit project manager. A failing rule blows the fuse and blocks exports and firmware codegen. Download Fusible Studio or the CLI."
   path="/fusible"
+  jsonLd={{
+    "@type": "SoftwareApplication",
+    name: "Fusible",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Windows, macOS, Linux",
+    description:
+      "Open-source electronic linter and tscircuit project manager. A failing rule blows the fuse and blocks exports and firmware codegen.",
+    url: `${page.url.origin}/fusible`,
+    downloadUrl: `${page.url.origin}/fusible/download`,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    publisher: { "@type": "Organization", name: "Kono" },
+  }}
   keywords="Fusible, tscircuit, electronic linter, PCB design rule check, Circuit JSON, Embassy, firmware codegen, Gerber export"
 />
 
