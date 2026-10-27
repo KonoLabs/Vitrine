@@ -4,9 +4,9 @@
       <h1
         class="text-4xl sm:text-5xl xl:text-6xl leading-[1.08] uppercase tracking-tight reveal-hero-1"
       >
-        CUSTOM <span class="bg-[#86A881] text-[#000000] px-2">PCB</span>
+        CUSTOM <span class="bg-[#88A888] text-[#000000] px-2">PCB</span>
         HARDWARE, EMBEDDED
-        <span class="text-[#86A881]">FIRMWARE</span><br />
+        <span class="text-[#88A888]">FIRMWARE</span><br />
         <span class="whitespace-nowrap">& FULL-STACK</span> SOFTWARE.
       </h1>
 
@@ -23,7 +23,7 @@
     <div class="flex flex-wrap gap-4 reveal-hero-3">
       <a
         href="#terminal"
-        class="bg-[#86A881] text-[#000000] px-8 py-4 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF]"
+        class="bg-[#88A888] text-[#000000] px-8 py-4 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF]"
       >
         &gt; TELL US WHAT YOU WANT TO BUILD
       </a>

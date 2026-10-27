@@ -75,7 +75,7 @@
 <section id="delivery" class="space-y-8">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
     <div>
-      <div class="text-xs text-[#86A881] uppercase tracking-widest">
+      <div class="text-xs text-[#88A888] uppercase tracking-widest">
         HOW IT GOES
       </div>
       <h2 class="text-xl md:text-2xl uppercase mt-1">
@@ -95,13 +95,13 @@
         onclick={() => (activeStage = i)}
         class="text-left p-5 cursor-pointer no-underline transition-colors {activeStage ===
         i
-          ? 'bg-[#86A881] text-[#000000]'
+          ? 'bg-[#88A888] text-[#000000]'
           : 'bg-surface text-[#FFFFFF] hover:bg-surface-hover'}"
       >
         <div
           class="text-[10px] uppercase tracking-widest {activeStage === i
             ? 'text-[#000000]/70'
-            : 'text-[#86A881]'}"
+            : 'text-[#88A888]'}"
         >
           {stage.duration}
         </div>
@@ -120,13 +120,13 @@
         <p class="text-xs md:text-sm text-[#FFFFFF]/75 leading-relaxed">
           {stage.summary}
         </p>
-        <div class="pt-4 border-t border-border text-xs text-[#86A881]">
+        <div class="pt-4 border-t border-border text-xs text-[#88A888]">
           ESTIMATED DURATION: {stage.duration}
         </div>
       </div>
 
       <div class="md:col-span-7 space-y-3">
-        <div class="text-xs text-[#86A881] uppercase tracking-widest mb-3">
+        <div class="text-xs text-[#88A888] uppercase tracking-widest mb-3">
           WHAT YOU RECEIVE
         </div>
         <div class="divide-y divide-border">
@@ -135,7 +135,7 @@
               class="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-4 text-xs text-[#FFFFFF]"
             >
               <span>{d}</span>
-              <span class="text-[#86A881] text-sm">✓</span>
+              <span class="text-[#88A888] text-sm">✓</span>
             </div>
           {/each}
         </div>
@@ -146,7 +146,7 @@
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     {#each metrics as m}
       <div class="bg-surface p-6 space-y-2">
-        <div class="text-2xl md:text-3xl text-[#86A881]">{m.value}</div>
+        <div class="text-2xl md:text-3xl text-[#88A888]">{m.value}</div>
         <div class="text-[11px] uppercase tracking-widest text-[#FFFFFF]">
           {m.label}
         </div>

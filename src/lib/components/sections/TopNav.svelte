@@ -43,32 +43,32 @@
       <div class="hidden md:flex items-center gap-6">
         <a
           href="#inspector"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >EXAMPLES</a
         >
         <a
           href="#delivery"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >DELIVERY</a
         >
         <a
           href="#fieldcam"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >FIELD CAM</a
         >
         <a
           href="#capabilities"
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >SERVICES</a
         >
         <a
           href={fusibleHref}
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >FUSIBLE</a
         >
         <a
           href="#terminal"
-          class="no-underline bg-[#86A881] text-[#000000] px-3 py-1 leading-none hover:bg-[#FFFFFF] transition-colors"
+          class="no-underline bg-[#88A888] text-[#000000] px-3 py-1 leading-none hover:bg-[#FFFFFF] transition-colors"
           >CONTACT</a
         >
       </div>
@@ -76,7 +76,7 @@
       <button
         type="button"
         onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-        class="md:hidden flex items-center justify-center p-1 text-[#FFFFFF] hover:text-[#86A881] cursor-pointer"
+        class="md:hidden flex items-center justify-center p-1 text-[#FFFFFF] hover:text-[#88A888] cursor-pointer"
         aria-label="Toggle navigation menu"
         aria-expanded={mobileMenuOpen}
       >
@@ -109,7 +109,7 @@
         <button
           type="button"
           onclick={() => (mobileMenuOpen = false)}
-          class="p-1 text-[#FFFFFF] hover:text-[#86A881] cursor-pointer"
+          class="p-1 text-[#FFFFFF] hover:text-[#88A888] cursor-pointer"
           aria-label="Close menu"
         >
           <Icon icon="pixelarticons:close" class="w-6 h-6" />
@@ -122,37 +122,37 @@
         <a
           href="#inspector"
           onclick={() => (mobileMenuOpen = false)}
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-3 py-2 transition-colors"
           >EXAMPLES</a
         >
         <a
           href="#delivery"
           onclick={() => (mobileMenuOpen = false)}
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-3 py-2 transition-colors"
           >DELIVERY</a
         >
         <a
           href="#fieldcam"
           onclick={() => (mobileMenuOpen = false)}
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-3 py-2 transition-colors"
           >FIELD CAM</a
         >
         <a
           href="#capabilities"
           onclick={() => (mobileMenuOpen = false)}
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-3 py-2 transition-colors"
           >SERVICES</a
         >
         <a
           href={fusibleHref}
           onclick={() => (mobileMenuOpen = false)}
-          class="text-[#FFFFFF] no-underline hover:bg-[#86A881] hover:text-[#000000] px-3 py-2 transition-colors"
+          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-3 py-2 transition-colors"
           >FUSIBLE</a
         >
         <a
           href="#terminal"
           onclick={() => (mobileMenuOpen = false)}
-          class="no-underline bg-[#86A881] text-[#000000] px-3 py-2.5 hover:bg-[#FFFFFF] transition-colors text-center mt-4"
+          class="no-underline bg-[#88A888] text-[#000000] px-3 py-2.5 hover:bg-[#FFFFFF] transition-colors text-center mt-4"
           >CONTACT</a
         >
       </div>
@@ -161,7 +161,7 @@
     <div class="pt-6 border-t border-border">
       <a
         href="mailto:yann@facile.studio"
-        class="inline-flex items-center gap-2 text-[11px] text-[#FFFFFF]/70 hover:text-[#86A881] no-underline tracking-wider leading-none"
+        class="inline-flex items-center gap-2 text-[11px] text-[#FFFFFF]/70 hover:text-[#88A888] no-underline tracking-wider leading-none"
       >
         <Icon
           icon="pixelarticons:mail"

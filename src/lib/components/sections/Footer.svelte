@@ -1,14 +1,14 @@
 <footer
   class="bg-surface p-6 grid grid-cols-1 md:grid-cols-12 gap-4 text-xs uppercase tracking-widest"
 >
-  <div class="md:col-span-4 text-[#86A881]">
+  <div class="md:col-span-4 text-[#88A888]">
     KONO · HARDWARE &amp; SOFTWARE ENGINEERING
   </div>
 
   <div class="md:col-span-4 md:text-center">
     <a
       href="https://github.com/KonoLabs"
-      class="inline-flex items-center gap-2 text-[#FFFFFF] no-underline hover:text-[#86A881]"
+      class="inline-flex items-center gap-2 text-[#FFFFFF] no-underline hover:text-[#88A888]"
     >
       <svg viewBox="0 0 16 16" class="w-4 h-4 fill-current" aria-hidden="true"
         ><path

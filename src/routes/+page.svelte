@@ -73,7 +73,7 @@
 />
 
 <div
-  class="relative min-h-screen bg-[#000000] text-[#FFFFFF] font-['undefined',monospace] selection:bg-[#86A881] selection:text-[#000000] overflow-x-hidden antialiased"
+  class="relative min-h-screen bg-[#000000] text-[#FFFFFF] font-['undefined',monospace] selection:bg-[#88A888] selection:text-[#000000] overflow-x-hidden antialiased"
 >
   <Backdrop {introActive} {wiping} />
   <SerpentTrace bind:introActive bind:wiping />

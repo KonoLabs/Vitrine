@@ -63,7 +63,7 @@
 <section id="fusible" class="space-y-8">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
     <div>
-      <div class="text-xs text-[#86A881] uppercase tracking-widest">
+      <div class="text-xs text-[#88A888] uppercase tracking-widest">
         OPEN SOURCE
       </div>
       <h2 class="text-xl md:text-2xl uppercase mt-1">
@@ -87,7 +87,7 @@
           case around them, and refuses to generate anything for a design that
           fails.
         </p>
-        <div class="space-y-2 text-xs text-[#86A881]">
+        <div class="space-y-2 text-xs text-[#88A888]">
           <div>+ Reads the circuit JSON produced by tscircuit</div>
           <div>+ Checks the electrical and physical rules of the board</div>
           <div>+ One fusible.yml for boards, firmware and enclosure</div>
@@ -104,7 +104,7 @@
 
     <div class="lg:col-span-7 bg-surface p-6 md:p-8 space-y-6">
       <div class="flex justify-between items-center gap-3">
-        <span class="text-xs text-[#86A881] uppercase tracking-widest"
+        <span class="text-xs text-[#88A888] uppercase tracking-widest"
           >QUICK START</span
         >
         <span class="text-[10px] text-[#FFFFFF]/45 uppercase tracking-widest"
@@ -116,7 +116,7 @@
       >
         {#each commands as cmd}
           <div class="flex flex-wrap gap-x-2">
-            <span class="text-[#86A881]">{cmd.prompt}</span>
+            <span class="text-[#88A888]">{cmd.prompt}</span>
             <span class="text-[#FFFFFF]">{cmd.line}</span>
             {#if cmd.note}
               <span class="text-[#FFFFFF]/45">{cmd.note}</span>
@@ -128,7 +128,7 @@
         {#each pillars as pillar}
           <div class="space-y-1.5">
             <span
-              class="text-[10px] uppercase tracking-widest text-[#86A881] block"
+              class="text-[10px] uppercase tracking-widest text-[#88A888] block"
               >{pillar.code}</span
             >
             <div class="text-xs uppercase text-[#FFFFFF]">
@@ -143,19 +143,19 @@
       <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3">
         <a
           href="/fusible/download"
-          class="inline-flex items-center justify-center gap-3 bg-[#86A881] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF]"
+          class="inline-flex items-center justify-center gap-3 bg-[#88A888] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF]"
         >
           &gt; DOWNLOAD
         </a>
         <a
           href="/fusible"
-          class="inline-flex items-center justify-center gap-3 border border-border-subtle text-[#FFFFFF] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:border-[#86A881] hover:text-[#86A881]"
+          class="inline-flex items-center justify-center gap-3 border border-border-subtle text-[#FFFFFF] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:border-[#88A888] hover:text-[#88A888]"
         >
           READ MORE
         </a>
         <a
           href="https://github.com/KonoLabs/Fusible#readme"
-          class="inline-flex items-center justify-center gap-3 text-[#FFFFFF]/60 px-2 py-3 text-xs uppercase tracking-widest no-underline hover:text-[#86A881]"
+          class="inline-flex items-center justify-center gap-3 text-[#FFFFFF]/60 px-2 py-3 text-xs uppercase tracking-widest no-underline hover:text-[#88A888]"
         >
           DOCS ON GITHUB
         </a>
@@ -168,7 +168,7 @@
       class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4"
     >
       <div>
-        <div class="text-xs text-[#86A881] uppercase tracking-widest">
+        <div class="text-xs text-[#88A888] uppercase tracking-widest">
           FUSIBLE STUDIO
         </div>
         <div class="text-xs text-[#FFFFFF]/70 mt-1">
@@ -183,7 +183,7 @@
             onclick={() => (selectedDemo = demo.id)}
             class="px-3 py-1.5 text-xs uppercase tracking-widest transition-colors cursor-pointer {selectedDemo ===
             demo.id
-              ? 'bg-[#86A881] text-[#000000]'
+              ? 'bg-[#88A888] text-[#000000]'
               : 'text-[#FFFFFF]/60 hover:text-[#FFFFFF] bg-[#000000]'}"
           >
             {demo.label}

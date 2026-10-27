@@ -120,7 +120,7 @@
       </a>
       <a
         href="/fusible"
-        class="text-[#FFFFFF]/60 no-underline hover:text-[#86A881] transition-colors"
+        class="text-[#FFFFFF]/60 no-underline hover:text-[#88A888] transition-colors"
         >← FUSIBLE</a
       >
     </div>
@@ -130,7 +130,7 @@
     class="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 pb-24 space-y-12 md:space-y-16"
   >
     <section class="space-y-4">
-      <div class="text-xs text-[#86A881] uppercase tracking-widest">
+      <div class="text-xs text-[#88A888] uppercase tracking-widest">
         FUSIBLE STUDIO{version ? ` · V${version}` : ""}
       </div>
       <h1 class="text-3xl md:text-4xl uppercase">DOWNLOAD</h1>
@@ -141,7 +141,7 @@
       </p>
       <a
         href={notesUrl}
-        class="inline-block text-[10px] uppercase tracking-widest text-[#86A881] no-underline hover:text-[#FFFFFF] transition-colors"
+        class="inline-block text-[10px] uppercase tracking-widest text-[#88A888] no-underline hover:text-[#FFFFFF] transition-colors"
         >RELEASE NOTES ↗</a
       >
     </section>
@@ -151,7 +151,7 @@
         {@const primary = detected !== null && i === 0}
         <div
           class="bg-surface p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 {primary
-            ? 'border border-[#86A881]'
+            ? 'border border-[#88A888]'
             : 'border border-transparent'}"
         >
           <div class="md:col-span-5 space-y-4">
@@ -159,7 +159,7 @@
               <h2 class="text-lg uppercase">{platform.name}</h2>
               {#if primary}
                 <span
-                  class="bg-[#86A881] text-[#000000] px-2 py-0.5 text-[10px] uppercase tracking-widest"
+                  class="bg-[#88A888] text-[#000000] px-2 py-0.5 text-[10px] uppercase tracking-widest"
                   >YOUR SYSTEM</span
                 >
               {/if}
@@ -169,8 +169,8 @@
                 <a
                   href={base + file.asset}
                   class="inline-flex items-center justify-between gap-3 px-5 py-3 text-xs uppercase tracking-widest no-underline transition-colors {primary
-                    ? 'bg-[#86A881] text-[#000000] hover:bg-[#FFFFFF]'
-                    : 'border border-border-subtle text-[#FFFFFF] hover:border-[#86A881] hover:text-[#86A881]'}"
+                    ? 'bg-[#88A888] text-[#000000] hover:bg-[#FFFFFF]'
+                    : 'border border-border-subtle text-[#FFFFFF] hover:border-[#88A888] hover:text-[#88A888]'}"
                 >
                   <span>&gt; {file.label}</span>
                 </a>
@@ -178,7 +178,7 @@
             </div>
           </div>
           <div class="md:col-span-7 space-y-2">
-            <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+            <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
               FIRST RUN
             </div>
             <ul class="space-y-1.5 text-xs text-[#FFFFFF]/75">
@@ -195,19 +195,19 @@
       <h2 class="text-xl md:text-2xl uppercase">COMMAND LINE ONLY</h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="bg-surface p-6 space-y-3">
-          <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+          <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
             FROM SOURCE
           </div>
           <div
             class="bg-[#000000] border border-border p-4 font-['Undefined',monospace] text-xs md:text-sm overflow-x-auto"
           >
             <div class="whitespace-nowrap">
-              <span class="text-[#86A881]">$</span> cargo install fusible
+              <span class="text-[#88A888]">$</span> cargo install fusible
             </div>
           </div>
         </div>
         <div class="bg-surface p-6 space-y-3">
-          <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+          <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
             PREBUILT BINARIES
           </div>
           <ul class="space-y-1.5 text-xs">
@@ -215,7 +215,7 @@
               <li>
                 <a
                   href={target.href}
-                  class="text-[#FFFFFF]/75 no-underline hover:text-[#86A881] transition-colors"
+                  class="text-[#FFFFFF]/75 no-underline hover:text-[#88A888] transition-colors"
                   >+ {target.label}</a
                 >
               </li>

@@ -11,7 +11,7 @@
 <section id="fieldcam" class="space-y-6">
   <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
     <div>
-      <div class="text-xs text-[#86A881] uppercase tracking-widest">
+      <div class="text-xs text-[#88A888] uppercase tracking-widest">
         CASE STUDY
       </div>
       <h2 class="text-xl md:text-2xl uppercase mt-1">
@@ -34,7 +34,7 @@
         checked by Fusible, and exported to glTF — this is the board you orbit,
         not a render of it.
       </p>
-      <div class="space-y-2 text-xs text-[#86A881]">
+      <div class="space-y-2 text-xs text-[#88A888]">
         <div>+ Designed in KiCad, verified by the fuse contract</div>
         <div>+ Verified board generates the firmware pin map</div>
         <div>+ Model baked from the export, loaded only when in view</div>
@@ -57,7 +57,7 @@
 
       <a
         href="/fieldcam"
-        class="inline-flex items-center gap-3 bg-[#86A881] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
+        class="inline-flex items-center gap-3 bg-[#88A888] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
       >
         &gt; OPEN THE CASE STUDY
       </a>

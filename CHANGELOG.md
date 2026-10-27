@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.1] - 2026-10-27
+
+### Changed
+
+- Align brand primary green to #88A888 across all components, badges, highlights, and documentation.
+
 ## [0.6.0] - 2026-10-24
 
 ### Added

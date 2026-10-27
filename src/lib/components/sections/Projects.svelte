@@ -37,7 +37,7 @@
 
 <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-12 space-y-8">
   <div>
-    <span class="text-xs uppercase tracking-widest text-[#86A881]"
+    <span class="text-xs uppercase tracking-widest text-[#88A888]"
       >SELECTED WORK</span
     >
     <h1 class="text-3xl md:text-4xl uppercase mt-2">PROJECTS</h1>
@@ -54,7 +54,7 @@
       >
         <div>
           <span
-            class="text-xs uppercase tracking-widest text-[#86A881] block mb-2"
+            class="text-xs uppercase tracking-widest text-[#88A888] block mb-2"
           >
             {project.tagline}
           </span>
@@ -65,7 +65,7 @@
         </div>
 
         <div
-          class="mt-8 pt-4 border-t border-border flex flex-wrap gap-x-3 gap-y-1 text-[10px] uppercase tracking-widest text-[#86A881]"
+          class="mt-8 pt-4 border-t border-border flex flex-wrap gap-x-3 gap-y-1 text-[10px] uppercase tracking-widest text-[#88A888]"
         >
           {#each project.stack as tech}
             <span>{tech}</span>

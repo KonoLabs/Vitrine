@@ -100,7 +100,7 @@
 <section id="inspector" class="space-y-8">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
     <div class="md:col-span-5">
-      <div class="text-xs text-[#86A881] uppercase tracking-widest mb-2">
+      <div class="text-xs text-[#88A888] uppercase tracking-widest mb-2">
         WHAT WE BUILD
       </div>
       <h2 class="text-2xl md:text-3xl uppercase">TWO EXAMPLES OF OUR WORK</h2>
@@ -117,7 +117,7 @@
             onclick={() => (selectedExample = tab.key)}
             class="inline-flex items-center gap-2 px-5 py-3 text-xs uppercase tracking-widest cursor-pointer no-underline leading-none {selectedExample ===
             tab.key
-              ? 'bg-[#86A881] text-[#000000]'
+              ? 'bg-[#88A888] text-[#000000]'
               : 'bg-surface text-[#FFFFFF] hover:bg-surface-hover'}"
           >
             <Icon icon={tab.icon} class="w-4 h-4 shrink-0" />
@@ -149,7 +149,7 @@
           {#each example.parts as part}
             <div class="space-y-1.5">
               <span
-                class="text-[11px] text-[#86A881] block uppercase tracking-wider"
+                class="text-[11px] text-[#88A888] block uppercase tracking-wider"
                 >{part.label}</span
               >
               <span class="text-[#FFFFFF]/75 leading-relaxed block"
@@ -162,7 +162,7 @@
         <div class="mt-auto pt-6 border-t border-border space-y-5">
           <div>
             <div class="flex justify-between items-center gap-3 mb-2">
-              <span class="text-[10px] text-[#86A881] uppercase tracking-widest"
+              <span class="text-[10px] text-[#88A888] uppercase tracking-widest"
                 >CONNECTIVITY</span
               >
               <span
@@ -175,7 +175,7 @@
             >
               {#each example.connects as item}
                 <span class="inline-flex items-center gap-1.5">
-                  <span class="text-[#86A881]">·</span>
+                  <span class="text-[#88A888]">·</span>
                   {item}
                 </span>
               {/each}
@@ -184,7 +184,7 @@
 
           <div class="space-y-2">
             <span
-              class="text-[10px] text-[#86A881] uppercase tracking-widest block"
+              class="text-[10px] text-[#88A888] uppercase tracking-widest block"
               >TYPICAL USE CASES</span
             >
             <div
@@ -192,7 +192,7 @@
             >
               {#each example.uses as use}
                 <div class="leading-relaxed">
-                  <span class="text-[#86A881] mr-1.5">+</span>{use}
+                  <span class="text-[#88A888] mr-1.5">+</span>{use}
                 </div>
               {/each}
             </div>
@@ -208,7 +208,7 @@
         <div
           class="flex justify-between items-center mb-6 pb-4 border-b border-border"
         >
-          <span class="text-xs text-[#86A881] uppercase tracking-widest"
+          <span class="text-xs text-[#88A888] uppercase tracking-widest"
             >HOW WE WORK TOGETHER</span
           >
           <span class="text-[10px] text-[#FFFFFF]/60 uppercase tracking-wider"
@@ -221,7 +221,7 @@
             <div class="py-4 first:pt-0 last:pb-0 space-y-1.5">
               <div class="flex justify-between items-baseline gap-3">
                 <span class="text-sm text-[#FFFFFF] uppercase">{eng.name}</span>
-                <span class="text-xs text-[#86A881] uppercase tracking-wider"
+                <span class="text-xs text-[#88A888] uppercase tracking-wider"
                   >{eng.tag}</span
                 >
               </div>
@@ -234,7 +234,7 @@
       </div>
 
       <div
-        class="mt-6 pt-4 border-t border-border text-xs text-[#86A881] flex justify-between gap-3"
+        class="mt-6 pt-4 border-t border-border text-xs text-[#88A888] flex justify-between gap-3"
       >
         <span>REPLY WITHIN: 24H</span>
         <span>REMOTE · WORLDWIDE</span>

@@ -136,7 +136,7 @@ assembly:
   type Token = { text: string; tone: string };
 
   const tones: Record<string, string> = {
-    key: "text-[#86A881]",
+    key: "text-[#88A888]",
     path: "text-[#D9B26F]",
     value: "text-[#8FB8D8]",
     punct: "text-[#FFFFFF]/40",
@@ -244,12 +244,12 @@ assembly:
       <div class="flex items-center gap-6">
         <a
           href="/fusible/download"
-          class="text-[#86A881] no-underline hover:text-[#FFFFFF] transition-colors"
+          class="text-[#88A888] no-underline hover:text-[#FFFFFF] transition-colors"
           >DOWNLOAD</a
         >
         <a
           href="/"
-          class="text-[#FFFFFF]/60 no-underline hover:text-[#86A881] transition-colors"
+          class="text-[#FFFFFF]/60 no-underline hover:text-[#88A888] transition-colors"
           >← HOME</a
         >
       </div>
@@ -260,7 +260,7 @@ assembly:
     class="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 pb-24 space-y-14 md:space-y-20"
   >
     <section class="space-y-6">
-      <div class="text-xs text-[#86A881] uppercase tracking-widest">
+      <div class="text-xs text-[#88A888] uppercase tracking-widest">
         OPEN SOURCE · WRITTEN IN RUST
       </div>
       <h1 class="text-3xl md:text-5xl uppercase leading-tight max-w-3xl">
@@ -276,13 +276,13 @@ assembly:
       <div class="flex flex-col sm:flex-row gap-3 pt-2">
         <a
           href="/fusible/download"
-          class="inline-flex items-center justify-center gap-3 bg-[#86A881] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
+          class="inline-flex items-center justify-center gap-3 bg-[#88A888] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
         >
           &gt; DOWNLOAD
         </a>
         <a
           href="#cli"
-          class="inline-flex items-center justify-center gap-3 border border-border-subtle text-[#FFFFFF] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:border-[#86A881] hover:text-[#86A881] transition-colors"
+          class="inline-flex items-center justify-center gap-3 border border-border-subtle text-[#FFFFFF] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:border-[#88A888] hover:text-[#88A888] transition-colors"
         >
           INSTALL THE CLI
         </a>
@@ -302,7 +302,7 @@ assembly:
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {#each boardRules as rule}
           <div class="bg-surface p-6 space-y-2">
-            <div class="text-xs text-[#86A881] break-words">{rule.code}</div>
+            <div class="text-xs text-[#88A888] break-words">{rule.code}</div>
             <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
               {rule.text}
             </p>
@@ -315,7 +315,7 @@ assembly:
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {#each productRules as rule}
           <div class="bg-surface p-6 space-y-2">
-            <div class="text-xs text-[#86A881] break-words">{rule.code}</div>
+            <div class="text-xs text-[#88A888] break-words">{rule.code}</div>
             <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
               {rule.text}
             </p>
@@ -336,7 +336,7 @@ assembly:
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {#each scope as item}
           <div class="border-t border-border pt-4 space-y-2">
-            <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+            <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
               {item.code}
             </div>
             <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
@@ -366,7 +366,7 @@ assembly:
               />
             </div>
             <figcaption class="space-y-1">
-              <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+              <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
                 {shot.label}
               </div>
               <div class="text-[11px] text-[#FFFFFF]/65">{shot.desc}</div>
@@ -387,7 +387,7 @@ assembly:
         <div class="space-y-4">
           {#each manifestPoints as point}
             <div class="border-t border-border pt-3 space-y-1">
-              <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+              <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
                 {point.code}
               </div>
               <p class="text-[11px] text-[#FFFFFF]/65 leading-relaxed">
@@ -427,7 +427,7 @@ assembly:
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {#each presets as preset}
           <div class="border-t border-border pt-4 space-y-2">
-            <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+            <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
               {preset.code}
             </div>
             <div class="text-xs text-[#FFFFFF] break-words">{preset.files}</div>
@@ -444,7 +444,7 @@ assembly:
         <h2 class="text-xl md:text-2xl uppercase">CLI QUICKSTART</h2>
         <a
           href="/fusible/download#cli"
-          class="text-[10px] uppercase tracking-widest text-[#86A881] no-underline hover:text-[#FFFFFF] transition-colors"
+          class="text-[10px] uppercase tracking-widest text-[#88A888] no-underline hover:text-[#FFFFFF] transition-colors"
           >PREBUILT BINARIES →</a
         >
       </div>
@@ -453,7 +453,7 @@ assembly:
       >
         {#each commands as line}
           <div class="flex gap-x-2 whitespace-nowrap">
-            <span class="text-[#86A881]">$</span>
+            <span class="text-[#88A888]">$</span>
             <span class="text-[#FFFFFF]">{line}</span>
           </div>
         {/each}
@@ -463,13 +463,13 @@ assembly:
     <section class="flex flex-col sm:flex-row gap-3">
       <a
         href="https://github.com/KonoLabs/Fusible"
-        class="inline-flex items-center justify-center gap-3 bg-[#86A881] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
+        class="inline-flex items-center justify-center gap-3 bg-[#88A888] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
       >
         &gt; GITHUB.COM/KONOLABS/FUSIBLE
       </a>
       <a
         href="/fieldcam"
-        class="inline-flex items-center justify-center gap-3 border border-border-subtle text-[#FFFFFF] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:border-[#86A881] hover:text-[#86A881] transition-colors"
+        class="inline-flex items-center justify-center gap-3 border border-border-subtle text-[#FFFFFF] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:border-[#88A888] hover:text-[#88A888] transition-colors"
       >
         SEE IT ON FIELDCAM
       </a>

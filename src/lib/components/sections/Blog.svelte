@@ -20,7 +20,7 @@
 
 <section class="max-w-[1440px] mx-auto px-6 md:px-12 py-12 space-y-8">
   <div>
-    <span class="text-xs uppercase tracking-widest text-[#86A881]">WRITING</span
+    <span class="text-xs uppercase tracking-widest text-[#88A888]">WRITING</span
     >
     <h1 class="text-3xl md:text-4xl uppercase mt-2">BLOG</h1>
     <p class="text-sm max-w-2xl mt-2 text-[#FFFFFF]/75">
@@ -35,7 +35,7 @@
         href="/blog/{post.slug}"
         class="block p-6 no-underline bg-surface text-[#FFFFFF] transition-colors hover:bg-surface-hover"
       >
-        <span class="text-[10px] uppercase tracking-widest text-[#86A881]">
+        <span class="text-[10px] uppercase tracking-widest text-[#88A888]">
           {formatDate(post.date)}
         </span>
         <h2 class="text-lg md:text-xl uppercase mt-2 mb-3">
@@ -48,7 +48,7 @@
         {/if}
         {#if post.tags && post.tags.length > 0}
           <div
-            class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-[10px] uppercase tracking-widest text-[#86A881]"
+            class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-[10px] uppercase tracking-widest text-[#88A888]"
           >
             {#each post.tags as tag}
               <span>· {tag}</span>

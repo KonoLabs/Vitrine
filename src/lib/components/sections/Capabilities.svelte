@@ -58,7 +58,7 @@
 <section id="capabilities" class="space-y-10">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
     <div class="md:col-span-4">
-      <div class="text-xs text-[#86A881] uppercase tracking-widest">
+      <div class="text-xs text-[#88A888] uppercase tracking-widest">
         WHAT WE DO
       </div>
       <h2 class="text-2xl md:text-3xl uppercase mt-2">
@@ -81,7 +81,7 @@
       >
         <div>
           <span
-            class="text-xs text-[#86A881] uppercase tracking-widest block mb-4"
+            class="text-xs text-[#88A888] uppercase tracking-widest block mb-4"
             >{discipline.code}</span
           >
           <h3 class="text-xl uppercase mb-3 text-[#FFFFFF]">
@@ -90,7 +90,7 @@
           <p class="text-xs text-[#FFFFFF]/75 leading-relaxed mb-6">
             {discipline.description}
           </p>
-          <div class="space-y-2 text-xs text-[#86A881]">
+          <div class="space-y-2 text-xs text-[#88A888]">
             {#each discipline.bullets as bullet}
               <div>+ {bullet}</div>
             {/each}
@@ -108,12 +108,12 @@
   <div
     class="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border pt-6 text-xs text-[#FFFFFF]/70"
   >
-    <span class="text-[10px] uppercase tracking-widest text-[#86A881]"
+    <span class="text-[10px] uppercase tracking-widest text-[#88A888]"
       >OPEN SOURCE ·</span
     >
     <a
       href="https://github.com/KonoLabs"
-      class="inline-flex items-center gap-2 text-[#FFFFFF] no-underline hover:text-[#86A881]"
+      class="inline-flex items-center gap-2 text-[#FFFFFF] no-underline hover:text-[#88A888]"
     >
       <svg viewBox="0 0 16 16" class="w-4 h-4 fill-current" aria-hidden="true"
         ><path

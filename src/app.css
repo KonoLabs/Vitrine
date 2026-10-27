@@ -19,7 +19,7 @@
 }
 
 :root {
-  --bg: #86a881;
+  --bg: #88a888;
   --fg: #ffffff;
   --border: #111111;
   --link: #111111;
@@ -35,13 +35,13 @@
   --bg: #000000;
   --fg: #ffffff;
   --border: #111111;
-  --link: #229147;
-  --link-hover: #a8b365;
-  --accent: #229147;
+  --link: #88a888;
+  --link-hover: #88a888;
+  --accent: #88a888;
   --surface: #111111;
   --subtle: #111111;
   --code-bg: #111111;
-  --code-fg: #a8b365;
+  --code-fg: #88a888;
 }
 
 @layer base {

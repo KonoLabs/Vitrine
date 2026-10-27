@@ -79,7 +79,7 @@
       </a>
       <a
         href="/projects"
-        class="text-[#FFFFFF]/60 no-underline hover:text-[#86A881] transition-colors"
+        class="text-[#FFFFFF]/60 no-underline hover:text-[#88A888] transition-colors"
         >← ALL WORK</a
       >
     </div>
@@ -91,7 +91,7 @@
     <section class="space-y-6">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <div class="text-xs text-[#86A881] uppercase tracking-widest">
+          <div class="text-xs text-[#88A888] uppercase tracking-widest">
             SELECTED WORK
           </div>
           <h1 class="text-3xl md:text-4xl uppercase mt-2">FIELD CAM</h1>
@@ -109,7 +109,7 @@
           {#each facts as fact}
             <div>
               <div class="text-[#FFFFFF]/45">{fact.label}</div>
-              <div class="text-[#86A881] mt-0.5">{fact.value}</div>
+              <div class="text-[#88A888] mt-0.5">{fact.value}</div>
             </div>
           {/each}
         </div>
@@ -128,7 +128,7 @@
         </span>
         <a
           href="https://github.com/KonoLabs/FieldCam"
-          class="text-[#86A881] no-underline hover:text-[#FFFFFF] transition-colors shrink-0"
+          class="text-[#88A888] no-underline hover:text-[#FFFFFF] transition-colors shrink-0"
         >
           github.com/KonoLabs/FieldCam ↗
         </a>
@@ -138,7 +138,7 @@
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {#each subsystems as subsystem}
         <div class="bg-surface p-6 md:p-7 space-y-3">
-          <div class="text-[10px] uppercase tracking-widest text-[#86A881]">
+          <div class="text-[10px] uppercase tracking-widest text-[#88A888]">
             {subsystem.code}
           </div>
           <ul class="space-y-1.5 text-xs text-[#FFFFFF]/75">
@@ -161,7 +161,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {#each pipeline as item}
           <div class="border-t border-border pt-4 space-y-2">
-            <span class="text-[10px] uppercase tracking-widest text-[#86A881]"
+            <span class="text-[10px] uppercase tracking-widest text-[#88A888]"
               >{item.step}</span
             >
             <div class="text-xs uppercase text-[#FFFFFF]">{item.title}</div>
@@ -176,7 +176,7 @@
     <section>
       <a
         href="https://github.com/KonoLabs/FieldCam"
-        class="inline-flex items-center gap-3 bg-[#86A881] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
+        class="inline-flex items-center gap-3 bg-[#88A888] text-[#000000] px-5 py-3 text-xs uppercase tracking-widest no-underline hover:bg-[#FFFFFF] transition-colors"
       >
         &gt; READ THE CASE STUDY
       </a>

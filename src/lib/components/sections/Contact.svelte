@@ -4,7 +4,7 @@
 
 <section id="terminal">
   <div
-    class="bg-[#86A881] text-[#000000] p-8 md:p-12 flex flex-col justify-between space-y-8"
+    class="bg-[#88A888] text-[#000000] p-8 md:p-12 flex flex-col justify-between space-y-8"
   >
     <div class="space-y-4">
       <div class="text-xs uppercase tracking-widest text-[#000000]/70">

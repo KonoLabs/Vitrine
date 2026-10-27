@@ -9,6 +9,6 @@ export const site = {
   imageWidth: 1000,
   imageHeight: 1000,
   imageAlt: "Kono — hardware, firmware and software engineering",
-  themeColor: "#86A881",
+  themeColor: "#88A888",
   locale: "en_US",
 };

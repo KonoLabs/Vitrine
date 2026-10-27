@@ -28,7 +28,7 @@
   class="fixed inset-0 pointer-events-none opacity-20 bg-[linear-gradient(to_right,var(--color-surface)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-surface)_1px,transparent_1px)] bg-[size:16px_16px]"
 ></div>
 <div
-  class="fixed inset-0 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#86A881_1px,transparent_1px),linear-gradient(to_bottom,#86A881_1px,transparent_1px)] bg-[size:96px_96px]"
+  class="fixed inset-0 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#88A888_1px,transparent_1px),linear-gradient(to_bottom,#88A888_1px,transparent_1px)] bg-[size:96px_96px]"
 ></div>
 
 {#if pointerInside}
@@ -40,19 +40,19 @@
     <div
       class="absolute left-0 right-0 h-[1px] transition-colors duration-700 ease-out {inverted
         ? 'bg-[#000000]/35'
-        : 'bg-[#86A881]/30'}"
+        : 'bg-[#88A888]/30'}"
       style="top: {mouseY}px;"
     ></div>
     <div
       class="absolute top-0 bottom-0 w-[1px] transition-colors duration-700 ease-out {inverted
         ? 'bg-[#000000]/35'
-        : 'bg-[#86A881]/30'}"
+        : 'bg-[#88A888]/30'}"
       style="left: {mouseX}px;"
     ></div>
     <div
       class="absolute px-2 py-1 text-[10px] tracking-widest whitespace-nowrap transition-colors duration-700 ease-out {inverted
-        ? 'bg-[#86A881] text-[#000000]'
-        : 'bg-[#000000] text-[#86A881]'}"
+        ? 'bg-[#88A888] text-[#000000]'
+        : 'bg-[#000000] text-[#88A888]'}"
       style="left: {mouseX + 12}px; top: {mouseY + 12}px;"
     >
       X:{mouseX.toString().padStart(4, "0")} Y:{mouseY

@@ -285,7 +285,7 @@
     class="absolute top-0 left-0 right-0 flex flex-wrap items-center justify-between gap-2 p-3 md:p-4 pointer-events-none"
   >
     <span
-      class="text-[10px] uppercase tracking-widest text-[#86A881] bg-[#000000]/70 px-2 py-1"
+      class="text-[10px] uppercase tracking-widest text-[#88A888] bg-[#000000]/70 px-2 py-1"
     >
       {label}
     </span>
@@ -296,9 +296,9 @@
           <button
             type="button"
             onclick={() => choosePreset(option)}
-            class="px-2.5 py-1 text-[10px] uppercase tracking-widest border transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#86A881] {preset ===
+            class="px-2.5 py-1 text-[10px] uppercase tracking-widest border transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#88A888] {preset ===
             option
-              ? 'bg-[#86A881] text-[#000000] border-[#86A881]'
+              ? 'bg-[#88A888] text-[#000000] border-[#88A888]'
               : 'bg-[#000000]/70 text-[#FFFFFF]/70 border-border-subtle hover:text-[#FFFFFF]'}"
             aria-pressed={preset === option}
           >
@@ -308,8 +308,8 @@
         <button
           type="button"
           onclick={toggleRotate}
-          class="px-2.5 py-1 text-[10px] uppercase tracking-widest border transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#86A881] {rotating
-            ? 'bg-[#86A881] text-[#000000] border-[#86A881]'
+          class="px-2.5 py-1 text-[10px] uppercase tracking-widest border transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#88A888] {rotating
+            ? 'bg-[#88A888] text-[#000000] border-[#88A888]'
             : 'bg-[#000000]/70 text-[#FFFFFF]/70 border-border-subtle hover:text-[#FFFFFF]'}"
           aria-pressed={rotating}
         >
@@ -323,7 +323,7 @@
     <div
       class="absolute inset-0 flex items-center justify-center bg-[#000000]/60 pointer-events-none"
     >
-      <span class="text-[10px] uppercase tracking-widest text-[#86A881]">
+      <span class="text-[10px] uppercase tracking-widest text-[#88A888]">
         loading board…
       </span>
     </div>
@@ -331,7 +331,7 @@
     <div
       class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center"
     >
-      <span class="text-[10px] uppercase tracking-widest text-[#86A881]">
+      <span class="text-[10px] uppercase tracking-widest text-[#88A888]">
         3d view unavailable
       </span>
       <span class="text-[11px] text-[#FFFFFF]/60">
