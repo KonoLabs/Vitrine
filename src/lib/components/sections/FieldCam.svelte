@@ -31,7 +31,7 @@
         FieldCam is an autonomous field camera for remote farms. Its controller
         board carries the ESP32-S3, the camera interface, a 4G modem, a sub-GHz
         voice link and the entire power chain. The board is designed in KiCad,
-        checked by Fusible, and exported to glTF — this is the board you orbit,
+        checked by <a href="https://fusible.facile.studio" class="text-[#88A888] no-underline">Fusible</a>, and exported to glTF — this is the board you orbit,
         not a render of it.
       </p>
       <div class="space-y-2 text-xs text-[#88A888]">

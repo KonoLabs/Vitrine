@@ -1,6 +1,6 @@
 import type { RequestHandler } from "./$types";
 
-const pages = ["/", "/fusible", "/fusible/download", "/fieldcam", "/projects", "/blog"];
+const pages = ["/", "/fieldcam", "/projects", "/blog"];
 
 const posts = import.meta.glob<{ date?: string }>("../../posts/*.md", {
   eager: true,

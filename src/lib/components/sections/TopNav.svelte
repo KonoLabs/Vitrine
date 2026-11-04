@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { page } from "$app/state";
   import Icon from "@iconify/svelte";
   import { cubicOut } from "svelte/easing";
   import { fade, fly } from "svelte/transition";
@@ -7,7 +6,6 @@
   let scrollY = $state(0);
   let isScrolled = $derived(scrollY > 20);
   let mobileMenuOpen = $state(false);
-  const fusibleHref = $derived(page.url.pathname === "/" ? "#fusible" : "/fusible");
 </script>
 
 <svelte:window
@@ -60,11 +58,6 @@
           href="#capabilities"
           class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
           >SERVICES</a
-        >
-        <a
-          href={fusibleHref}
-          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-2 py-1 leading-none transition-colors"
-          >FUSIBLE</a
         >
         <a
           href="#terminal"
@@ -142,12 +135,6 @@
           onclick={() => (mobileMenuOpen = false)}
           class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-3 py-2 transition-colors"
           >SERVICES</a
-        >
-        <a
-          href={fusibleHref}
-          onclick={() => (mobileMenuOpen = false)}
-          class="text-[#FFFFFF] no-underline hover:bg-[#88A888] hover:text-[#000000] px-3 py-2 transition-colors"
-          >FUSIBLE</a
         >
         <a
           href="#terminal"

@@ -7,7 +7,6 @@
   import Inspector from "$lib/components/sections/Inspector.svelte";
   import Delivery from "$lib/components/sections/Delivery.svelte";
   import Capabilities from "$lib/components/sections/Capabilities.svelte";
-  import Fusible from "$lib/components/sections/Fusible.svelte";
   import FieldCam from "$lib/components/sections/FieldCam.svelte";
   import Contact from "$lib/components/sections/Contact.svelte";
   import Footer from "$lib/components/sections/Footer.svelte";
@@ -96,9 +95,6 @@
       </div>
       <div class="scroll-reveal">
         <Capabilities />
-      </div>
-      <div class="scroll-reveal">
-        <Fusible />
       </div>
       <div class="scroll-reveal">
         <Contact />
